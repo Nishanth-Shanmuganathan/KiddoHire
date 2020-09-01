@@ -1,0 +1,36 @@
+<div
+  class="container-fluid"
+  [ngClass]="{ 'bg-styling': !isMobile, 'bg-normal': isMobile }"
+  (window:resize)="checkView()"
+>
+  <div class="row justify-content-around align-items-center">
+    <div class="col-6 d-none d-md-block">
+      <img
+        class="auth-background"
+        src="./../../../assets/images/auth/bg.jpg"
+        alt="KiddoHire"
+      />
+    </div>
+    <div class="col-md-* d-flex flex-column">
+      <img
+        class="auth-logo m-3"
+        src="./../../../assets/images/auth/transparent-bg.png"
+        alt="KiddoHire"
+      />
+      <button
+        [routerLink]="['', 'login']"
+        mat-raised-button
+        class="m-3 p-2 bg-primary"
+      >
+        Hire Talents
+      </button>
+      <button
+        [routerLink]="['', 'register']"
+        mat-raised-button
+        class="m-3 p-2 bg-accent"
+      >
+        Get Hired
+      </button>
+    </div>
+  </div>
+</div>

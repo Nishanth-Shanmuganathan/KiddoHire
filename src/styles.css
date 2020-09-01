@@ -13,3 +13,13 @@ body {
   font-family: 'Bree Serif',
     serif;
 }
+
+.bg-primary {
+  background-color: #07389b !important;
+  color: white;
+}
+
+.bg-accent {
+  background-color: #f33591;
+  color: white;
+}

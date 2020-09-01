@@ -1,0 +1,9 @@
+.toolbar,
+.toolbar__logo {
+  height: 100px;
+}
+
+.toolbar__profile-pic {
+  color: white;
+  box-shadow: none !important;
+}
