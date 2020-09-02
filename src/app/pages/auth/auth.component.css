@@ -1,0 +1,38 @@
+.container-fluid {
+  width: 100%;
+  height: 100%;
+}
+
+.router-cover {
+  width: 100%;
+  height: 100vh;
+  min-height: fit-content;
+}
+
+.bg-styling {
+  background-image: linear-gradient(80deg, #06338d 50%, white 50.3%);
+}
+
+.bg-normal {
+  background-image: linear-gradient(10deg, #06338d 20%, white 20.5% 80%, #06338d 80.5%);
+}
+
+.row {
+  margin: 0;
+  padding: 0;
+}
+
+.auth-logo {
+  width: 300px;
+}
+
+.auth-background {
+  width: 80%;
+}
+
+.router-outlet {
+  height: fit-content;
+  min-width: 300px;
+  padding-bottom: 20px;
+  box-shadow: 2px 2px 3px silver;
+}

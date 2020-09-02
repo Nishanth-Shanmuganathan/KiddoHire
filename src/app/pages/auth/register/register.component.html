@@ -1,0 +1,88 @@
+<form [formGroup]="registerForm">
+  <table cellpadding="10px">
+    <tr>
+      <td class="pb-0">
+        <mat-form-field>
+          <mat-label>Email Id</mat-label>
+          <input matInput formControlName="email" type="text" />
+          <button type="button" mat-icon-button matSuffix disabled>
+            <mat-icon>mail</mat-icon>
+          </button>
+          <mat-error>Invalid email-id...</mat-error>
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            [type]="password ? 'password' : 'text'"
+            formControlName="password"
+          />
+          <button
+            type="button"
+            mat-icon-button
+            matSuffix
+            (click)="password = !password"
+          >
+            <mat-icon>visibility_off</mat-icon>
+          </button>
+          <mat-hint>Password should atleast be 8 characters</mat-hint>
+          <mat-error>Invalid password...</mat-error>
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <mat-form-field>
+          <mat-label>Confirm Password</mat-label>
+          <input
+            matInput
+            [type]="conPassword ? 'password' : 'text'"
+            formControlName="confirmPassword"
+          />
+          <button
+            type="button"
+            mat-icon-button
+            matSuffix
+            (click)="conPassword = !conPassword"
+          >
+            <mat-icon>visibility_off</mat-icon>
+          </button>
+          <mat-error>Password mismatch...</mat-error>
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td class="button p-0">
+        <button
+          mat-raised-button
+          class="bg-primary m-1"
+          (click)="register('developer')"
+        >
+          Sign Up as Developer
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <td class="button p-0">
+        <button
+          mat-raised-button
+          class="bg-primary m-1"
+          (click)="register('hr')"
+        >
+          Sign Up as HR
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <td class="button p-0">
+        <button mat-raised-button class="bg-accent m-1" [routerLink]="['..']">
+          Sign In
+        </button>
+      </td>
+    </tr>
+  </table>
+</form>

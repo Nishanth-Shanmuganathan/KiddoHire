@@ -1,0 +1,15 @@
+td {
+  padding: 10px 20px;
+}
+
+table {
+  max-width: 250px;
+}
+
+.button {
+  text-align: center;
+}
+
+.button button {
+  width: 100%;
+}

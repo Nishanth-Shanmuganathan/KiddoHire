@@ -1,4 +1,3 @@
-import { UIService } from './../../services/ui.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,18 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  isMobile: boolean;
   constructor(
-    private uiService: UIService
   ) { }
-
   ngOnInit(): void {
-    this.uiService.isMobileSub.subscribe(res => {
-      this.isMobile = res;
-    });
   }
 
-  checkView() {
-    this.uiService.getMobileView();
-  }
 }

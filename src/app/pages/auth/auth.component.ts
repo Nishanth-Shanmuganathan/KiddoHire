@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UIService } from 'src/app/services/ui.service';
 
 @Component({
   selector: 'app-auth',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnInit {
-
-  constructor() { }
+  isMobile: boolean;
+  constructor(
+    private uiService: UIService
+  ) { }
 
   ngOnInit(): void {
+    this.uiService.isMobileSub.subscribe(res => {
+      this.isMobile = res;
+    });
   }
 
+  checkView() {
+    this.uiService.getMobileView();
+  }
 }

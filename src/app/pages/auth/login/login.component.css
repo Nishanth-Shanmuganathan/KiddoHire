@@ -1,0 +1,19 @@
+.button {
+  text-align: center;
+}
+
+.login {
+  padding-top: 30px;
+}
+
+.button>* {
+  width: 100%;
+}
+
+td {
+  padding: 10px 20px;
+}
+
+table {
+  max-width: 250px;
+}

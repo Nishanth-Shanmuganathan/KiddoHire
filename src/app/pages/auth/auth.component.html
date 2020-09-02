@@ -1,1 +1,31 @@
-<p>auth works!</p>
+<div
+  class="container-fluid"
+  [ngClass]="{ 'bg-styling': !isMobile, 'bg-normal': isMobile }"
+  (window:resize)="checkView()"
+>
+  <div class="router-cover row justify-content-around align-items-center">
+    <div class="col-md-6 d-none d-md-block">
+      <img
+        class="auth-background"
+        src="./../../../assets/images/auth/bg.jpg"
+        alt="KiddoHire"
+      />
+    </div>
+    <div class="col-* router-outlet card mt-4 mb-5">
+      <div class="row justify-content-around align-items-center">
+        <div class="col-*">
+          <img
+            class="auth-logo m-3"
+            src="./../../../assets/images/auth/transparent-bg.png"
+            alt="KiddoHire"
+          />
+        </div>
+      </div>
+      <div class="row justify-content-around align-items-center">
+        <div class="col-*">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
