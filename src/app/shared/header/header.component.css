@@ -1,9 +1,29 @@
-.toolbar,
-.toolbar__logo {
+.toolbar {
+  width: 100vw;
   height: 100px;
+  background-color: white;
+}
+
+
+.toolbar__logo {
+  max-width: 300px;
 }
 
 .toolbar__profile-pic {
   color: white;
   box-shadow: none !important;
+}
+
+.text-primary:hover,
+.text-primary:active,
+button.active {
+  color: #f33591 !important;
+}
+
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: white;
 }

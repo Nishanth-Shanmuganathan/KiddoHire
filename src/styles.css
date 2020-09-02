@@ -23,3 +23,7 @@ body {
   background-color: #f33591;
   color: white;
 }
+
+.text-primary {
+  color: #07389b !important;
+}

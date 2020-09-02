@@ -1,10 +1,8 @@
-import { HomeComponent } from './home.component';
 import { NgModule } from '@angular/core';
-import { MaterialModule } from './../../material.module';
-
 import { Routes, RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { SharedModule } from './../../shared/shared.module';
+
+import { HomeComponent } from './home.component';
 
 const routes: Routes = [
   {
@@ -18,11 +16,8 @@ const routes: Routes = [
     HomeComponent
   ],
   imports: [
-    CommonModule,
-    MaterialModule,
+    SharedModule,
     RouterModule.forChild(routes),
-    ReactiveFormsModule,
-    FormsModule
   ]
 })
 export class HomeModule { }

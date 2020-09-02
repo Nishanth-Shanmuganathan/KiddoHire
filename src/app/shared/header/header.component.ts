@@ -1,3 +1,4 @@
+import { UIService } from 'src/app/services/ui.service';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
@@ -6,14 +7,18 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  @Output() toggleSideBar = new EventEmitter();
-  @Input() isSideNavOpened: boolean;
-  constructor() { }
+  isMobile: boolean;
+  constructor(
+    private uiService: UIService
+  ) { }
 
   ngOnInit(): void {
-    console.log(this.isSideNavOpened);
+    this.uiService.isMobileSub.subscribe(res => {
+      this.isMobile = res;
+    });
   }
-  emitToggle() {
-    this.toggleSideBar.emit();
+
+  resized() {
+    this.uiService.getMobileView();
   }
 }

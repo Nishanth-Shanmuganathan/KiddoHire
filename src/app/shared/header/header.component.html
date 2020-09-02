@@ -1,0 +1,90 @@
+<mat-toolbar (window:resize)="resized()">
+  <mat-toolbar-row
+    class="toolbar justify-content-center justify-content-md-between border-bottom"
+  >
+    <img
+      class="toolbar__logo"
+      src="./../../../assets/images/auth/transparent-bg.png"
+      alt="KiddoHire"
+    />
+    <div class="nav d-flex flex-nowrap align-items-center" *ngIf="!isMobile">
+      <button
+        [routerLink]="['/', 'home']"
+        routerLinkActive="active"
+        mat-flat-button
+        class="text-primary m-1 p-1"
+      >
+        <mat-icon>home</mat-icon>
+        <span class="p-3">Home</span>
+      </button>
+      <button
+        [routerLink]="['/', 'jobs']"
+        routerLinkActive="active"
+        mat-flat-button
+        class="text-primary m-1 p-1"
+      >
+        <mat-icon>work</mat-icon>
+        <span class="p-3">Jobs</span>
+      </button>
+      <button
+        [routerLink]="['/', 'following']"
+        routerLinkActive="active"
+        mat-flat-button
+        class="text-primary m-1 p-1"
+      >
+        <mat-icon>rss_feed</mat-icon>
+        <span class="p-3">Following</span>
+      </button>
+      <button
+        [routerLink]="['/', 'profile']"
+        routerLinkActive="active"
+        mat-flat-button
+        class="text-primary m-1 p-1"
+      >
+        <mat-icon>person</mat-icon>
+        <span class="p-3">Profile</span>
+      </button>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-toolbar class="bottom-nav" *ngIf="isMobile">
+  <mat-toolbar-row class="border-top justify-content-around align-items-center">
+    <button
+      [routerLink]="['/', 'home']"
+      routerLinkActive="active"
+      mat-flat-button
+      class="text-primary m-2 p-0"
+    >
+      <mat-icon>home</mat-icon>
+      <span class="p-2 d-none d-sm-inline-block">Home</span>
+    </button>
+    <button
+      [routerLink]="['/', 'jobs']"
+      routerLinkActive="active"
+      mat-flat-button
+      class="text-primary m-2 p-0"
+    >
+      <mat-icon>work</mat-icon>
+      <span class="p-2 d-none d-sm-inline-block">Jobs</span>
+    </button>
+    <button
+      [routerLink]="['/', 'following']"
+      routerLinkActive="active"
+      mat-flat-button
+      class="text-primary m-2 p-0"
+    >
+      <mat-icon>rss_feed</mat-icon>
+      <span class="p-2 d-none d-sm-inline-block">Following</span>
+    </button>
+    <button
+      [routerLink]="['/', 'profile']"
+      routerLinkActive="active"
+      mat-flat-button
+      class="text-primary m-2 p-0"
+    >
+      <mat-icon>person</mat-icon>
+      <span class="p-2 d-none d-sm-inline-block">Profile</span>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
