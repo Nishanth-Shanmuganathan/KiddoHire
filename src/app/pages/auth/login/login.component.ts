@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { UIService } from 'src/app/services/ui.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private route: Router,
     private uiService: UIService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -34,8 +36,9 @@ export class LoginComponent implements OnInit {
       email: form.value.email,
       password: form.value.password,
     };
-    console.log(loginCred);
+    this.authService.login(loginCred);
   }
+
 
 
 }

@@ -1,28 +1,21 @@
+import { HomeComponent } from './home.component';
 import { NgModule } from '@angular/core';
 import { MaterialModule } from './../../material.module';
 
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
-import { AuthComponent } from './auth.component';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
-    path: '', component: AuthComponent,
-    children: [
-      { path: '', component: LoginComponent },
-      { path: 'signup', component: RegisterComponent },
-    ]
+    path: '', component: HomeComponent,
+    children: []
   },
 ];
 
 @NgModule({
   declarations: [
-    AuthComponent,
-    LoginComponent,
-    RegisterComponent
+    HomeComponent
   ],
   imports: [
     CommonModule,
@@ -32,4 +25,4 @@ const routes: Routes = [
     FormsModule
   ]
 })
-export class AuthModule { }
+export class HomeModule { }

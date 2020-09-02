@@ -1,3 +1,4 @@
+import { AuthService } from './../../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -17,6 +18,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private route: Router,
     private uiService: UIService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -47,6 +49,6 @@ export class RegisterComponent implements OnInit {
       confirmPassword: this.registerForm.value.confirmPassword,
       role
     };
-    console.log(regCred);
+    this.authService.register(regCred);
   }
 }

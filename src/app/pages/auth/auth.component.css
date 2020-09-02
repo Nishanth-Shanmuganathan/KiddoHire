@@ -1,12 +1,11 @@
 .container-fluid {
   width: 100%;
-  height: 100%;
+  min-height: 100%;
+  max-height: fit-content;
 }
 
 .router-cover {
   width: 100%;
-  height: 100vh;
-  min-height: fit-content;
 }
 
 .bg-styling {
@@ -27,7 +26,7 @@
 }
 
 .auth-background {
-  width: 80%;
+  width: 50%;
 }
 
 .router-outlet {
