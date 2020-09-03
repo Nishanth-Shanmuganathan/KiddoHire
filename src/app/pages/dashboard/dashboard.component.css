@@ -9,11 +9,9 @@ mat-card-content {
 
 mat-card {
   max-width: 1000px;
+  box-shadow: 0px 0px 10px silver !important;
 }
 
-mat-card:hover {
-  box-shadow: 3px 3px 10px silver;
-}
 
 a {
   text-decoration: none;
