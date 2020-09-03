@@ -25,6 +25,11 @@ body {
   color: white;
 }
 
+.bg-light {
+  background-color: white !important;
+  color: black !important;
+}
+
 .text-primary {
   color: #07389b !important;
 }

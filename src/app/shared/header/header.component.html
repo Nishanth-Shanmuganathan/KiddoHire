@@ -1,6 +1,6 @@
-<mat-toolbar (window:resize)="resized()">
+<mat-toolbar (window:resize)="resized()" class="p-0">
   <mat-toolbar-row
-    class="toolbar justify-content-center justify-content-md-between border-bottom"
+    class="toolbar justify-content-center justify-content-md-between border-bottom p-0"
   >
     <img
       class="toolbar__logo"
@@ -48,8 +48,10 @@
   </mat-toolbar-row>
 </mat-toolbar>
 
-<mat-toolbar class="bottom-nav" *ngIf="isMobile">
-  <mat-toolbar-row class="border-top justify-content-around align-items-center">
+<mat-toolbar class="bottom-nav p-0" *ngIf="isMobile">
+  <mat-toolbar-row
+    class="border-top justify-content-around align-items-center p-0"
+  >
     <button
       [routerLink]="['/', 'home']"
       routerLinkActive="active"

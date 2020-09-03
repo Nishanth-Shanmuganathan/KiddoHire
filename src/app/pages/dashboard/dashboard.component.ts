@@ -20,7 +20,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
 
     this.dashboardService.getStatisticalData().subscribe(res => {
-      console.log(res);
       const lineChartLabels1 = new Array(res.result1.pop().length).fill('');
       const title1 = res.result1.pop();
       const lineChartData1 = res.result1;
@@ -33,7 +32,7 @@ export class DashboardComponent implements OnInit {
       ];
     });
 
-    this.loadFeeds();
+    // this.loadFeeds();
   }
 
   loadFeeds() {

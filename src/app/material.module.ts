@@ -8,6 +8,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatMenuModule } from '@angular/material/menu';
 
 const Materials = [
   MatCardModule,
@@ -17,7 +19,9 @@ const Materials = [
   MatIconModule,
   MatSelectModule,
   MatToolbarModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatAutocompleteModule,
+  MatMenuModule
 ];
 
 @NgModule({
