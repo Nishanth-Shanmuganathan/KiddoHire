@@ -1,13 +1,11 @@
-import { AuthGuard } from './services/auth.gaurd';
-import { AuthModule } from './pages/auth/auth.module';
-import { AppRoutingModule } from './app-routing.module';
-import { HeaderComponent } from './shared/header/header.component';
-import { MaterialModule } from './material.module';
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AuthGuard } from './services/auth.gaurd';
+import { AppRoutingModule } from './app-routing.module';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

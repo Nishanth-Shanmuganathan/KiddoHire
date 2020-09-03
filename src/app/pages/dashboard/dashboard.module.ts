@@ -2,27 +2,24 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from './../../shared/shared.module';
 
-import { HomeComponent } from './home.component';
-
+import { DashboardComponent } from './dashboard.component';
+import { ChartsModule } from 'ng2-charts';
+import { ChartComponent } from './chart/chart.component';
 const routes: Routes = [
   {
-    path: '', component: HomeComponent,
-    children: [
-      {
-        path: '',
-        loadChildren: () => import('./../dashboard/dashboard.module').then(mod => mod.DashboardModule)
-      }
-    ]
+    path: '', component: DashboardComponent,
   },
 ];
 
 @NgModule({
   declarations: [
-    HomeComponent
+    DashboardComponent,
+    ChartComponent
   ],
   imports: [
     SharedModule,
     RouterModule.forChild(routes),
+    ChartsModule
   ]
 })
-export class HomeModule { }
+export class DashboardModule { }

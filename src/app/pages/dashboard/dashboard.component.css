@@ -1,0 +1,28 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+mat-card>* {
+  text-align: justify;
+}
+
+mat-card {
+  max-width: 1000px;
+}
+
+mat-card:hover {
+  box-shadow: 3px 3px 10px silver;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.isLoading {
+  position: absolute;
+  width: 100vw;
+  top: 0;
+  left: 0;
+}

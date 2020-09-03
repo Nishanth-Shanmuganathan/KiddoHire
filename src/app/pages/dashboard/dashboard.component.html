@@ -1,0 +1,33 @@
+<div class="isLoading" *ngIf="!(this.feeds | async)">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+<div
+  *ngIf="DataSets"
+  class="d-flex flex-wrap justify-content-around align-items-start mt-n5 border-bottom"
+>
+  <app-chart
+    *ngFor="let dataset of DataSets"
+    [lineChartData]="dataset.lineChartData"
+    [lineChartLabels]="dataset.lineChartLabels"
+    [title]="dataset.title"
+  ></app-chart>
+</div>
+
+<div *ngIf="!(this.feeds | async)?.length">empty</div>
+<div *ngFor="let feed of feeds | async">
+  <a [href]="feed.link" target="_blank">
+    <mat-card class="mt-2 mt-sm-3 mt-md-5">
+      <mat-card-header>
+        <mat-card-title class="">{{ feed.title | titlecase }}</mat-card-title>
+        <mat-card-subtitle>
+          Authored by : {{ feed.author | titlecase }} at
+          {{ feed.published_date | date }}
+        </mat-card-subtitle>
+        <mat-card-subtitle> </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content class="pl-2 pl-sm-3 pl-md-4">
+        {{ feed.summary }}
+      </mat-card-content>
+    </mat-card>
+  </a>
+</div>
