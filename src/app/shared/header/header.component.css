@@ -15,8 +15,6 @@
   box-shadow: none !important;
 }
 
-.text-primary:hover,
-.text-primary:active,
 button.active {
   color: #f33591 !important;
 }

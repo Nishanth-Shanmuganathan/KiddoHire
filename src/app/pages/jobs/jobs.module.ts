@@ -5,12 +5,15 @@ import { Ng5SliderModule } from 'ng5-slider';
 
 import { JobsComponent } from '../jobs/jobs.component';
 import { SearchComponent } from './search/search.component';
+import { JobsListComponent } from './jobs-list/jobs-list.component';
+import { EmployeeJobCardComponent } from './employee-job-card/employee-job-card.component';
+import { EmployerJobCardComponent } from './employer-job-card/employer-job-card.component';
 
 const routes: Routes = [
   {
     path: '', component: JobsComponent,
     children: [
-      // {path:''}
+      { path: '', component: JobsListComponent }
     ]
   },
 ];
@@ -19,6 +22,9 @@ const routes: Routes = [
   declarations: [
     JobsComponent,
     SearchComponent,
+    JobsListComponent,
+    EmployeeJobCardComponent,
+    EmployerJobCardComponent,
   ],
   imports: [
     SharedModule,

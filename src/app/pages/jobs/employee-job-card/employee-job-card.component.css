@@ -1,0 +1,30 @@
+mat-card {
+  min-width: 250px;
+  max-width: 1000px;
+}
+
+mat-card-subtitle span {
+  cursor: pointer;
+}
+
+mat-card-subtitle span mat-icon {
+  font-size: 12px;
+}
+
+img[matCardAvatar] {
+  width: 70px !important;
+  height: 70px !important;
+  border-radius: 0px !important;
+}
+
+.job__description {
+  height: 200px;
+  overflow-y: scroll;
+  border-radius: 10px;
+  box-shadow: 1px 1px 2px silver;
+}
+
+
+img[mat-card-md-image] {
+  border-radius: 125px;
+}
