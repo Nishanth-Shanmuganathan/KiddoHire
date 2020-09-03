@@ -3,7 +3,7 @@
   width: 100%;
 }
 
-mat-card>* {
+mat-card-content {
   text-align: justify;
 }
 
@@ -22,7 +22,7 @@ a {
 
 .isLoading {
   position: absolute;
-  width: 100vw;
+  width: 100%;
   top: 0;
   left: 0;
 }

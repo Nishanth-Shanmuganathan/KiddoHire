@@ -1,9 +1,9 @@
-<div class="isLoading" *ngIf="!(this.feeds | async)">
+<div class="isLoading" *ngIf="isLoading">
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </div>
 <div
-  *ngIf="DataSets"
-  class="d-flex flex-wrap justify-content-around align-items-start mt-n5 border-bottom"
+  *ngIf="!isLoading && DataSets"
+  class="d-flex flex-wrap justify-content-around align-items-start mt-n5 pb-4 mb-4 border-bottom"
 >
   <app-chart
     *ngFor="let dataset of DataSets"
@@ -13,9 +13,8 @@
   ></app-chart>
 </div>
 
-<div *ngIf="!(this.feeds | async)?.length">empty</div>
-<div *ngFor="let feed of feeds | async">
-  <a [href]="feed.link" target="_blank">
+<div *ngIf="this.feeds.length">
+  <a *ngFor="let feed of feeds" [href]="feed.link" target="_blank">
     <mat-card class="mt-2 mt-sm-3 mt-md-5">
       <mat-card-header>
         <mat-card-title class="">{{ feed.title | titlecase }}</mat-card-title>
@@ -30,4 +29,18 @@
       </mat-card-content>
     </mat-card>
   </a>
+</div>
+
+<div *ngIf="this.feeds.length" class="row justify-content-center mt-5 mb-5">
+  <div class="col-* d-flex flex-column align-items-center">
+    <p class="mb-0">Load More...</p>
+    <button
+      mat-mini-fab
+      class="bg-light"
+      (click)="loadFeeds()"
+      [disabled]="isLoading"
+    >
+      <mat-icon>{{ isLoading ? "hourglass_bottom" : "replay" }}</mat-icon>
+    </button>
+  </div>
 </div>

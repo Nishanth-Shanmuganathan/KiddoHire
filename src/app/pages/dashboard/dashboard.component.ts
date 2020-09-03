@@ -9,8 +9,8 @@ import { Chart } from 'chart.js';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  feeds: Observable<any[]>;
-
+  feeds = [];
+  isLoading = true;
   DataSets: { lineChartData, lineChartLabels, title }[];
   constructor(
     private dashboardService: DashboardService
@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
 
-    this.dashboardService.getNewsFeed().subscribe(res => {
+    this.dashboardService.getStatisticalData().subscribe(res => {
       console.log(res);
       const lineChartLabels1 = new Array(res.result1.pop().length).fill('');
       const title1 = res.result1.pop();
@@ -31,6 +31,16 @@ export class DashboardComponent implements OnInit {
         { lineChartData: lineChartData1, lineChartLabels: lineChartLabels1, title: title1 },
         { lineChartData: lineChartData2, lineChartLabels: lineChartLabels2, title: title2 }
       ];
+    });
+
+    this.loadFeeds();
+  }
+
+  loadFeeds() {
+    this.isLoading = true;
+    this.dashboardService.getNewsFeed().subscribe(res => {
+      this.feeds = [...this.feeds, ...res];
+      this.isLoading = false;
     });
   }
 }

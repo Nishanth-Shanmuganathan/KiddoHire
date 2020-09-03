@@ -10,11 +10,17 @@ import { environment } from './../../environments/environment';
 export class DashboardService {
   newsFeed: any[] = [];
   newsFeedSubj = new Subject<any[]>();
+  newsFeed_page = 0;
   constructor(
     private http: HttpClient
   ) { }
 
-  getNewsFeed() {
+  getStatisticalData() {
     return this.http.get<{ result1, result2 }>(environment.server_url + 'node-home/statistics');
+  }
+  getNewsFeed() {
+    this.newsFeed_page++;
+    return this.http.post<{ feeds: [] }>(environment.server_url + 'node-home/feeds', { page: this.newsFeed_page })
+      .pipe(map(res => res.feeds));
   }
 }
