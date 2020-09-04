@@ -12,6 +12,14 @@ mat-card {
   box-shadow: 0px 0px 10px silver !important;
 }
 
+.trends {
+  max-width: 1000px;
+
+}
+
+mat-card-title {
+  font-size: 16px !important;
+}
 
 a {
   text-decoration: none;
@@ -23,4 +31,8 @@ a {
   width: 100%;
   top: 0;
   left: 0;
+}
+
+.trends {
+  font-size: 20px;
 }

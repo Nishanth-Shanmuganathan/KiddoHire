@@ -1,0 +1,77 @@
+mat-card {
+  min-width: 250px;
+  max-width: 1000px;
+}
+
+.panel__content {
+  position: relative;
+}
+
+.edit {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+mat-accordion {
+  width: 100%;
+}
+
+mat-expansion-panel {
+  width: 100%;
+  max-width: 87vw;
+  /* overflow-x: scroll; */
+}
+
+img[matCardAvatar] {
+  border-radius: 0px !important;
+}
+
+.job__description {
+  height: 300px;
+  overflow-y: scroll;
+  border-radius: 5px;
+  box-shadow: 1px 0px 2px silver;
+}
+
+.table_cover {
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+mat-table {
+  width: fit-content;
+  min-width: 500px;
+  max-width: inherit;
+  margin: auto;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td,
+th {
+  width: 200px !important;
+}
+
+th {
+  text-align: center;
+}
+
+.text-success {
+  color: green;
+  background-color: white;
+}
+
+.text-danger {
+  color: red;
+  background-color: white;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}

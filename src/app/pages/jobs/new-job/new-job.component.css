@@ -6,6 +6,10 @@ mat-form-field {
   font-size: 14px;
 }
 
+.btn_row {
+  max-width: 600px;
+}
+
 .input,
 ng5-slider {
   max-width: 300px;

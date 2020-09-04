@@ -1,3 +1,16 @@
+<div class="row btn_row m-auto">
+  <div class="col-*">
+    <button
+      class="mb-3 ml-sm-5"
+      color="primary"
+      mat-raised-button
+      [routerLink]="['..']"
+    >
+      <mat-icon>navigate_before</mat-icon>
+      <span>Back</span>
+    </button>
+  </div>
+</div>
 <div class="container card pt-3 pb-3">
   <form [formGroup]="addForm" (ngSubmit)="postJob()">
     <div class="row">

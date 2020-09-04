@@ -1,1 +1,164 @@
-<p>employer-job-card works!</p>
+<mat-card class="m-2 m-md-4">
+  <mat-card-header>
+    <img
+      matCardAvatar
+      src="../../../../assets/images/jobs/company.png"
+      alt="KiddoHire"
+    />
+    <mat-card-title>Full Stack Developer</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="p-2 p-sm-3 p-md-4 m-0 d-flex">
+    <mat-accordion>
+      <mat-expansion-panel class="panel__content">
+        <mat-expansion-panel-header>Job Details </mat-expansion-panel-header>
+        <mat-chip-list class="m-2">
+          <mat-chip color="primary" selected>Papadum</mat-chip>
+        </mat-chip-list>
+        <button mat-mini-fab class="edit">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <div class="job__description p-1 p-sm-2 m-sm-2 border">
+          We are looking for a JavaScript Developer who is motivated to combine
+          the art of design with the art of programming. Responsibilities will
+          include implementing visual elements and their behaviors with user
+          interactions and building backend APIs using the MEAN stack. You will
+          help build all client-side logic. You will also be bridging the gap
+          between the visual elements and the server-side infrastructure, taking
+          an active role on both sides, and defining how the application looks
+          and functions.Responsibilities: Work with our Engineers to implement
+          the next generation of our client products Build efficient and
+          reusable front-end/back-end abstractions and systems Optimize
+          applications for maximum speed and scalability Identify and address
+          performance bottlenecks Participate in design and code reviews
+          Identify and communicate best practices for front-end engineering
+          Requirements: Excellent programming skills with Node.js. Natural with
+          Markup and Styling with HTML, CSS Strong understanding of JavaScript,
+          its quirks, and workarounds. Hands-on experience with at least one of
+          these: AngularJS, EmberJS, KnockoutJS, BackboneJS, ReactJS,
+          DurandalJS, NodeJS, ReactJS, or similar. Ability to author clean,
+          standards-compliant code Comfortable working with templates in
+          server-side technologies and client-side apps Familiarity with
+          JavaScript module loaders, such as Require.js and AMD Familiarity with
+          front-end build tools, such as Grunt and Gulp.js Proficient
+          understanding of code versioning tools, such as (Git / Mercurial /
+          SVN) Understand the principals of object-oriented development Use
+          test-driven development to guide implementation Fond of tracking down
+          IE browser bugs Ability to navigate deep into Photoshop layers to
+          export slices and make sprites Fluency in English Experience: 6 to 12
+          yearsAbout this companyAt Idyllic Software, we're driven by our love
+          for software, design, and people. We dislike insane rules that govern
+          our work, so you won't find scheduled work hours, in-times, and long
+          meetings around the whiteboard. We love building applications for the
+          web and we'd like to keep it that way so we try to get rid of anything
+          that comes in the way. We have liberal leave policies to ensure we
+          have a break when we need one and working remotely is always an option
+          when you are not in the mood to deal with the traffic.
+        </div>
+        <div class="row p-2 ml-1 m-sm-3">
+          <div class="col-* mr-3">
+            <span class="text-muted">Location : </span>{{ "Banglore" }}
+          </div>
+          <div class="col-* mr-3">
+            <span class="text-muted">Experience Range : </span
+            >{{ "1" + "-" + "4" }} years
+          </div>
+          <div class="col-* mr-3">
+            <span class="text-muted">Salary Range : </span
+            >{{ "10" + "-" + "15" }} LPA
+          </div>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header
+          >Application Details</mat-expansion-panel-header
+        >
+        <mat-form-field>
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" />
+        </mat-form-field>
+
+        <div class="table_cover">
+          <mat-table [dataSource]="dataSource" matSort>
+            <!-- Sl. No Column -->
+            <ng-container matColumnDef="sl">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Sl. No.</th>
+              <td mat-cell *matCellDef="let row">{{ row.sl }}</td>
+            </ng-container>
+
+            <!-- Match Column -->
+            <ng-container matColumnDef="match">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Relevancy
+              </th>
+              <td mat-cell *matCellDef="let row">{{ row.match }}%</td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+              <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+            </ng-container>
+
+            <!-- Status Column -->
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+              <td mat-cell *matCellDef="let row" [class]="row.status">
+                {{ row.status }}
+              </td>
+            </ng-container>
+
+            <!-- Resume Column -->
+            <ng-container matColumnDef="resume">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Resume</th>
+              <td mat-cell *matCellDef="let row">
+                <a href="{{ row.resume }}" target="_blank">
+                  <button mat-raised-button color="primary">Resume</button>
+                </a>
+              </td>
+            </ng-container>
+
+            <!-- Actions Column -->
+            <ng-container matColumnDef="_id">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header
+                style="padding-right: 0px; width: 300px !important"
+              >
+                Actions
+              </th>
+              <td
+                mat-cell
+                *matCellDef="let row"
+                style="padding-right: 0px; width: 300px !important"
+              >
+                <button
+                  mat-mini-fab
+                  class="text-success"
+                  (click)="shortlist(row._id)"
+                >
+                  <mat-icon>check_box</mat-icon>
+                </button>
+                <button
+                  mat-mini-fab
+                  class="text-danger"
+                  (click)="reject(row._id)"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </mat-table>
+        </div>
+        <div class="row justify-content-end">
+          <div class="col-*">
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-card-content>
+</mat-card>
