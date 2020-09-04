@@ -1,4 +1,4 @@
-<mat-card class="m-2 m-md-4">
+<mat-card class="mt-2 mb-2 mt-md-4 mb-md-4">
   <mat-card-header>
     <img
       matCardAvatar
@@ -73,8 +73,12 @@
           >Application Details</mat-expansion-panel-header
         >
         <mat-form-field>
-          <mat-label>Filter</mat-label>
-          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" />
+          <mat-label>Search applicant</mat-label>
+          <input
+            matInput
+            (keyup)="applyFilter($event)"
+            placeholder="Any applicant credentials..."
+          />
         </mat-form-field>
 
         <div class="table_cover">
