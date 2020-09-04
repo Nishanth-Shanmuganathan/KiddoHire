@@ -32,19 +32,20 @@ export class DashboardComponent implements OnInit {
       ];
     });
     if (!this.dashboardService.newsFeed.length) {
-      console.log('illa');
+      console.log('ila');
       this.loadFeeds();
-    } else {
-      console.log('irukku');
     }
+    this.dashboardService.newsFeedSubj.subscribe(res => {
+      this.feeds = [...res];
+      if (this.feeds.length) {
+        this.isLoading = false;
+      }
+    });
   }
 
   loadFeeds() {
     this.isLoading = true;
+    console.log('tre and call');
     this.dashboardService.getNewsFeed();
-    this.dashboardService.newsFeedSubj.subscribe(res => {
-      this.feeds = [...res];
-      this.isLoading = false;
-    });
   }
 }

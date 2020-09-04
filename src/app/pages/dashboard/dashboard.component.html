@@ -42,9 +42,9 @@
   </a>
 </div>
 
-<div *ngIf="this.feeds.length" class="row justify-content-center mt-5 mb-5">
+<div *ngIf="this.feeds.length" class="row justify-content-center mt-2">
   <div class="col-* d-flex flex-column align-items-center">
-    <p class="mb-0">Load More...</p>
+    <p class="mb-0">{{ isLoading ? "Loading" : "Load More" }}...</p>
     <button
       mat-mini-fab
       class="bg-light text-dark"
