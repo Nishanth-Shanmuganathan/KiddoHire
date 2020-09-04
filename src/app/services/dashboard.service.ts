@@ -20,7 +20,11 @@ export class DashboardService {
   }
   getNewsFeed() {
     this.newsFeed_page++;
-    return this.http.post<{ feeds: [] }>(environment.server_url + 'node-home/feeds', { page: this.newsFeed_page })
-      .pipe(map(res => res.feeds));
+    this.http.post<{ feeds: [] }>(environment.server_url + 'node-home/feeds', { page: this.newsFeed_page })
+      .subscribe(res => {
+        this.newsFeed = [...this.newsFeed, ...res.feeds];
+        this.newsFeedSubj.next(this.newsFeed);
+      });
+
   }
 }

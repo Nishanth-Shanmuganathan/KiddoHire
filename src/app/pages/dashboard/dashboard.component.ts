@@ -31,14 +31,19 @@ export class DashboardComponent implements OnInit {
         { lineChartData: lineChartData2, lineChartLabels: lineChartLabels2, title: title2 }
       ];
     });
-
-    this.loadFeeds();
+    if (!this.dashboardService.newsFeed.length) {
+      console.log('illa');
+      this.loadFeeds();
+    } else {
+      console.log('irukku');
+    }
   }
 
   loadFeeds() {
     this.isLoading = true;
-    this.dashboardService.getNewsFeed().subscribe(res => {
-      this.feeds = [...this.feeds, ...res];
+    this.dashboardService.getNewsFeed();
+    this.dashboardService.newsFeedSubj.subscribe(res => {
+      this.feeds = [...res];
       this.isLoading = false;
     });
   }
