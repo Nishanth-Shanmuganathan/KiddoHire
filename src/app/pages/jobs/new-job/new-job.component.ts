@@ -42,8 +42,8 @@ export class NewJobComponent implements OnInit {
       'minimum salary': new FormControl(null),
       'maximum salary': new FormControl(null),
       location: new FormControl(null, Validators.required),
-      rounds: new FormControl(null, [Validators.required, Validators.min(1), Validators.max(6)]),
-      dates: new FormArray([], [Validators.required]),
+      total_rounds: new FormControl(null, [Validators.required, Validators.min(1), Validators.max(6)]),
+      rounds: new FormArray([], [Validators.required]),
     });
   }
 
@@ -55,12 +55,15 @@ export class NewJobComponent implements OnInit {
     this.skill.nativeElement.value = null;
   }
 
-  onAddRounds(rounds: number) {
-    console.log(rounds);
-    if (rounds < 1) { return; }
-    (this.addForm.get('dates') as FormArray).clear();
-    for (let i = 0; i < rounds; i++) {
-      (this.addForm.get('dates') as FormArray).push(new FormControl(null, Validators.required));
+  onAddRounds(total_rounds: number) {
+    console.log(total_rounds);
+    if (total_rounds < 1) { return; }
+    (this.addForm.get('rounds') as FormArray).clear();
+    for (let i = 0; i < total_rounds; i++) {
+      (this.addForm.get('rounds') as FormArray).push(new FormGroup({
+        date: new FormControl(null, Validators.required),
+        description: new FormControl(null, Validators.required)
+      }));
     }
     // tslint:disable-next-line: no-string-literal
     console.log(this.addForm);

@@ -72,7 +72,7 @@
           <mat-error>Location is required</mat-error>
         </mat-form-field>
       </div>
-      <div class="col-12">
+      <div class="col-12 mb-2">
         <mat-form-field class="input">
           <input
             type="number"
@@ -80,38 +80,46 @@
             matInput
             max="6"
             maxLength="1"
-            formControlName="rounds"
-            (input)="onAddRounds(addForm.get('rounds').value)"
+            formControlName="total_rounds"
+            (input)="onAddRounds(addForm.get('total_rounds').value)"
           />
           <mat-error>Total rounds is invalid</mat-error>
           <mat-hint>Total should between 1-6 rounds</mat-hint>
         </mat-form-field>
       </div>
-      <div class="col-12" formGroupName="dates">
-        <mat-form-field
-          class="input"
-          *ngFor="let date of addForm.get('dates')['controls']; let i = index"
+      <div class="col-12" formGroupName="rounds">
+        <div
+          *ngFor="let date of addForm.get('rounds')['controls']; let i = index"
+          [formGroupName]="i"
         >
-          <mat-label> Schedule a date for round {{ i + 1 }}</mat-label>
-          <input
-            matInput
-            [matDatepicker]="myDatepicker1"
-            formControlName="{{ i }}"
-            [min]="addForm.get('dates')['controls'][i - 1]?.value || today"
-          />
-          <mat-datepicker-toggle
-            class="border-round"
-            matSuffix
-            [for]="myDatepicker1"
-          ></mat-datepicker-toggle>
-          <mat-datepicker #myDatepicker1></mat-datepicker>
-          <mat-error>Date is required</mat-error>
-        </mat-form-field>
+          <mat-form-field class="input">
+            <mat-label> Schedule a date for round {{ i + 1 }}</mat-label>
+            <input
+              matInput
+              [matDatepicker]="myDatepicker1"
+              formControlName="date"
+              [min]="
+                addForm.get('rounds')['controls'][i - 1]?.get('date')?.value ||
+                today
+              "
+            />
+            <mat-datepicker-toggle
+              class="border-round"
+              matSuffix
+              [for]="myDatepicker1"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #myDatepicker1></mat-datepicker>
+            <mat-error>Date is required</mat-error>
+          </mat-form-field>
+          <mat-form-field class="input">
+            <mat-label> Round {{ i + 1 }} description</mat-label>
+            <input matInput formControlName="description" />
+            <mat-error>Round description is required</mat-error>
+          </mat-form-field>
+        </div>
       </div>
     </div>
-    <div
-      class="row justify-content-center justify-content-sm-end mt-5 mr-3 mb-3"
-    >
+    <div class="row justify-content-center justify-content-sm-end m-3">
       <div class="col-*">
         <button mat-raised-button color="primary">Add new job</button>
       </div>
