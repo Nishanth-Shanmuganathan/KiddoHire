@@ -1,0 +1,67 @@
+main {
+  width: 100%;
+  height: 100vh;
+  min-height: fit-content;
+  position: fixed;
+}
+
+.header {
+  width: 100%;
+  height: 15vh;
+}
+
+.body {
+  width: 100%;
+  height: 80vh;
+}
+
+.content-section,
+.profile-section,
+.profile-info {
+  width: 100%;
+  height: 100%;
+}
+
+.content-section {
+  overflow: scroll;
+}
+
+.content-section .profile {
+  width: 120px;
+  height: 120px;
+}
+
+.profile-section .profile {
+  width: 160px;
+  height: 160px;
+}
+
+.content {
+  font-size: 14px;
+}
+
+img.profile {
+  border-radius: 125px;
+  box-shadow: 2px 0px 4px silver;
+}
+
+/* .profile_pic_section {
+  height: 100%;
+} */
+
+.document {
+  max-width: 400px;
+}
+
+img[mat-card-image],
+.document {
+  max-width: 250px;
+}
+
+.document {
+  height: 100%;
+}
+
+.launch {
+  font-size: 14px;
+}

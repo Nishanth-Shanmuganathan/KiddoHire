@@ -1,10 +1,8 @@
 :host() {
   height: 100%;
-  margin: 20px;
 }
 
 mat-card {
-  margin: 3%;
   max-width: 250px;
   min-width: 230px;
   height: 100%;

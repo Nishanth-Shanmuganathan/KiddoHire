@@ -21,6 +21,11 @@ const routes: Routes = [
     path: 'follows',
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/follows/follows.module').then(mod => mod.FollowsModule)
+  },
+  {
+    path: 'profile',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/profile/profile.module').then(mod => mod.ProfileModule)
   }
 ];
 @NgModule({
