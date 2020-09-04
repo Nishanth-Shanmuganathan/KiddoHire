@@ -9,7 +9,7 @@ import { environment } from './../../environments/environment';
 })
 export class DashboardService {
   newsFeed: any[] = [];
-  newsFeedSubj = new Subject<any[]>();
+  newsFeedSubj = new BehaviorSubject<any[]>(this.newsFeed);
   newsFeed_page = 0;
   constructor(
     private http: HttpClient
