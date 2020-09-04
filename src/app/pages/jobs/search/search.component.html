@@ -10,21 +10,40 @@
         (ngModelChange)="fetchCities()"
       />
     </mat-form-field>
-    <button
+    <!-- <button
       class="d-none d-sm-block"
       mat-raised-button
       color="primary"
       (click)="toggleFilters = !toggleFilters"
     >
       {{ toggleFilters ? "Hide" : "Show" }} Filters
-    </button>
-    <button
+    </button> -->
+    <!-- <button
       class="d-sm-none"
       mat-mini-fab
       color="primary"
       (click)="toggleFilters = !toggleFilters"
     >
       <mat-icon>{{ toggleFilters ? "blur_off" : "filter_alt" }}</mat-icon>
+    </button> -->
+
+    <button
+      class="job_page d-none d-sm-block"
+      mat-raised-button
+      color="primary"
+      [routerLink]="['new-job']"
+    >
+      Post a new job
+    </button>
+
+    <button
+      class="job_page d-sm-none"
+      mat-mini-fab
+      color="primary"
+      [matTooltip]="'Add a new job post'"
+      [routerLink]="['new-job']"
+    >
+      <mat-icon>add</mat-icon>
     </button>
   </mat-toolbar-row>
   <mat-toolbar-row

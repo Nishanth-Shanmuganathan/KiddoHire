@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
       ];
     });
 
-    // this.loadFeeds();
+    this.loadFeeds();
   }
 
   loadFeeds() {

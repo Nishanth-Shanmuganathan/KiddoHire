@@ -11,6 +11,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 const Materials = [
   MatCardModule,
@@ -23,7 +26,10 @@ const Materials = [
   MatProgressBarModule,
   MatAutocompleteModule,
   MatMenuModule,
-  MatChipsModule
+  MatChipsModule,
+  MatTooltipModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 ];
 
 @NgModule({

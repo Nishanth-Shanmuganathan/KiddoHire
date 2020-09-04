@@ -1,56 +1,36 @@
-:host {
-  padding: 0px;
-}
-
-mat-toolbar-row,
-mat-toolbar {
-  height: fit-content;
-  background-color: white;
-  position: relative;
-}
-
-.job_page {
-  position: absolute;
-  right: 0px;
-}
-
-div[mat-menu-content] {
-  height: 200px;
-}
-
+.card,
 mat-form-field {
-  font-size: 16px;
-  width: 120px;
-}
-
-.filters_row {
-  max-width: 1000px;
-}
-
-.search {
   width: 100%;
-  max-width: 400px;
-  min-width: 150px;
-}
-
-ng5-slider {
-  max-width: 200px;
-}
-
-span {
+  max-width: 500px;
+  min-width: 200px;
   font-size: 14px;
 }
 
+.input,
+ng5-slider {
+  max-width: 300px;
+}
+
+mat-form-field input {
+  max-width: 500px;
+  min-width: 250px;
+}
+
+mat-icon {
+  cursor: pointer;
+}
+
+.border-round {
+  font-size: 24px;
+  border-radius: 100px;
+  color: #07389b
+}
 
 ::ng-deep .custom-slider .ng5-slider .ng5-slider-bar {
   background: #ffe4d1;
   height: 2px;
 }
 
-::ng-deep .custom-slider .ng5-slider .ng5-slider-selection {
-  height: 3px;
-  background: #F33591;
-}
 
 ::ng-deep .custom-slider .ng5-slider .ng5-slider-pointer {
   width: 8px;
@@ -71,10 +51,6 @@ span {
   bottom: 14px;
 }
 
-::ng-deep .custom-slider .ng5-slider .ng5-slider-limit {
-  font-weight: bold;
-  color: #F33591;
-}
 
 ::ng-deep .custom-slider .ng5-slider .ng5-slider-tick {
   width: 1px;
@@ -85,6 +61,16 @@ span {
   top: -1px;
 }
 
+::ng-deep .custom-slider .ng5-slider .ng5-slider-limit {
+  font-weight: bold;
+  color: #F33591;
+}
+
 ::ng-deep .custom-slider .ng5-slider .ng5-slider-tick.ng5-slider-selected {
+  background: #F33591;
+}
+
+::ng-deep .custom-slider .ng5-slider .ng5-slider-selection {
+  height: 3px;
   background: #F33591;
 }
