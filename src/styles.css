@@ -51,3 +51,7 @@ body {
   border-radius: 100px !important;
   background-color: rgba(192, 192, 192, 0.5) !important;
 }
+
+.center {
+  transform: translate(-50%, -50%);
+}

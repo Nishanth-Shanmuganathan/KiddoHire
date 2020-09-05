@@ -1,3 +1,4 @@
+import { NotificationComponent } from './../shared/notification/notification.component';
 import { AddSkillComponent } from './../pages/profile/add-skill/add-skill.component';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
@@ -28,5 +29,33 @@ export class UIService {
     });
 
     return dialogRef.afterClosed();
+  }
+
+  centerDialog(message) {
+    this.dialog.open(NotificationComponent, {
+      width: '50%',
+      minWidth: '250px',
+      maxWidth: '300px',
+      position: {
+        top: '50vh',
+        left: '50vw'
+      },
+      panelClass: 'center',
+      data: message,
+      disableClose: true,
+      hasBackdrop: true
+    });
+
+  }
+  topDialog(message) {
+    this.dialog.open(NotificationComponent, {
+      width: '250px',
+      position: {
+        top: '0px',
+        right: '0px'
+      },
+      data: message,
+    });
+
   }
 }

@@ -1,3 +1,4 @@
+import { MatDialogModule } from '@angular/material/dialog';
 import { NgModule } from '@angular/core';
 import { AuthGuard } from './services/auth.gaurd';
 import { AppRoutingModule } from './app-routing.module';
@@ -6,7 +7,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,7 @@ import { MaterialModule } from './material.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MaterialModule
+    MatDialogModule,
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

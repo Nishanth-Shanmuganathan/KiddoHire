@@ -1,3 +1,4 @@
+import { DeactivateGuard } from './../../services/deactive.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from './../../shared/shared.module';
@@ -6,7 +7,7 @@ import { AddSkillComponent } from './add-skill/add-skill.component';
 
 const routes: Routes = [
   {
-    path: '', component: ProfileComponent,
+    path: '', canDeactivate: [DeactivateGuard], component: ProfileComponent,
   },
 ];
 
@@ -18,6 +19,7 @@ const routes: Routes = [
   imports: [
     SharedModule,
     RouterModule.forChild(routes),
-  ]
+  ],
+  providers: [DeactivateGuard]
 })
 export class ProfileModule { }

@@ -5,17 +5,20 @@ import { MaterialModule } from './../material.module';
 
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   declarations: [
-    HeaderComponent
+    HeaderComponent,
+    NotificationComponent
   ],
   imports: [
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    RouterModule],
+    RouterModule
+  ],
   exports: [
     HeaderComponent,
     CommonModule,
