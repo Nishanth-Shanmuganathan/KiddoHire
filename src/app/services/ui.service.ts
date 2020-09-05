@@ -41,21 +41,23 @@ export class UIService {
         left: '50vw'
       },
       panelClass: 'center',
-      data: message,
+      data: { message, center: true },
       disableClose: true,
       hasBackdrop: true
     });
 
   }
   topDialog(message) {
-    this.dialog.open(NotificationComponent, {
+    const dialogRef = this.dialog.open(NotificationComponent, {
       width: '250px',
       position: {
         top: '0px',
         right: '0px'
       },
-      data: message,
+      data: { message, center: false },
     });
-
+    setTimeout(() => {
+      dialogRef.close();
+    }, 3000);
   }
 }

@@ -21,10 +21,14 @@ export class AuthService {
 
   login(loginData) {
     console.log(loginData);
-    this.http.post<{ message: string, token: string }>(environment.server_url + 'auth/login', { loginData })
+    this.http.post<{ message: string, token: string, user }>(environment.server_url + 'auth/login', { ...loginData })
       .subscribe(res => {
-        localStorage.setItem('token', 'nishanth');
+        this.user = res.user;
+        localStorage.setItem('user', JSON.stringify(res.user));
+        localStorage.setItem('token', res.token);
+        this.uiService.topDialog(res.message);
         this.isAuthSubj.next(true);
+        this.userSub.next(res.user);
         this.route.navigate(['home']);
 
       });

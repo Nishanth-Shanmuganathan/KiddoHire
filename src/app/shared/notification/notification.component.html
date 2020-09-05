@@ -1,6 +1,9 @@
-<div matDialogContent>
-  {{ data }}
+<div matDialogContent class="">
+  <p>{{ data.message }}</p>
+  <button *ngIf="!data.center" mat-icon-button class="close text-danger">
+    <mat-icon>close</mat-icon>
+  </button>
 </div>
-<mat-dialog-actions align="end">
+<mat-dialog-actions align="end" *ngIf="data.center">
   <button mat-raised-button matDialogClose color="warn">Close</button>
 </mat-dialog-actions>

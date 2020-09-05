@@ -28,9 +28,9 @@ export class AuthGuard implements CanActivate {
     if (!auth) {
       return this.router.navigate(['/']);
     }
-    if (user.completion < 60 && state.url !== '/profile') {
-      this.uiService.centerDialog('Please complete your registration to proceed further...');
-      return this.router.navigate(['profile']);
+    if (user.completion < 60 && !state.url.includes('/profile')) {
+      this.uiService.centerDialog('Please complete your registration...');
+      return this.router.navigate(['profile', user.profileName]);
     }
     return true;
   }

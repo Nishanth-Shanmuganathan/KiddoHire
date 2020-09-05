@@ -7,7 +7,7 @@ import { AddSkillComponent } from './add-skill/add-skill.component';
 
 const routes: Routes = [
   {
-    path: '', canDeactivate: [DeactivateGuard], component: ProfileComponent,
+    path: '', pathMatch: 'full', canDeactivate: [DeactivateGuard], component: ProfileComponent,
   },
 ];
 
