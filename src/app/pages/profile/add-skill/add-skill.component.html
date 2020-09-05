@@ -1,0 +1,67 @@
+<p matDialogTitle>Add new {{ data.type }}</p>
+<main matDialogContent>
+  <div class="row justify-content-center">
+    <mat-form-field class="col-*">
+      <mat-label>{{ data.type | titlecase }}</mat-label>
+      <input type="text" matInput [(ngModel)]="data.name" />
+    </mat-form-field>
+  </div>
+  <div class="row justify-content-center">
+    <mat-form-field *ngIf="data.type === 'project'" class="col-*">
+      <mat-label>Project Link</mat-label>
+      <input type="text" matInput [(ngModel)]="data.link" />
+    </mat-form-field>
+  </div>
+  <div class="row justify-content-center" *ngIf="data.type === 'certificate'">
+    <div class="col-12 row justify-content-center">
+      <input
+        type="file"
+        class="d-none"
+        #filePicker
+        [(ngModel)]="certificate"
+        (change)="onImagePicked($event)"
+      />
+      <button
+        mat-flat-button
+        color="accent"
+        type="button"
+        class="col-*"
+        (click)="filePicker.click()"
+      >
+        Upload Certificate
+      </button>
+    </div>
+    <p class="col-* text-muted m-2">{{ data.certificate?.name }}</p>
+  </div>
+</main>
+<mat-dialog-actions align="end">
+  <button
+    *ngIf="data.type === 'skill' || data.type === 'language'"
+    mat-raised-button
+    [mat-dialog-close]="data"
+    [disabled]="!data.name"
+    color="primary"
+  >
+    Add {{ data.type }}
+  </button>
+  <br />
+  <button
+    *ngIf="data.type === 'certificate'"
+    mat-raised-button
+    [mat-dialog-close]="data"
+    [disabled]="!data.certificate"
+    color="primary"
+  >
+    Add {{ data.type }}
+  </button>
+  <button
+    *ngIf="data.type === 'project'"
+    mat-raised-button
+    [mat-dialog-close]="data"
+    [disabled]="!data.name && !data.link"
+    color="primary"
+  >
+    Add {{ data.type }}
+  </button>
+  <button mat-raised-button matDialogClose color="warn">Close</button>
+</mat-dialog-actions>
