@@ -33,7 +33,19 @@ export class ProfileComponent implements OnInit {
       work: 'Perilwise Insurtech',
       education: 'Kongu Engineering College',
       resume: 'nishanth',
-      certifications: [],
+      certifications: [{
+        certificate: './../../../assets/Nishanth.jpg',
+        title: 'Front end Javascript Frameworks:Angular'
+      },
+      {
+        certificate: './../../../assets/Nishanth.jpg',
+        title: 'Front end Javascript Frameworks:React'
+      },
+      {
+        certificate: './../../../assets/Nishanth.jpg',
+        title: 'Back end Javascript Frameworks:Node'
+      }
+      ],
       projects: [
         { title: 'Tasked', link: 'https://tasked-hackerearth.herokuapp.com/' },
         { title: 'Stock Market', link: 'http://stock-market-nish.herokuapp.com/' },

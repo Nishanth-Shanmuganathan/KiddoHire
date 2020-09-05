@@ -23,13 +23,16 @@
           src="./../../../assets/Nishanth.jpg"
           alt=""
         />
-        <span *ngIf="!editMode" class="col-* m-3 small-font"
+        <span
+          *ngIf="!editMode"
+          class="col-* m-3 small-font"
+          [ngClass]="{ 'brder-bottom': editMode }"
           >Nishanth Shanmuganathan</span
         >
         <mat-form-field *ngIf="editMode" class="m-3">
           <input
-            *ngIf="editMode"
             class="col-* m-0 p-0 small-font"
+            [ngClass]="{ 'brder-bottom': editMode }"
             matInput
             type="text"
             [(ngModel)]="user.username"
@@ -41,7 +44,10 @@
           <p class="text-muted">Description :</p>
         </div>
         <div class="col-12" *ngIf="!editMode">
-          <p class="content small-font">
+          <p
+            class="content small-font"
+            [ngClass]="{ 'brder-bottom': editMode }"
+          >
             Description is the pattern of narrative development that aims to
             make vivid a place, object, character, or group. Description is one
             of four rhetorical modes, along with exposition, argumentation, and
@@ -53,6 +59,7 @@
           <textarea
             matInput
             class="small-font"
+            [ngClass]="{ 'brder-bottom': editMode }"
             [(ngModel)]="user.description"
           ></textarea>
         </div>
@@ -61,7 +68,12 @@
         <div class="col-12 content-heading">
           <p class="text-muted mb-0">
             Skills :
-            <button mat-icon-button class="text-primary" (click)="addSkills()">
+            <button
+              mat-icon-button
+              class="text-primary"
+              (click)="addSkills()"
+              *ngIf="editMode"
+            >
               <mat-icon>add_circle</mat-icon>
             </button>
           </p>
@@ -83,33 +95,69 @@
           <table>
             <tr>
               <td class="text-muted mb-0">Experience</td>
-              <td *ngIf="!editMode" class="small-font">
+              <td
+                *ngIf="!editMode"
+                class="small-font"
+                [ngClass]="{ 'brder-bottom': editMode }"
+              >
                 {{ user.experience }} years
               </td>
-              <td *ngIf="editMode" class="small-font">
+              <td
+                *ngIf="editMode"
+                class="small-font"
+                [ngClass]="{ 'brder-bottom': editMode }"
+              >
                 <input type="text" matInput [(ngModel)]="user.experience" />
               </td>
             </tr>
             <tr>
               <td class="text-muted mb-0">Can join</td>
-              <td *ngIf="!editMode" class="small-font">
+              <td
+                *ngIf="!editMode"
+                class="small-font"
+                [ngClass]="{ 'brder-bottom': editMode }"
+              >
                 In {{ user.canJoin }} months
               </td>
-              <td *ngIf="editMode" class="small-font">
+              <td
+                *ngIf="editMode"
+                class="small-font"
+                [ngClass]="{ 'brder-bottom': editMode }"
+              >
                 <input type="text" matInput [(ngModel)]="user.canJoin" />
               </td>
             </tr>
             <tr>
               <td class="text-muted mb-0">Work</td>
-              <td *ngIf="!editMode" class="small-font">{{ user.work }}</td>
-              <td *ngIf="editMode" class="small-font">
+              <td
+                *ngIf="!editMode"
+                class="small-font"
+                [ngClass]="{ 'brder-bottom': editMode }"
+              >
+                {{ user.work }}
+              </td>
+              <td
+                *ngIf="editMode"
+                class="small-font"
+                [ngClass]="{ 'brder-bottom': editMode }"
+              >
                 <input type="text" matInput [(ngModel)]="user.work" />
               </td>
             </tr>
             <tr>
               <td class="text-muted mb-0">Education</td>
-              <td *ngIf="!editMode" class="small-font">{{ user.education }}</td>
-              <td *ngIf="editMode" class="small-font">
+              <td
+                *ngIf="!editMode"
+                class="small-font"
+                [ngClass]="{ 'brder-bottom': editMode }"
+              >
+                {{ user.education }}
+              </td>
+              <td
+                *ngIf="editMode"
+                class="small-font"
+                [ngClass]="{ 'brder-bottom': editMode }"
+              >
                 <input
                   type="text"
                   class="p-0"
@@ -120,12 +168,16 @@
             </tr>
             <tr>
               <td class="text-muted mb-0">Resume</td>
-              <td *ngIf="!editMode" class="small-font">
+              <td
+                *ngIf="!editMode"
+                class="small-font"
+                [ngClass]="{ 'brder-bottom': editMode }"
+              >
                 <a href="{{ user.resume }}" target="_blank"
                   >{{ user.username | titlecase }}_Resume</a
                 >
               </td>
-              <!-- <td *ngIf="editMode" class="small-font">
+              <!-- <td *ngIf="editMode" class="small-font" [ngClass]="{'brder-bottom':editMode}">
                 <a href="{{ user.resume }}" target="_blank"
                   >{{ user.username | titlecase }}_Resume</a
                 >
@@ -143,6 +195,7 @@
               mat-icon-button
               class="text-primary ml-3"
               (click)="addCertificate()"
+              *ngIf="editMode"
             >
               <mat-icon>add_circle</mat-icon>
             </button>
@@ -152,61 +205,13 @@
       <div
         class="row justify-content-center align-items-stretch border-bottom pb-3"
       >
-        <div class="col-* m-2">
+        <div class="col-* m-2" *ngFor="let certificate of user.certifications">
           <mat-card class="document">
-            <img
-              mat-card-image
-              src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-              alt=""
-            />
+            <img mat-card-image [src]="certificate.certificate" alt="" />
             <mat-card-content>
               <p>
-                The Shiba Inu is the smallest of the six original and distinct
-                spitz breeds of dog from Japan. A small-font, agile dog that
-                copes very well with mountainous terrain, the Shiba Inu was
-                originally bred for hunting.
+                {{ certificate.title }}
               </p>
-            </mat-card-content>
-          </mat-card>
-        </div>
-        <div class="col-* m-2">
-          <mat-card class="document">
-            <img
-              mat-card-image
-              src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-              alt=""
-            />
-            <mat-card-content>
-              <p>Front end javascript</p>
-            </mat-card-content>
-          </mat-card>
-        </div>
-        <div class="col-* m-2">
-          <mat-card class="document">
-            <img
-              mat-card-image
-              src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-              alt=""
-            />
-            <mat-card-content>
-              <p>
-                The Shiba Inu is the smallest of the six original and distinct
-                spitz breeds of dog from Japan. A small-font, agile dog that
-                copes very well with mountainous terrain, the Shiba Inu was
-                originally bred for hunting.
-              </p>
-            </mat-card-content>
-          </mat-card>
-        </div>
-        <div class="col-* m-2">
-          <mat-card class="document">
-            <img
-              mat-card-image
-              src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-              alt=""
-            />
-            <mat-card-content>
-              <p>Front end javascript</p>
             </mat-card-content>
           </mat-card>
         </div>
@@ -219,6 +224,7 @@
               mat-icon-button
               class="ml-3 text-primary"
               (click)="addProjects()"
+              *ngIf="editMode"
             >
               <mat-icon>add_circle</mat-icon>
             </button>
@@ -245,6 +251,7 @@
               mat-icon-button
               class="ml-3 text-primary"
               (click)="addLanguages()"
+              *ngIf="editMode"
             >
               <mat-icon>add_circle</mat-icon>
             </button>
@@ -270,11 +277,26 @@
           <img class="profile" src="./../../../assets/Nishanth.jpg" />
         </div>
         <div class="col-* mt-3">
-          <p class="mb-0">Nishanth Shanmuganathan</p>
+          <p
+            *ngIf="!editMode"
+            class="mb-0 small-font"
+            [ngClass]="{ 'brder-bottom': editMode }"
+          >
+            Nishanth Shanmuganathan
+          </p>
+          <input
+            *ngIf="editMode"
+            class="col-* m-0 p-0 small-font"
+            [ngClass]="{ 'brder-bottom': editMode }"
+            matInput
+            type="text"
+            [(ngModel)]="user.username"
+          />
         </div>
-        <div class="col-*">
+
+        <!-- <div class="col-*">
           <p class="mb-0">CodaGlobal</p>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>
