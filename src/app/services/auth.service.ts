@@ -11,7 +11,7 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
 
   isAuthSubj = new BehaviorSubject<boolean>(!!localStorage.getItem('token'));
-  userSub = new BehaviorSubject<any>({});
+  userSub = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('user')));
   user;
   constructor(
     private route: Router,
@@ -21,7 +21,7 @@ export class AuthService {
 
   login(loginData) {
     console.log(loginData);
-    this.http.post<{ messgage: string, token: string }>(environment.server_url + 'auth/login', { loginData })
+    this.http.post<{ message: string, token: string }>(environment.server_url + 'auth/login', { loginData })
       .subscribe(res => {
         localStorage.setItem('token', 'nishanth');
         this.isAuthSubj.next(true);
@@ -33,11 +33,12 @@ export class AuthService {
     console.log(registerData);
     this.http.post<{ message: string, token: string, user }>(environment.server_url + 'auth/register', { ...registerData })
       .subscribe(res => {
-        console.log(res.user);
         this.user = res.user;
+        localStorage.setItem('user', JSON.stringify(res.user));
+        localStorage.setItem('token', res.token);
         this.uiService.centerDialog(res.message);
-        localStorage.setItem('token', 'nishanth');
         this.isAuthSubj.next(true);
+        this.userSub.next(res.user);
       });
   }
   logout() {

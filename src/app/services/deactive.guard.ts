@@ -17,25 +17,18 @@ export class DeactivateGuard implements CanDeactivate<ProfileComponent> {
   canDeactivate(
     component: ProfileComponent,
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
+    state: RouterStateSnapshot,
+    nextState?: RouterStateSnapshot
   ): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    let completion = this.authService.user.completion;
-    this.authService.userSub.subscribe(user => {
-      completion = user.completion;
-      return this.deactivate(completion > 60);
+    let user = this.authService.user;
+    this.authService.userSub.subscribe(res => {
+      user = res;
     });
-    return this.deactivate(completion > 60);
-  }
-
-  deactivate(completion: boolean) {
-    if (!completion) {
-      console.log('hlooooo');
+    if (user?.completion > 60) {
       return true;
+    } else {
+      this.uiService.centerDialog('Please complete your registration to proceed further...');
+      return false;
     }
-    console.log('hiii');
-    this.uiService.centerDialog('Please complete your registration to proceed further...');
-    return false;
   }
-
-
 }
