@@ -4,9 +4,11 @@
 >
   <section class="row header col-12 m-0 p-0 d-block">
     <app-header></app-header>
+    <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
   </section>
-  <section class="row body p-3 m-0 mb-5 mb-md-2">
+  <section *ngIf="!isLoading" class="row body p-3 m-0 mb-5 mb-md-2">
     <button
+      *ngIf="user.profileName === username"
       class="edit"
       mat-mini-fab
       (click)="editMode = !editMode"
@@ -23,19 +25,18 @@
           src="./../../../assets/Nishanth.jpg"
           alt=""
         />
-        <span
-          *ngIf="!editMode"
-          class="col-* m-3 small-font"
-          [ngClass]="{ 'brder-bottom': editMode }"
-          >Nishanth Shanmuganathan</span
-        >
-        <mat-form-field *ngIf="editMode" class="m-3">
+        <p *ngIf="!editMode" class="col-* m-3 small-font min-width center">
+          {{ user.username }}
+        </p>
+        <mat-form-field *ngIf="editMode" class="m-3 min-width">
           <input
             class="col-* m-0 p-0 small-font"
-            [ngClass]="{ 'brder-bottom': editMode }"
             matInput
+            placeholder="Username"
             type="text"
             [(ngModel)]="user.username"
+            name="username"
+            (blur)="saveDetails($event)"
           />
         </mat-form-field>
       </div>
@@ -48,23 +49,24 @@
             class="content small-font"
             [ngClass]="{ 'brder-bottom': editMode }"
           >
-            Description is the pattern of narrative development that aims to
-            make vivid a place, object, character, or group. Description is one
-            of four rhetorical modes, along with exposition, argumentation, and
-            narration. In practice it would be difficult to write literature
-            that drew on just one of the four basic modes.
+            {{ user.description }}
           </p>
         </div>
         <div class="col-12 full-width mb-2" *ngIf="editMode">
-          <textarea
-            matInput
-            class="small-font"
-            [ngClass]="{ 'brder-bottom': editMode }"
-            [(ngModel)]="user.description"
-          ></textarea>
+          <mat-form-field>
+            <mat-label>Describe about you...</mat-label>
+            <textarea
+              matInput
+              class="small-font"
+              [ngClass]="{ 'brder-bottom': editMode }"
+              [(ngModel)]="user.description"
+              name="description"
+              (blur)="saveDetails($event)"
+            ></textarea>
+          </mat-form-field>
         </div>
       </div>
-      <div class="row">
+      <div class="row" *ngIf="editMode || user.skills.length">
         <div class="col-12 content-heading">
           <p class="text-muted mb-0">
             Skills :
@@ -83,6 +85,7 @@
             <mat-chip
               color="primary"
               selected
+              (ngModelChange)="saveDetails($event)"
               *ngFor="let skill of user.skills"
               >{{ skill }}</mat-chip
             >
@@ -107,7 +110,16 @@
                 class="small-font"
                 [ngClass]="{ 'brder-bottom': editMode }"
               >
-                <input type="text" matInput [(ngModel)]="user.experience" />
+                <mat-form-field>
+                  <input
+                    type="number"
+                    placeholder="Work experience in years"
+                    matInput
+                    name="experience"
+                    (blur)="saveDetails($event)"
+                    [(ngModel)]="user.experience"
+                  />
+                </mat-form-field>
               </td>
             </tr>
             <tr>
@@ -124,7 +136,16 @@
                 class="small-font"
                 [ngClass]="{ 'brder-bottom': editMode }"
               >
-                <input type="text" matInput [(ngModel)]="user.canJoin" />
+                <mat-form-field>
+                  <input
+                    type="number"
+                    (blur)="saveDetails($event)"
+                    matInput
+                    placeholder="Time required to join in months"
+                    name="canJoin"
+                    [(ngModel)]="user.canJoin"
+                  />
+                </mat-form-field>
               </td>
             </tr>
             <tr>
@@ -141,7 +162,15 @@
                 class="small-font"
                 [ngClass]="{ 'brder-bottom': editMode }"
               >
-                <input type="text" matInput [(ngModel)]="user.work" />
+                <mat-form-field>
+                  <input
+                    type="text"
+                    (blur)="saveDetails($event)"
+                    matInput
+                    name="work"
+                    [(ngModel)]="user.work"
+                  />
+                </mat-form-field>
               </td>
             </tr>
             <tr>
@@ -158,12 +187,16 @@
                 class="small-font"
                 [ngClass]="{ 'brder-bottom': editMode }"
               >
-                <input
-                  type="text"
-                  class="p-0"
-                  matInput
-                  [(ngModel)]="user.education"
-                />
+                <mat-form-field>
+                  <input
+                    type="text"
+                    class="p-0"
+                    matInput
+                    name="education"
+                    [(ngModel)]="user.education"
+                    (blur)="saveDetails($event)"
+                  />
+                </mat-form-field>
               </td>
             </tr>
             <tr>
@@ -177,23 +210,45 @@
                   >{{ user.username | titlecase }}_Resume</a
                 >
               </td>
-              <!-- <td *ngIf="editMode" class="small-font" [ngClass]="{'brder-bottom':editMode}">
-                <a href="{{ user.resume }}" target="_blank"
-                  >{{ user.username | titlecase }}_Resume</a
-                >
-              </td> -->
+              <td *ngIf="editMode" class="small-font">
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-*">
+                    <input
+                      type="file"
+                      class="d-none bg-dark"
+                      #filePicker
+                      (change)="onImagePicked($event)"
+                    />
+                    <button
+                      mat-flat-button
+                      color="accent"
+                      type="button"
+                      class="col-*"
+                      (click)="filePicker.click()"
+                    >
+                      Upload Resume
+                    </button>
+                  </div>
+                  <p class="col-* text-muted m-2">
+                    {{ resume?.name }}
+                  </p>
+                </div>
+              </td>
             </tr>
           </table>
         </div>
       </div>
 
-      <div class="row mt-3 mb-2 pl-3 align-items-center">
-        <div class="col-* content-heading">
+      <div
+        class="row mt-3 mb-2 pl-3 align-items-center border-top"
+        *ngIf="editMode || user.certifications.length"
+      >
+        <div class="col-* content-heading mt-3">
           <p class="text-muted">
             Certifications
             <button
               mat-icon-button
-              class="text-primary ml-3"
+              class="text-primary pl-3"
               (click)="addCertificate()"
               *ngIf="editMode"
             >
@@ -202,10 +257,12 @@
           </p>
         </div>
       </div>
-      <div
-        class="row justify-content-center align-items-stretch border-bottom pb-3"
-      >
-        <div class="col-* m-2" *ngFor="let certificate of user.certifications">
+      <div class="row justify-content-start align-items-stretch border-bottom">
+        <div
+          class="col-* m-2"
+          (ngModelChange)="saveDetails($event)"
+          *ngFor="let certificate of user.certifications"
+        >
           <mat-card class="document">
             <img mat-card-image [src]="certificate.certificate" alt="" />
             <mat-card-content>
@@ -216,7 +273,10 @@
           </mat-card>
         </div>
       </div>
-      <div class="row mt-3 pl-3 align-items-center">
+      <div
+        class="row mt-3 pl-3 align-items-center"
+        *ngIf="editMode || user.projects.length"
+      >
         <div class="col-* content-heading">
           <p class="text-muted mb-0">
             Projects
@@ -231,10 +291,13 @@
           </p>
         </div>
       </div>
-      <div class="row border-bottom">
+      <div class="row border-bottom" *ngIf="editMode || user.projects.length">
         <div class="col-* m-2">
           <mat-list role="list" class="pt-0">
-            <mat-list-item role="listitem" *ngFor="let project of user.projects"
+            <mat-list-item
+              role="listitem"
+              (ngModelChange)="saveDetails($event)"
+              *ngFor="let project of user.projects"
               >{{ project.title }}
               <a href="{{ project.link }}" target="_blank">
                 <mat-icon class="launch text-dark">launch</mat-icon>
@@ -243,7 +306,7 @@
           </mat-list>
         </div>
       </div>
-      <div class="row border-bottom mt-2">
+      <div class="row mt-2" *ngIf="editMode || user.languages.length">
         <div class="col-12 content-heading">
           <p class="text-muted mb-0">
             Languages
@@ -262,6 +325,7 @@
             <mat-chip
               color="primary"
               selected
+              (ngModelChange)="saveDetails($event)"
               *ngFor="let language of user.languages"
               >{{ language }}</mat-chip
             >
@@ -282,16 +346,16 @@
             class="mb-0 small-font"
             [ngClass]="{ 'brder-bottom': editMode }"
           >
-            Nishanth Shanmuganathan
+            {{ user.username }}
           </p>
-          <input
-            *ngIf="editMode"
-            class="col-* m-0 p-0 small-font"
-            [ngClass]="{ 'brder-bottom': editMode }"
-            matInput
-            type="text"
-            [(ngModel)]="user.username"
-          />
+          <mat-form-field *ngIf="editMode" class="col-* m-0 p-0 small-font">
+            <input
+              matInput
+              type="text"
+              placeholder="Username"
+              [(ngModel)]="user.username"
+            />
+          </mat-form-field>
         </div>
 
         <!-- <div class="col-*">

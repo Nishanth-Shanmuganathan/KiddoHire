@@ -89,3 +89,11 @@ td {
 .full-width {
   width: fit-content;
 }
+
+.min-width {
+  min-width: 150px;
+}
+
+.center {
+  text-align: center;
+}
