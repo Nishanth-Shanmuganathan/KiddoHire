@@ -16,7 +16,7 @@
     >
       <mat-icon>edit</mat-icon>
     </button>
-    <div class="col-12 content-section col-md-7 mb-5 p-md-4 border">
+    <div class="col-12 ng-warning content-section col-md-7 mb-5 p-md-4 border">
       <div
         class="row d-md-none mt-4 mb-4 justify-content-center align-items-center"
       >
@@ -25,12 +25,16 @@
           src="./../../../assets/Nishanth.jpg"
           alt=""
         />
-        <p *ngIf="!editMode" class="col-* m-3 small-font min-width center">
+      </div>
+      <div class="row justify-content-center">
+        <p
+          *ngIf="!editMode"
+          class="col-12 m-3 small-font min-width text-center"
+        >
           {{ user.username }}
         </p>
-        <mat-form-field *ngIf="editMode" class="m-3 min-width">
+        <mat-form-field *ngIf="editMode" class="col-* m-3 min-width small-font">
           <input
-            class="col-* m-0 p-0 small-font"
             matInput
             placeholder="Username"
             type="text"
@@ -45,26 +49,20 @@
           <p class="text-muted">Description :</p>
         </div>
         <div class="col-12" *ngIf="!editMode">
-          <p
-            class="content small-font"
-            [ngClass]="{ 'brder-bottom': editMode }"
-          >
+          <p class="content small-font">
             {{ user.description }}
           </p>
         </div>
-        <div class="col-12 full-width mb-2" *ngIf="editMode">
-          <mat-form-field>
-            <mat-label>Describe about you...</mat-label>
-            <textarea
-              matInput
-              class="small-font"
-              [ngClass]="{ 'brder-bottom': editMode }"
-              [(ngModel)]="user.description"
-              name="description"
-              (blur)="saveDetails($event)"
-            ></textarea>
-          </mat-form-field>
-        </div>
+        <mat-form-field class="col-12 full-width mb-2" *ngIf="editMode">
+          <mat-label>Describe about you...</mat-label>
+          <textarea
+            matInput
+            class="small-font"
+            [(ngModel)]="user.description"
+            name="description"
+            (blur)="saveDetails($event)"
+          ></textarea>
+        </mat-form-field>
       </div>
       <div class="row" *ngIf="editMode || user.skills.length">
         <div class="col-12 content-heading">
@@ -98,18 +96,10 @@
           <table>
             <tr>
               <td class="text-muted mb-0">Experience</td>
-              <td
-                *ngIf="!editMode"
-                class="small-font"
-                [ngClass]="{ 'brder-bottom': editMode }"
-              >
+              <td *ngIf="!editMode" class="small-font pad">
                 {{ user.experience }} years
               </td>
-              <td
-                *ngIf="editMode"
-                class="small-font"
-                [ngClass]="{ 'brder-bottom': editMode }"
-              >
+              <td *ngIf="editMode" class="small-font">
                 <mat-form-field>
                   <input
                     type="number"
@@ -124,18 +114,10 @@
             </tr>
             <tr>
               <td class="text-muted mb-0">Can join</td>
-              <td
-                *ngIf="!editMode"
-                class="small-font"
-                [ngClass]="{ 'brder-bottom': editMode }"
-              >
+              <td *ngIf="!editMode" class="small-font pad">
                 In {{ user.canJoin }} months
               </td>
-              <td
-                *ngIf="editMode"
-                class="small-font"
-                [ngClass]="{ 'brder-bottom': editMode }"
-              >
+              <td *ngIf="editMode" class="small-font">
                 <mat-form-field>
                   <input
                     type="number"
@@ -150,18 +132,10 @@
             </tr>
             <tr>
               <td class="text-muted mb-0">Work</td>
-              <td
-                *ngIf="!editMode"
-                class="small-font"
-                [ngClass]="{ 'brder-bottom': editMode }"
-              >
+              <td *ngIf="!editMode" class="small-font pad">
                 {{ user.work }}
               </td>
-              <td
-                *ngIf="editMode"
-                class="small-font"
-                [ngClass]="{ 'brder-bottom': editMode }"
-              >
+              <td *ngIf="editMode" class="small-font">
                 <mat-form-field>
                   <input
                     type="text"
@@ -175,18 +149,10 @@
             </tr>
             <tr>
               <td class="text-muted mb-0">Education</td>
-              <td
-                *ngIf="!editMode"
-                class="small-font"
-                [ngClass]="{ 'brder-bottom': editMode }"
-              >
+              <td *ngIf="!editMode" class="small-font pad">
                 {{ user.education }}
               </td>
-              <td
-                *ngIf="editMode"
-                class="small-font"
-                [ngClass]="{ 'brder-bottom': editMode }"
-              >
+              <td *ngIf="editMode" class="small-font">
                 <mat-form-field>
                   <input
                     type="text"
@@ -201,11 +167,7 @@
             </tr>
             <tr>
               <td class="text-muted mb-0">Resume</td>
-              <td
-                *ngIf="!editMode"
-                class="small-font"
-                [ngClass]="{ 'brder-bottom': editMode }"
-              >
+              <td *ngIf="!editMode" class="small-font pad">
                 <a href="{{ user.resume }}" target="_blank"
                   >{{ user.username | titlecase }}_Resume</a
                 >
@@ -341,11 +303,7 @@
           <img class="profile" src="./../../../assets/Nishanth.jpg" />
         </div>
         <div class="col-* mt-3">
-          <p
-            *ngIf="!editMode"
-            class="mb-0 small-font"
-            [ngClass]="{ 'brder-bottom': editMode }"
-          >
+          <p *ngIf="!editMode" class="mb-0 small-font">
             {{ user.username }}
           </p>
           <mat-form-field *ngIf="editMode" class="col-* m-0 p-0 small-font">
