@@ -63,13 +63,11 @@ export class ProfileComponent implements OnInit {
 
   addSkills() {
     this.uiService.addSingleString('skill').subscribe(data => {
-      console.log(data);
       if (data.name) {
         this.user.skills.push(data.name);
-        console.log('pushed');
         this.profileService.saveDetails(this.user.profileName, ['skills', this.user.skills])
           .subscribe(res => {
-            console.log(res);
+            this.uiService.topDialog(this.toTitlecase(res.cred[0]) + ' saved...');
           }, err => {
             console.log('Error in skills add');
           });
@@ -83,7 +81,7 @@ export class ProfileComponent implements OnInit {
         this.user.languages.push(data.name);
         this.profileService.saveDetails(this.user.profileName, ['languages', this.user.languages])
           .subscribe(res => {
-            console.log(res);
+            this.uiService.topDialog(this.toTitlecase(res.cred[0]) + ' saved...');
           }, err => {
             console.log('Error in language add');
           });
@@ -95,30 +93,30 @@ export class ProfileComponent implements OnInit {
     this.uiService.addSingleString('certificate').subscribe(data => {
       if (data.name && data.certificate) {
         this.user.certifications.push({ certificate: data.certificate, title: data.name });
+        this.profileService.saveDetails(this.user.profileName, ['certifications', this.user.certifications])
+          .subscribe(res => {
+            this.uiService.topDialog(this.toTitlecase(res.cred[0]) + ' saved...');
+          }, err => {
+            console.log(err);
+          });
       }
     });
 
-    this.profileService.saveDetails(this.user.profileName, ['certifications', this.user.certifications])
-      .subscribe(res => {
-        console.log(res);
-      }, err => {
-        console.log(err);
-      });
   }
 
   addProjects() {
     this.uiService.addSingleString('project').subscribe(data => {
       if (data.name && data.link) {
         this.user.projects.push({ title: data.name, link: data.link });
+        this.profileService.saveDetails(this.user.profileName, ['projects', this.user.projects])
+          .subscribe(res => {
+            this.uiService.topDialog(this.toTitlecase(res.cred[0]) + ' saved...');
+          }, err => {
+            console.log(err);
+          });
       }
     });
 
-    this.profileService.saveDetails(this.user.profileName, ['projects', this.user.projects])
-      .subscribe(res => {
-        console.log(res);
-      }, err => {
-        console.log(err);
-      });
   }
 
   onImagePicked(event: Event) {
@@ -126,19 +124,26 @@ export class ProfileComponent implements OnInit {
 
     this.profileService.saveDetails(this.user.profileName, ['resume', this.user.resume])
       .subscribe(res => {
-        console.log(res);
+        this.uiService.topDialog(this.toTitlecase(res.cred[0]) + ' saved...');
       }, err => {
         console.log(err);
       });
   }
 
   saveDetails(eve) {
-    console.log(eve);
     this.profileService.saveDetails(this.user.profileName, [eve.target.name, eve.target.value])
       .subscribe(res => {
-        console.log(res);
+        this.uiService.topDialog(this.toTitlecase(res.cred[0]) + ' saved...');
       }, err => {
         console.log(err);
       });
+  }
+  toTitlecase(string) {
+    const sentence = string.toLowerCase().split(' ');
+    for (let i = 0; i < sentence.length; i++) {
+      sentence[i] = sentence[i][0].toUpperCase() + sentence[i].slice(1);
+    }
+    // document.write(sentence.join(' '));
+    return sentence;
   }
 }

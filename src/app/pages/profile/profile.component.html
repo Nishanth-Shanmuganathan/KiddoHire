@@ -16,7 +16,9 @@
     >
       <mat-icon>edit</mat-icon>
     </button>
-    <div class="col-12 ng-warning content-section col-md-7 mb-5 p-md-4 border">
+    <div
+      class="col-12 ng-warning content-section col-md-7 col-lg-8 mb-5 p-md-4 border"
+    >
       <div
         class="row d-md-none mt-4 mb-4 justify-content-center align-items-center"
       >
@@ -26,7 +28,7 @@
           alt=""
         />
       </div>
-      <div class="row justify-content-center">
+      <div class="row d-md-none justify-content-center">
         <p
           *ngIf="!editMode"
           class="col-12 m-3 small-font min-width text-center"
@@ -64,7 +66,7 @@
           ></textarea>
         </mat-form-field>
       </div>
-      <div class="row" *ngIf="editMode || user.skills.length">
+      <div class="row" *ngIf="editMode || user.skills?.length">
         <div class="col-12 content-heading">
           <p class="text-muted mb-0">
             Skills :
@@ -203,7 +205,7 @@
 
       <div
         class="row mt-3 mb-2 pl-3 align-items-center border-top"
-        *ngIf="editMode || user.certifications.length"
+        *ngIf="editMode || user.certifications?.length"
       >
         <div class="col-* content-heading mt-3">
           <p class="text-muted">
@@ -237,7 +239,7 @@
       </div>
       <div
         class="row mt-3 pl-3 align-items-center"
-        *ngIf="editMode || user.projects.length"
+        *ngIf="editMode || user.projects?.length"
       >
         <div class="col-* content-heading">
           <p class="text-muted mb-0">
@@ -253,7 +255,7 @@
           </p>
         </div>
       </div>
-      <div class="row border-bottom" *ngIf="editMode || user.projects.length">
+      <div class="row border-bottom" *ngIf="editMode || user.projects?.length">
         <div class="col-* m-2">
           <mat-list role="list" class="pt-0">
             <mat-list-item
@@ -268,7 +270,7 @@
           </mat-list>
         </div>
       </div>
-      <div class="row mt-2" *ngIf="editMode || user.languages.length">
+      <div class="row mt-2" *ngIf="editMode || user.languages?.length">
         <div class="col-12 content-heading">
           <p class="text-muted mb-0">
             Languages
@@ -295,7 +297,7 @@
         </div>
       </div>
     </div>
-    <div class="d-none profile-section d-md-block col-md-5">
+    <div class="d-none profile-section d-md-block col-md-5 col-lg-4">
       <div
         class="row p-5 profile-info flex-column justify-content-center align-items-center"
       >

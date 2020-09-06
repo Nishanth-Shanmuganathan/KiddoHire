@@ -16,6 +16,6 @@ export class ProfileService {
   }
 
   saveDetails(username, val) {
-    return this.http.patch<{}>(environment.server_url + 'node-profile/' + username, val);
+    return this.http.patch<{ cred }>(environment.server_url + 'node-profile/' + username, val);
   }
 }
