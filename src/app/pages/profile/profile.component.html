@@ -24,15 +24,13 @@
       >
         <img
           class="col-* profile"
-          src="./../../../assets/Nishanth.jpg"
-          alt=""
+          [src]="user.imageURL"
+          [alt]="user.username || user.profileName"
+          (click)="dpPicker.click()"
         />
       </div>
       <div class="row d-md-none justify-content-center">
-        <p
-          *ngIf="!editMode"
-          class="col-12 m-3 small-font min-width text-center"
-        >
+        <p *ngIf="!editMode" class="col-12 m-3 big-font min-width text-center">
           {{ user.username }}
         </p>
         <mat-form-field *ngIf="editMode" class="col-* m-3 min-width small-font">
@@ -171,7 +169,8 @@
               <td class="text-muted mb-0">Resume</td>
               <td *ngIf="!editMode" class="small-font pad">
                 <a href="{{ user.resume }}" target="_blank"
-                  >{{ user.username | titlecase }}_Resume</a
+                  >{{ user.username | titlecase }}_Resume
+                  <mat-icon class="launch">launch</mat-icon></a
                 >
               </td>
               <td *ngIf="editMode" class="small-font">
@@ -181,7 +180,7 @@
                       type="file"
                       class="d-none bg-dark"
                       #filePicker
-                      (change)="onImagePicked($event)"
+                      (change)="onResumePicked($event)"
                     />
                     <button
                       mat-flat-button
@@ -221,20 +220,30 @@
           </p>
         </div>
       </div>
-      <div class="row justify-content-start align-items-stretch border-bottom">
+      <div class="row justify-content-center align-items-stretch border-bottom">
         <div
           class="col-* m-2"
           (ngModelChange)="saveDetails($event)"
           *ngFor="let certificate of user.certifications"
         >
-          <mat-card class="document">
-            <img mat-card-image [src]="certificate.certificate" alt="" />
-            <mat-card-content>
-              <p>
-                {{ certificate.title }}
-              </p>
-            </mat-card-content>
-          </mat-card>
+          <a
+            [href]="certificate.certificate"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <mat-card class="document">
+              <img
+                mat-card-image
+                [src]="certificate.certificate"
+                [alt]="certificate.title"
+              />
+              <mat-card-content>
+                <p>
+                  {{ certificate.title }}
+                </p>
+              </mat-card-content>
+            </mat-card>
+          </a>
         </div>
       </div>
       <div
@@ -297,15 +306,26 @@
         </div>
       </div>
     </div>
+    <input
+      type="file"
+      class="d-none bg-dark"
+      #dpPicker
+      (change)="onDPPicked($event)"
+    />
     <div class="d-none profile-section d-md-block col-md-5 col-lg-4">
       <div
         class="row p-5 profile-info flex-column justify-content-center align-items-center"
       >
         <div class="col-*">
-          <img class="profile" src="./../../../assets/Nishanth.jpg" />
+          <img
+            class="profile"
+            [src]="user.imageURL"
+            [alt]="user.username || user.profileName"
+            (click)="dpPicker.click()"
+          />
         </div>
         <div class="col-* mt-3">
-          <p *ngIf="!editMode" class="mb-0 small-font">
+          <p *ngIf="!editMode" class="mb-0 big-font">
             {{ user.username }}
           </p>
           <mat-form-field *ngIf="editMode" class="col-* m-0 p-0 small-font">
@@ -314,6 +334,7 @@
               type="text"
               placeholder="Username"
               [(ngModel)]="user.username"
+              (click)="dpPicker.click()"
             />
           </mat-form-field>
         </div>

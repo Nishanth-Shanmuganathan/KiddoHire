@@ -16,7 +16,7 @@ export class ProfileComponent implements OnInit {
   editMode = false;
   skills: string[] = [];
   projects: { title: string, link: string }[] = [];
-  certifications: { certificate: string, title: string }[] = [];
+  certification: { certificate: string, title: string };
   resume: File;
   languages: string[] = [];
   user;
@@ -92,12 +92,14 @@ export class ProfileComponent implements OnInit {
   addCertificate() {
     this.uiService.addSingleString('certificate').subscribe(data => {
       if (data.name && data.certificate) {
-        this.user.certifications.push({ certificate: data.certificate, title: data.name });
-        this.profileService.saveDetails(this.user.profileName, ['certifications', this.user.certifications])
+        this.certification = { certificate: data.certificate, title: data.name };
+        this.profileService.saveCertificate(this.user.profileName, ['certifications', this.certification])
           .subscribe(res => {
+            console.log(res);
             this.uiService.topDialog(this.toTitlecase(res.cred[0]) + ' saved...');
+            this.user.certifications.push({ title: res.cred[1].title, certificate: res.cred[1].absPath });
           }, err => {
-            console.log(err);
+            this.uiService.topDialog('Certification update failed...');
           });
       }
     });
@@ -119,12 +121,24 @@ export class ProfileComponent implements OnInit {
 
   }
 
-  onImagePicked(event: Event) {
+  onResumePicked(event: Event) {
     this.resume = (event.target as HTMLInputElement).files[0];
     this.profileService.saveResume(this.user.profileName, ['resume', this.resume])
       .subscribe(res => {
         this.uiService.topDialog(this.toTitlecase(res.cred[0]) + ' saved...');
         this.user.resume = res.cred[1];
+        this.resume = null;
+      }, err => {
+        this.resume = null;
+        this.uiService.topDialog('Cannot upload this file...');
+      });
+  }
+  onDPPicked(event: Event) {
+    this.resume = (event.target as HTMLInputElement).files[0];
+    this.profileService.saveDP(this.user.profileName, ['resume', this.resume])
+      .subscribe(res => {
+        this.uiService.topDialog(this.toTitlecase(res.cred[0]) + ' saved...');
+        this.user.imageURL = res.cred[1];
       }, err => {
         this.uiService.topDialog('Cannot upload this file...');
       });
@@ -141,11 +155,8 @@ export class ProfileComponent implements OnInit {
       });
   }
   toTitlecase(string) {
-    const sentence = string.toLowerCase().split(' ');
-    for (let i = 0; i < sentence.length; i++) {
-      sentence[i] = sentence[i][0].toUpperCase() + sentence[i].slice(1);
-    }
-    // document.write(sentence.join(' '));
+    let sentence = string.toLowerCase();
+    sentence = sentence[0].toUpperCase() + sentence.slice(1);
     return sentence;
   }
 }

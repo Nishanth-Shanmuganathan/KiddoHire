@@ -69,7 +69,13 @@ img.profile {
 
 img[mat-card-image],
 .document {
-  max-width: 250px;
+  width: 250px;
+  max-height: 250px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }
 
 .document {
@@ -79,7 +85,11 @@ img[mat-card-image],
 .launch,
 .small-font {
   font-size: 14px;
+}
 
+.big-font {
+  font-size: 18px;
+  font-weight: 500;
 }
 
 .pad {

@@ -49,7 +49,7 @@
     *ngIf="data.type === 'certificate'"
     mat-raised-button
     [mat-dialog-close]="data"
-    [disabled]="!data.certificate"
+    [disabled]="!data.certificate || !data.name"
     color="primary"
   >
     Add {{ data.type }}
