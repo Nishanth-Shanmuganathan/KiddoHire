@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { UIService } from 'src/app/services/ui.service';
 
@@ -9,10 +10,16 @@ import { UIService } from 'src/app/services/ui.service';
 export class AuthComponent implements OnInit {
   isMobile: boolean;
   constructor(
-    private uiService: UIService
+    private uiService: UIService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
+
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.authService.isAuthSubj.next(false);
+    this.authService.userSub.next(null);
     this.uiService.isMobileSub.subscribe(res => {
       this.isMobile = res;
     });

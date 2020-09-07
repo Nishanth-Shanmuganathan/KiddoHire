@@ -60,7 +60,7 @@ export class ProfileComponent implements OnInit {
         console.log(this.user.profileName, this.username);
         this.authService.userSub.subscribe(res => {
           this.selfUser = res;
-          console.log(this.selfUser.profileName === this.user.profileName ? 'Your profile' : 'Another profile');
+          // console.log(this.selfUser.profileName === this.user.profileName ? 'Your profile' : 'Another profile');
         });
       }, err => {
         this.isLoading = false;
@@ -197,5 +197,9 @@ export class ProfileComponent implements OnInit {
     let sentence = string.toLowerCase();
     sentence = sentence[0].toUpperCase() + sentence.slice(1);
     return sentence;
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

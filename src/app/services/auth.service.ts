@@ -50,8 +50,14 @@ export class AuthService {
       });
   }
   logout() {
-    localStorage.removeItem('token');
-    this.isAuthSubj.next(false);
+    this.http.get<{ message: string }>(environment.server_url + 'auth/logout')
+      .subscribe(res => {
+        this.uiService.topDialog(res.message);
+        this.route.navigate(['/']);
+      }, err => {
+        this.uiService.topDialog(err.error.message);
+      });
+
   }
   updateUser(user) {
     this.user = user;
