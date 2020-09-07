@@ -26,10 +26,10 @@ export class AuthService {
         this.user = res.user;
         localStorage.setItem('user', JSON.stringify(res.user));
         localStorage.setItem('token', res.token);
-        this.uiService.topDialog(res.message);
         this.isAuthSubj.next(true);
         this.userSub.next(res.user);
         this.route.navigate(['home']);
+        this.uiService.topDialog(res.message);
 
       });
   }
@@ -43,10 +43,28 @@ export class AuthService {
         this.uiService.centerDialog(res.message);
         this.isAuthSubj.next(true);
         this.userSub.next(res.user);
+      }, err => {
+        this.uiService.topDialog(err.error.message);
       });
   }
   logout() {
     localStorage.removeItem('token');
     this.isAuthSubj.next(false);
+  }
+  updateUser(user) {
+    this.user = user;
+    localStorage.setItem('user', JSON.stringify(user));
+    this.userSub.next(user);
+  }
+
+  verifyEmail(key) {
+    console.log(key);
+    this.http.get<{ message: string, user }>(environment.server_url + 'auth/email/' + key)
+      .subscribe(res => {
+        this.uiService.topDialog(res.message);
+        this.updateUser(res.user);
+      }, err => {
+        this.uiService.topDialog(err.error.message);
+      });
   }
 }

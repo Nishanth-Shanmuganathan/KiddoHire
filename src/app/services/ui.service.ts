@@ -32,6 +32,7 @@ export class UIService {
   }
 
   centerDialog(message) {
+    this.dialog.closeAll();
     this.dialog.open(NotificationComponent, {
       width: '50%',
       minWidth: '250px',
@@ -48,16 +49,18 @@ export class UIService {
 
   }
   topDialog(message) {
+    this.dialog.closeAll();
     const dialogRef = this.dialog.open(NotificationComponent, {
       width: '250px',
       position: {
         top: '0px',
         right: '0px'
       },
+      hasBackdrop: false,
       data: { message, center: false },
     });
     setTimeout(() => {
       dialogRef.close();
-    }, 3000);
+    }, 2000);
   }
 }

@@ -8,7 +8,7 @@
   </section>
   <section *ngIf="!isLoading" class="row body p-3 m-0 mb-5 mb-md-2">
     <button
-      *ngIf="user.profileName === username"
+      *ngIf="user.profileName === username && user.completion >= 60"
       class="edit"
       mat-mini-fab
       (click)="editMode = !editMode"
@@ -21,19 +21,34 @@
     >
       <div
         class="row d-md-none mt-4 mb-4 justify-content-center align-items-center"
+        *ngIf="!editMode"
       >
         <img
           class="col-* profile"
-          [src]="user.imageURL"
+          [src]="user.imageURL || './../../../assets/images/auth/user.png'"
+          [alt]="user.username || user.profileName"
+        />
+      </div>
+
+      <div
+        class="row d-md-none mt-4 mb-4 justify-content-center align-items-center"
+        *ngIf="editMode"
+      >
+        <img
+          class="col-* profile"
+          [src]="user.imageURL || './../../../assets/images/auth/user-add.ico'"
           [alt]="user.username || user.profileName"
           (click)="dpPicker.click()"
         />
       </div>
       <div class="row d-md-none justify-content-center">
-        <p *ngIf="!editMode" class="col-12 m-3 big-font min-width text-center">
+        <p *ngIf="!editMode" class="col-12 big-font min-width text-center">
           {{ user.username }}
         </p>
-        <mat-form-field *ngIf="editMode" class="col-* m-3 min-width small-font">
+        <mat-form-field
+          *ngIf="editMode"
+          class="col-* m-n1 min-width small-font"
+        >
           <input
             matInput
             placeholder="Username"
@@ -316,10 +331,19 @@
       <div
         class="row p-5 profile-info flex-column justify-content-center align-items-center"
       >
-        <div class="col-*">
+        <div class="col-*" *ngIf="!editMode">
           <img
             class="profile"
-            [src]="user.imageURL"
+            [src]="user.imageURL || './../../../assets/images/auth/user.png'"
+            [alt]="user.username || user.profileName"
+          />
+        </div>
+        <div class="col-*" *ngIf="editMode">
+          <img
+            class="profile"
+            [src]="
+              user.imageURL || './../../../assets/images/auth/user-add.ico'
+            "
             [alt]="user.username || user.profileName"
             (click)="dpPicker.click()"
           />

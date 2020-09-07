@@ -25,7 +25,7 @@ export class DeactivateGuard implements CanDeactivate<ProfileComponent> {
     this.authService.userSub.subscribe(res => {
       user = res;
     });
-    if (user?.completion > 60) {
+    if (user?.completion >= 60) {
       return true;
     } else {
       this.uiService.centerDialog('Please complete your registration to proceed further...');

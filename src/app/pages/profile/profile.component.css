@@ -44,10 +44,6 @@ main {
   height: 160px;
 }
 
-.profile.edit:hover {
-  cursor: pointer;
-  filter: brightness(.3);
-}
 
 
 .content {
