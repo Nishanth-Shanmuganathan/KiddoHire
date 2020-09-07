@@ -20,7 +20,9 @@ export class ProfileComponent implements OnInit {
   resume: File;
   languages: string[] = [];
   user;
+  selfUser;
   username: string;
+  review: string;
 
   constructor(
     private uiService: UIService,
@@ -46,6 +48,7 @@ export class ProfileComponent implements OnInit {
           });
       }
     });
+    console.log(this.username);
     this.profileService.fetchProfile(this.username)
       .subscribe(res => {
         console.log(res);
@@ -55,20 +58,19 @@ export class ProfileComponent implements OnInit {
         }
         this.isLoading = false;
         console.log(this.user.profileName, this.username);
+        this.authService.userSub.subscribe(res => {
+          this.selfUser = res;
+          console.log(this.selfUser.profileName === this.user.profileName ? 'Your profile' : 'Another profile');
+        });
       }, err => {
         this.isLoading = false;
         console.log('Error in fetching');
-        console.log(this.user);
       });
 
     this.uiService.isMobileSub.subscribe(res => {
       this.isMobile = res;
     });
 
-    this.authService.userSub.subscribe(res => {
-      this.user = res;
-      console.log(this.user.profileName === this.username ? 'Your profile' : 'Another profile');
-    });
 
   }
 
@@ -105,6 +107,21 @@ export class ProfileComponent implements OnInit {
       }
     });
 
+  }
+  addReview() {
+    this.uiService.addSingleString('review').subscribe(data => {
+      if (data.name) {
+        this.user.reviews.push({ review: data.name, author: this.selfUser.username || this.selfUser.profileName });
+        console.log(this.user.review);
+        this.profileService.saveDetails(this.user.profileName, ['reviews', this.user.reviews])
+          .subscribe(res => {
+            this.uiService.topDialog(this.toTitlecase(res.cred[0]) + ' saved...');
+            this.authService.updateUser(res.user);
+          }, err => {
+            console.log('Error in review add');
+          });
+      }
+    });
   }
   addCertificate() {
     this.uiService.addSingleString('certificate').subscribe(data => {

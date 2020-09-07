@@ -36,7 +36,11 @@
 </main>
 <mat-dialog-actions align="end">
   <button
-    *ngIf="data.type === 'skill' || data.type === 'language'"
+    *ngIf="
+      data.type === 'skill' ||
+      data.type === 'language' ||
+      data.type === 'review'
+    "
     mat-raised-button
     [mat-dialog-close]="data"
     [disabled]="!data.name"
