@@ -120,13 +120,13 @@ export class ProfileComponent implements OnInit {
   }
 
   onImagePicked(event: Event) {
-    this.user.resume = (event.target as HTMLInputElement).files[0];
-
-    this.profileService.saveDetails(this.user.profileName, ['resume', this.user.resume])
+    this.resume = (event.target as HTMLInputElement).files[0];
+    this.profileService.saveResume(this.user.profileName, ['resume', this.resume])
       .subscribe(res => {
         this.uiService.topDialog(this.toTitlecase(res.cred[0]) + ' saved...');
+        this.user.resume = res.cred[1];
       }, err => {
-        console.log(err);
+        this.uiService.topDialog('Cannot upload this file...');
       });
   }
 
@@ -134,8 +134,10 @@ export class ProfileComponent implements OnInit {
     this.profileService.saveDetails(this.user.profileName, [eve.target.name, eve.target.value])
       .subscribe(res => {
         this.uiService.topDialog(this.toTitlecase(res.cred[0]) + ' saved...');
+        this.resume = res.cred[1];
       }, err => {
         console.log(err);
+        this.resume = null;
       });
   }
   toTitlecase(string) {

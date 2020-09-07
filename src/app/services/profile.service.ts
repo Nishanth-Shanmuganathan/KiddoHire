@@ -16,6 +16,13 @@ export class ProfileService {
   }
 
   saveDetails(username, val) {
+
     return this.http.patch<{ cred }>(environment.server_url + 'node-profile/' + username, val);
+  }
+
+  saveResume(username, val) {
+    const data = new FormData();
+    data.append('resume', val[1]);
+    return this.http.patch<{ cred }>(environment.server_url + 'node-profile/resume/' + username, data);
   }
 }
