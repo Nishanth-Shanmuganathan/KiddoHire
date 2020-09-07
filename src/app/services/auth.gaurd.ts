@@ -28,10 +28,10 @@ export class AuthGuard implements CanActivate {
     if (!auth) {
       return this.router.navigate(['/']);
     }
-    // if (!user.emailVerified) {
-    //   this.uiService.centerDialog('Please verify your email id...');
-    //   return this.router.navigate(['/']);
-    // }
+    if (!user.emailVerified) {
+      this.uiService.centerDialog('Please verify your email id...');
+      return this.router.navigate(['/']);
+    }
     if (user.completion < 60 && !state.url.includes('/profile')) {
       this.uiService.centerDialog('Please complete your registration...');
       return this.router.navigate(['profile', user.profileName]);

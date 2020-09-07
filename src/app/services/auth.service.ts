@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,7 @@ export class AuthService {
         this.isAuthSubj.next(true);
         this.userSub.next(res.user);
         this.route.navigate(['home']);
+        console.log(res.message);
         this.uiService.topDialog(res.message);
 
       });
@@ -59,12 +61,13 @@ export class AuthService {
 
   verifyEmail(key) {
     console.log(key);
-    this.http.get<{ message: string, user }>(environment.server_url + 'auth/email/' + key)
-      .subscribe(res => {
+    return this.http.get<{ message: string, user }>(environment.server_url + 'auth/email/' + key)
+      .pipe(tap(res => {
         this.uiService.topDialog(res.message);
         this.updateUser(res.user);
       }, err => {
         this.uiService.topDialog(err.error.message);
-      });
+        this.route.navigate(['/']);
+      }));
   }
 }

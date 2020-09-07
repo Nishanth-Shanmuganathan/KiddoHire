@@ -2,7 +2,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UIService } from './../../services/ui.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
@@ -26,7 +26,8 @@ export class ProfileComponent implements OnInit {
     private uiService: UIService,
     private authService: AuthService,
     private profileService: ProfileService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -34,7 +35,15 @@ export class ProfileComponent implements OnInit {
 
     this.route.queryParams.subscribe(query => {
       if (query.key) {
-        this.authService.verifyEmail(query.key);
+        this.authService.verifyEmail(query.key)
+          .subscribe(res => {
+            this.router.navigate([], {
+              queryParams: {
+                key: null,
+              },
+              queryParamsHandling: 'merge'
+            });
+          });
       }
     });
     this.profileService.fetchProfile(this.username)
