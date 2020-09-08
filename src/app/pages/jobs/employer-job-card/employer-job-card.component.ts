@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Job } from 'src/app/models/job.model';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -18,7 +19,7 @@ export interface UserData {
   styleUrls: ['./employer-job-card.component.css']
 })
 export class EmployerJobCardComponent implements OnInit {
-
+  @Input() job: Job;
   displayedColumns: string[] = ['sl', 'name', 'match', 'status', 'resume', '_id'];
   dataSource: MatTableDataSource<UserData>;
 
@@ -204,6 +205,7 @@ export class EmployerJobCardComponent implements OnInit {
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    console.log(this.job);
   }
 
   applyFilter(event: Event) {

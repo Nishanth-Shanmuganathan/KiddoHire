@@ -2,73 +2,44 @@
   <mat-card-header>
     <img
       matCardAvatar
-      src="../../../../assets/images/jobs/company.png"
+      [src]="
+        job.postedBy.imageURL || '../../../../assets/images/jobs/company.png'
+      "
       alt="KiddoHire"
     />
-    <mat-card-title>Full Stack Developer</mat-card-title>
+    <mat-card-title>{{ job.designation | titlecase }}</mat-card-title>
   </mat-card-header>
   <mat-card-content class="p-2 p-sm-3 p-md-4 m-0 d-flex">
     <mat-accordion>
       <mat-expansion-panel class="panel__content">
         <mat-expansion-panel-header>Job Details </mat-expansion-panel-header>
         <mat-chip-list class="m-2">
-          <mat-chip color="primary" selected>Papadum</mat-chip>
+          <mat-chip color="primary" selected *ngFor="let skill of job.skills">{{
+            skill | titlecase
+          }}</mat-chip>
         </mat-chip-list>
         <button mat-mini-fab class="edit">
           <mat-icon>edit</mat-icon>
         </button>
         <div class="job__description p-1 p-sm-2 m-sm-2 border">
-          We are looking for a JavaScript Developer who is motivated to combine
-          the art of design with the art of programming. Responsibilities will
-          include implementing visual elements and their behaviors with user
-          interactions and building backend APIs using the MEAN stack. You will
-          help build all client-side logic. You will also be bridging the gap
-          between the visual elements and the server-side infrastructure, taking
-          an active role on both sides, and defining how the application looks
-          and functions.Responsibilities: Work with our Engineers to implement
-          the next generation of our client products Build efficient and
-          reusable front-end/back-end abstractions and systems Optimize
-          applications for maximum speed and scalability Identify and address
-          performance bottlenecks Participate in design and code reviews
-          Identify and communicate best practices for front-end engineering
-          Requirements: Excellent programming skills with Node.js. Natural with
-          Markup and Styling with HTML, CSS Strong understanding of JavaScript,
-          its quirks, and workarounds. Hands-on experience with at least one of
-          these: AngularJS, EmberJS, KnockoutJS, BackboneJS, ReactJS,
-          DurandalJS, NodeJS, ReactJS, or similar. Ability to author clean,
-          standards-compliant code Comfortable working with templates in
-          server-side technologies and client-side apps Familiarity with
-          JavaScript module loaders, such as Require.js and AMD Familiarity with
-          front-end build tools, such as Grunt and Gulp.js Proficient
-          understanding of code versioning tools, such as (Git / Mercurial /
-          SVN) Understand the principals of object-oriented development Use
-          test-driven development to guide implementation Fond of tracking down
-          IE browser bugs Ability to navigate deep into Photoshop layers to
-          export slices and make sprites Fluency in English Experience: 6 to 12
-          yearsAbout this companyAt Idyllic Software, we're driven by our love
-          for software, design, and people. We dislike insane rules that govern
-          our work, so you won't find scheduled work hours, in-times, and long
-          meetings around the whiteboard. We love building applications for the
-          web and we'd like to keep it that way so we try to get rid of anything
-          that comes in the way. We have liberal leave policies to ensure we
-          have a break when we need one and working remotely is always an option
-          when you are not in the mood to deal with the traffic.
+          {{ job.description | titlecase }}
         </div>
         <div class="row p-2 ml-1 m-sm-3">
           <div class="col-* mr-3">
-            <span class="text-muted">Location : </span>{{ "Banglore" }}
+            <span class="text-muted">Location : </span
+            >{{ job.location | titlecase }}
           </div>
           <div class="col-* mr-3">
             <span class="text-muted">Experience Range : </span
-            >{{ "1" + "-" + "4" }} years
+            >{{ job.minimumExperience + " - " + job.maximumExperience }} years
           </div>
           <div class="col-* mr-3">
             <span class="text-muted">Salary Range : </span
-            >{{ "10" + "-" + "15" }} LPA
+            >{{ job.minimumSalary + " - " + job.maximumSalary }} LPA
           </div>
         </div>
       </mat-expansion-panel>
-      <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel [expanded]="false">
         <mat-expansion-panel-header
           >Application Details</mat-expansion-panel-header
         >

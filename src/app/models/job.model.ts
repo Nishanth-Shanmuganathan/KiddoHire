@@ -1,17 +1,20 @@
 export class Job {
   constructor(
-    private designation: string,
-    private description: string,
-    private skills: string[],
-    private minimumExperience: number,
-    private maximumExperience: number,
-    private minimumSalary: number,
-    private maximumSalary: number,
-    private location: string,
-    private totalRounds: number,
-    private rounds: {
+    public designation: string,
+    public description: string,
+    public skills: string[],
+    public minimumExperience: number,
+    public maximumExperience: number,
+    public minimumSalary: number,
+    public maximumSalary: number,
+    public location: string,
+    public totalRounds: number,
+    public rounds: {
       date: Date,
       description: string
-    }[]
+    }[],
+    public postedBy?: {
+      imageURL: string
+    }
   ) { }
 }

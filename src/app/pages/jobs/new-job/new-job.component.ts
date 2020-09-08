@@ -35,7 +35,7 @@ export class NewJobComponent implements OnInit {
   constructor(
     private jobService: JobsService,
     private authService: AuthService,
-    private uiServie: UIService,
+    private uiService: UIService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
@@ -102,11 +102,11 @@ export class NewJobComponent implements OnInit {
     );
     this.jobService.addJob(jobCreds)
       .subscribe(res => {
-        this.uiServie.topDialog(res.message);
+        this.uiService.topDialog(res.message);
         this.authService.updateUser(res.user);
         this.router.navigate(['../'], { relativeTo: this.route });
       }, err => {
-        this.uiServie.topDialog(err.error.message);
+        this.uiService.topDialog(err.error.message);
         this.router.navigate(['../'], { relativeTo: this.route });
       });
 

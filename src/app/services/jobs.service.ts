@@ -15,7 +15,9 @@ export class JobsService {
   fetchCities(city: string) {
     return this.http.get<{ data: string[] }>(environment.server_url + 'node-jobs/city/' + city);
   }
-
+  fetchJobs() {
+    return this.http.get<{ jobs }>(environment.server_url + 'node-jobs/jobs');
+  }
   addJob(jobCred: Job) {
     return this.http.post<{ message, user }>(environment.server_url + 'node-jobs/job', jobCred);
   }
