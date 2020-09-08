@@ -12,7 +12,7 @@ import { tap } from 'rxjs/operators';
 export class AuthService {
 
   isAuthSubj = new BehaviorSubject<boolean>(!!localStorage.getItem('token'));
-  userSub = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('user')));
+  userSub = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('user')) || undefined);
   user;
   constructor(
     private route: Router,
@@ -60,6 +60,7 @@ export class AuthService {
 
   }
   updateUser(user) {
+    if (!user) { return; }
     this.user = user;
     localStorage.setItem('user', JSON.stringify(user));
     this.userSub.next(user);
