@@ -55,11 +55,39 @@
         mat-raised-button
         color="primary"
         (click)="applyJob(job._id)"
+        *ngIf="!appliedJob"
       >
         Apply
       </button>
+
+      <button
+        class="mb-2"
+        mat-raised-button
+        color="primary"
+        (click)="generateReport(job._id)"
+        *ngIf="appliedJob"
+      >
+        Compare
+      </button>
     </div>
   </mat-card-content>
+  <div class="row p-2 ml-1 m-sm-3">
+    <div class="col-* mr-3">
+      <span class="text-muted">Location : </span>{{ job.location | titlecase }}
+    </div>
+    <div class="col-* mr-3">
+      <span class="text-muted">Experience : </span
+      >{{ job.minimumExperience + " - " + job.maximumExperience }} years
+    </div>
+    <div class="col-* mr-3">
+      <span class="text-muted">Salary : </span
+      >{{ job.minimumSalary + " - " + job.maximumSalary }} LPA
+    </div>
+
+    <div class="col-* mr-3">
+      <span class="text-muted">Applicants : </span> {{ job.applicants.length }}
+    </div>
+  </div>
   <mat-card-actions class="p-0 d-flex justify-content-between d-sm-none">
     <button
       class="ml-3"
@@ -74,8 +102,18 @@
       mat-raised-button
       color="primary"
       (click)="applyJob(job._id)"
+      *ngIf="!appliedJob"
     >
       Apply for this job
+    </button>
+    <button
+      class="mr-3"
+      mat-raised-button
+      color="primary"
+      *ngIf="appliedJob"
+      (click)="generateReport(job._id)"
+    >
+      Comparison report
     </button>
   </mat-card-actions>
 </mat-card>

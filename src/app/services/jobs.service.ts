@@ -20,17 +20,39 @@ export class JobsService {
     return this.http.get<{ data: string[] }>(environment.server_url + 'node-jobs/city/' + city);
   }
   fetchJobs() {
-    return this.http.get<{ jobs }>(environment.server_url + 'node-jobs/jobs');
+    this.http.get<{ jobs }>(environment.server_url + 'node-jobs/jobs')
+      .subscribe(res => {
+        this.jobsSubj.next(res.jobs);
+      }, err => {
+        console.log(err.error.message);
+      });
+  }
+  fetchAppliedJobs() {
+    this.http.get<{ jobs }>(environment.server_url + 'node-jobs/jobs-applied')
+      .subscribe(res => {
+        this.jobsSubj.next(res.jobs);
+      }, err => {
+        console.log(err.error.message);
+      });
   }
   addJob(jobCred: Job) {
     return this.http.post<{ message, user }>(environment.server_url + 'node-jobs/job', jobCred);
   }
 
   applyJob(jobId) {
-    return this.http.get<{ jobs, message: string }>(environment.server_url + 'node-jobs/job/' + jobId)
+    this.http.get<{ jobs, message: string }>(environment.server_url + 'node-jobs/job/' + jobId)
       .subscribe(res => {
         this.uiService.topDialog(res.message);
         this.jobsSubj.next(res.jobs);
+      }, err => {
+        console.log(err.error.message);
+      });
+  }
+
+  generateReport(jobId) {
+    this.http.get<{ message: string }>(environment.server_url + 'node-jobs/generate-report/' + jobId)
+      .subscribe(res => {
+        this.uiService.topDialog(res.message);
       }, err => {
         console.log(err.error.message);
       });

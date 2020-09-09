@@ -1,6 +1,6 @@
 import { UIService } from './../../../services/ui.service';
 import { JobsService } from './../../../services/jobs.service';
-import { Component, OnInit, ViewChild, ElementRef, Renderer2, ViewEncapsulation, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2, ViewEncapsulation, Input, EventEmitter, Output } from '@angular/core';
 import { Options } from 'ng5-slider';
 
 @Component({
@@ -10,6 +10,9 @@ import { Options } from 'ng5-slider';
 })
 export class SearchComponent implements OnInit {
   @Input() user;
+  @Output() isLoading = new EventEmitter<boolean>();
+  @Output() appliedJob = new EventEmitter<boolean>();
+  allJobs = true;
   search: string;
   toggleFilters = false;
   cityString: string;
@@ -53,6 +56,15 @@ export class SearchComponent implements OnInit {
   }
 
   appliedJobs() {
-    this.jobService;
+    this.allJobs = !this.allJobs;
+    this.isLoading.emit(true);
+    this.appliedJob.emit(true);
+    this.jobService.fetchAppliedJobs();
+  }
+  fetchJobs() {
+    this.allJobs = !this.allJobs;
+    this.isLoading.emit(true);
+    this.appliedJob.emit(false);
+    this.jobService.fetchJobs();
   }
 }

@@ -28,7 +28,7 @@
     </button>
 
     <button
-      class="d-none d-sm-block"
+      class="d-none m-2 d-sm-block"
       mat-raised-button
       color="primary"
       *ngIf="user.role === 'hr'"
@@ -36,25 +36,47 @@
       Post a new job
     </button>
     <button
-      class="d-none d-sm-block"
+      class="d-none m-2 d-sm-block"
       mat-raised-button
       color="primary"
-      *ngIf="user.role === 'developer'"
+      *ngIf="user.role === 'developer' && allJobs"
+      (click)="appliedJobs()"
     >
       Applied Jobs
     </button>
+    <button
+      class="d-none m-2 d-sm-block"
+      mat-raised-button
+      color="primary"
+      *ngIf="user.role === 'developer' && !allJobs"
+      (click)="fetchJobs()"
+    >
+      All Jobs
+    </button>
 
     <button
-      class="d-sm-none"
+      class="d-sm-none m-2"
       mat-mini-fab
       color="primary"
       [matTooltip]="'View status of applied jobs'"
-      *ngIf="user.role === 'developer'"
+      *ngIf="user.role === 'developer' && allJobs"
+      (click)="appliedJobs()"
     >
       <mat-icon>pending_actions</mat-icon>
     </button>
+
     <button
-      class="d-sm-none"
+      class="d-sm-none m-2"
+      mat-mini-fab
+      color="primary"
+      [matTooltip]="'All jobs'"
+      *ngIf="user.role === 'developer' && !allJobs"
+      (click)="fetchJobs()"
+    >
+      <mat-icon>work</mat-icon>
+    </button>
+    <button
+      class="d-sm-none m-2"
       mat-mini-fab
       color="primary"
       [matTooltip]="'Add a new job post'"

@@ -1,6 +1,11 @@
 <main class="content">
   <section class="row m-0">
-    <app-search class="col-12" [user]="user"></app-search>
+    <app-search
+      class="col-12"
+      [user]="user"
+      (isLoading)="getIsLoading($event)"
+      (appliedJob)="getJobType($event)"
+    ></app-search>
   </section>
   <section
     *ngIf="isLoading"
@@ -23,7 +28,10 @@
     *ngIf="!isLoading && user && user.role === 'developer'"
   >
     <div class="col-*" *ngFor="let job of jobs">
-      <app-employee-job-card [job]="job"></app-employee-job-card>
+      <app-employee-job-card
+        [job]="job"
+        [appliedJob]="appliedJob"
+      ></app-employee-job-card>
     </div>
   </div>
 </main>

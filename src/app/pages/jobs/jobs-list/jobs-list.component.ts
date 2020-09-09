@@ -12,10 +12,23 @@ export class JobsListComponent implements OnInit {
   @Input() jobs: Job[];
   @Input() user;
   @Input() isLoading;
+
+  appliedJob = false;
   constructor(
+    private jobService: JobsService
   ) { }
 
   ngOnInit(): void {
+    this.jobService.jobsSubj.subscribe(res => {
+      this.isLoading = false;
+    });
   }
 
+  getIsLoading(bool) {
+    this.isLoading = bool;
+  }
+
+  getJobType(val) {
+    this.appliedJob = val;
+  }
 }

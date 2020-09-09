@@ -2,6 +2,7 @@ mat-card {
   min-width: 250px;
   width: 90vw;
   max-width: 1000px;
+  font-size: 14px;
 }
 
 mat-card-subtitle span {

@@ -10,16 +10,23 @@ import { Job } from 'src/app/models/job.model';
 export class EmployeeJobCardComponent implements OnInit {
 
   @Input() job: Job;
+  @Input() appliedJob: boolean;
   @Output() jobs = new EventEmitter<Job[]>();
   constructor(
     private jobService: JobsService
   ) { }
 
   ngOnInit(): void {
+    console.log('Job type : ' + this.appliedJob);
+    // this.job.applicants.includes();
   }
 
   applyJob(jobId) {
     console.log(jobId);
     this.jobService.applyJob(jobId);
+  }
+
+  generateReport(jobId) {
+    this.jobService.generateReport(jobId);
   }
 }

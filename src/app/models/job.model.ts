@@ -14,6 +14,7 @@ export class Job {
       description: string
     }[],
     public _id?: string,
+    public applicants?: { applicant: string, jobMatch: number }[],
     public postedBy?: {
       imageURL: string,
       username: string,
