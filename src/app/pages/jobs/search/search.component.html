@@ -10,38 +10,55 @@
         (ngModelChange)="fetchCities()"
       />
     </mat-form-field>
-    <!-- <button
+    <button
       class="d-none d-sm-block"
       mat-raised-button
       color="primary"
       (click)="toggleFilters = !toggleFilters"
     >
       {{ toggleFilters ? "Hide" : "Show" }} Filters
-    </button> -->
-    <!-- <button
+    </button>
+    <button
       class="d-sm-none"
       mat-mini-fab
       color="primary"
       (click)="toggleFilters = !toggleFilters"
     >
       <mat-icon>{{ toggleFilters ? "blur_off" : "filter_alt" }}</mat-icon>
-    </button> -->
-
-    <button
-      class="job_page d-none d-sm-block"
-      mat-raised-button
-      color="primary"
-      [routerLink]="['new-job']"
-    >
-      Post a new job
     </button>
 
     <button
-      class="job_page d-sm-none"
+      class="d-none d-sm-block"
+      mat-raised-button
+      color="primary"
+      *ngIf="user.role === 'hr'"
+    >
+      Post a new job
+    </button>
+    <button
+      class="d-none d-sm-block"
+      mat-raised-button
+      color="primary"
+      *ngIf="user.role === 'developer'"
+    >
+      Applied Jobs
+    </button>
+
+    <button
+      class="d-sm-none"
+      mat-mini-fab
+      color="primary"
+      [matTooltip]="'View status of applied jobs'"
+      *ngIf="user.role === 'developer'"
+    >
+      <mat-icon>pending_actions</mat-icon>
+    </button>
+    <button
+      class="d-sm-none"
       mat-mini-fab
       color="primary"
       [matTooltip]="'Add a new job post'"
-      [routerLink]="['new-job']"
+      *ngIf="user.role === 'hr'"
     >
       <mat-icon>add</mat-icon>
     </button>

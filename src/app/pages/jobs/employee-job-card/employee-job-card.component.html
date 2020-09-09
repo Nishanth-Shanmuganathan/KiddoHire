@@ -2,66 +2,39 @@
   <mat-card-header>
     <img
       matCardAvatar
-      src="../../../../assets/images/jobs/company.png"
+      [src]="
+        job.postedBy.imageURL || '../../../../assets/images/jobs/company.png'
+      "
       alt="KiddoHire"
     />
-    <mat-card-title>Full Stack Developer</mat-card-title>
+    <mat-card-title>{{ job.designation | titlecase }}</mat-card-title>
     <mat-card-subtitle
       >at
       <span class="text-dark"
-        >CodaGlobal
-        <mat-icon>launch</mat-icon>
+        >{{ job.postedBy.username | titlecase }}
       </span></mat-card-subtitle
     >
     <mat-card-subtitle class="d-flex flex-wrap">
-      <li class="mb-1 ml-1 mr-1 pl-1 pr-1">Founded at 2017</li>
-      <li class="mb-1 ml-1 mr-1 pl-1 pr-1">Product</li>
-      <li class="mb-1 ml-1 mr-1 pl-1 pr-1">250+ employees</li>
+      <li class="mb-1 ml-1 mr-1 pl-1 pr-1">
+        {{ job.postedBy.employees }} employees
+      </li>
     </mat-card-subtitle>
     <mat-card-subtitle>
       <mat-chip-list>
-        <mat-chip color="primary" selected>Papadum</mat-chip>
+        <mat-chip color="primary" *ngFor="let skill of job.skills" selected>{{
+          skill | titlecase
+        }}</mat-chip>
       </mat-chip-list>
     </mat-card-subtitle>
   </mat-card-header>
-  <mat-card-content class="pt-0 pb-3 pl-2 pr-2 m-0 d-flex">
-    <div class="job__description p-1 p-sm-2 m-sm-2 border">
-      We are looking for a JavaScript Developer who is motivated to combine the
-      art of design with the art of programming. Responsibilities will include
-      implementing visual elements and their behaviors with user interactions
-      and building backend APIs using the MEAN stack. You will help build all
-      client-side logic. You will also be bridging the gap between the visual
-      elements and the server-side infrastructure, taking an active role on both
-      sides, and defining how the application looks and
-      functions.Responsibilities: Work with our Engineers to implement the next
-      generation of our client products Build efficient and reusable
-      front-end/back-end abstractions and systems Optimize applications for
-      maximum speed and scalability Identify and address performance bottlenecks
-      Participate in design and code reviews Identify and communicate best
-      practices for front-end engineering Requirements: Excellent programming
-      skills with Node.js. Natural with Markup and Styling with HTML, CSS Strong
-      understanding of JavaScript, its quirks, and workarounds. Hands-on
-      experience with at least one of these: AngularJS, EmberJS, KnockoutJS,
-      BackboneJS, ReactJS, DurandalJS, NodeJS, ReactJS, or similar. Ability to
-      author clean, standards-compliant code Comfortable working with templates
-      in server-side technologies and client-side apps Familiarity with
-      JavaScript module loaders, such as Require.js and AMD Familiarity with
-      front-end build tools, such as Grunt and Gulp.js Proficient understanding
-      of code versioning tools, such as (Git / Mercurial / SVN) Understand the
-      principals of object-oriented development Use test-driven development to
-      guide implementation Fond of tracking down IE browser bugs Ability to
-      navigate deep into Photoshop layers to export slices and make sprites
-      Fluency in English Experience: 6 to 12 yearsAbout this companyAt Idyllic
-      Software, we're driven by our love for software, design, and people. We
-      dislike insane rules that govern our work, so you won't find scheduled
-      work hours, in-times, and long meetings around the whiteboard. We love
-      building applications for the web and we'd like to keep it that way so we
-      try to get rid of anything that comes in the way. We have liberal leave
-      policies to ensure we have a break when we need one and working remotely
-      is always an option when you are not in the mood to deal with the traffic.
+  <mat-card-content
+    class="row justify-content-between pt-0 pb-3 pl-2 pr-2 m-0 d-flex"
+  >
+    <div class="col-12 col-sm-8 job__description p-1 p-sm-2 m-sm-2 border">
+      {{ job.description | titlecase }}
     </div>
     <div
-      class="job_poster d-none d-sm-flex flex-column justify-content-center align-items-stretch"
+      class="col-sm-3 job_poster d-none d-sm-flex flex-column justify-content-center align-items-stretch"
     >
       <img
         mat-card-md-image
@@ -69,17 +42,39 @@
         src="./../../../../assets/images/jobs/user.png"
         alt="KiddoHire"
       />
-      <button class="mb-2" mat-raised-button color="accent">
-        About Recruiter
+      <button
+        class="mb-2"
+        mat-raised-button
+        color="accent"
+        [routerLink]="['/', 'profile', job.postedBy.profileName]"
+      >
+        About Company
       </button>
-      <button class="mb-2" mat-raised-button color="primary">Apply</button>
+      <button
+        class="mb-2"
+        mat-raised-button
+        color="primary"
+        (click)="applyJob(job._id)"
+      >
+        Apply
+      </button>
     </div>
   </mat-card-content>
   <mat-card-actions class="p-0 d-flex justify-content-between d-sm-none">
-    <button class="ml-3" mat-raised-button color="accent">
-      About Recruiter
+    <button
+      class="ml-3"
+      mat-raised-button
+      color="accent"
+      [routerLink]="['/', 'profile', job.postedBy.profileName]"
+    >
+      About Company
     </button>
-    <button class="mr-3" mat-raised-button color="primary">
+    <button
+      class="mr-3"
+      mat-raised-button
+      color="primary"
+      (click)="applyJob(job._id)"
+    >
       Apply for this job
     </button>
   </mat-card-actions>

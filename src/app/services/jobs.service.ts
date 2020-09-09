@@ -1,3 +1,5 @@
+import { UIService } from './ui.service';
+import { Subject } from 'rxjs';
 import { Job } from './../models/job.model';
 import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -8,8 +10,10 @@ import { Injectable } from '@angular/core';
 })
 export class JobsService {
 
+  jobsSubj = new Subject<Job[]>();
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private uiService: UIService
   ) { }
 
   fetchCities(city: string) {
@@ -20,5 +24,15 @@ export class JobsService {
   }
   addJob(jobCred: Job) {
     return this.http.post<{ message, user }>(environment.server_url + 'node-jobs/job', jobCred);
+  }
+
+  applyJob(jobId) {
+    return this.http.get<{ jobs, message: string }>(environment.server_url + 'node-jobs/job/' + jobId)
+      .subscribe(res => {
+        this.uiService.topDialog(res.message);
+        this.jobsSubj.next(res.jobs);
+      }, err => {
+        console.log(err.error.message);
+      });
   }
 }

@@ -13,8 +13,15 @@ export class Job {
       date: Date,
       description: string
     }[],
+    public _id?: string,
     public postedBy?: {
-      imageURL: string
+      imageURL: string,
+      username: string,
+      employees: string,
+      profileName: string,
+      // employees: string,
+      // employees: string,
+      // employees: string,
     }
   ) { }
 }

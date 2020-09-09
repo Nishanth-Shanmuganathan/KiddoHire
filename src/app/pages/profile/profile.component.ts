@@ -48,19 +48,22 @@ export class ProfileComponent implements OnInit {
           });
       }
     });
+
+
     console.log(this.username);
     this.profileService.fetchProfile(this.username)
       .subscribe(res => {
         console.log(res);
         this.user = res.user;
-        if ((this.user.profileName === this.username) && !(this.user.completion >= 60)) {
-          this.editMode = true;
-        }
         this.isLoading = false;
-        console.log(this.user.profileName, this.username);
         this.authService.userSub.subscribe(res => {
           this.selfUser = res;
-          // console.log(this.selfUser.profileName === this.user.profileName ? 'Your profile' : 'Another profile');
+          if ((this.selfUser.profileName === this.user.profileName) && !(this.user.completion >= 60)) {
+            this.editMode = true;
+          }
+          console.log(this.selfUser.profileName);
+          console.log(this.user.profileName);
+          console.log(this.selfUser.profileName === this.user.profileName ? 'Your profile' : 'Another profile');
         });
       }, err => {
         this.isLoading = false;

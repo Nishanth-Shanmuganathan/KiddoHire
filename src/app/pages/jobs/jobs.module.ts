@@ -15,10 +15,10 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 const routes: Routes = [
   {
     path: '', component: JobsComponent,
-    children: [
-      { path: '', component: JobsListComponent },
-      { path: 'new-job', component: NewJobComponent }
-    ]
+    // children: [
+    //   { path: '', component: JobsListComponent },
+    //   { path: 'new-job', component: NewJobComponent }
+    // ]
   },
 ];
 

@@ -1,11 +1,29 @@
-<section class="row m-0">
-  <app-search class="col-12"></app-search>
-</section>
-<div class="row justify-content-center">
-  <div class="col-*" *ngFor="let job of jobs">
-    <app-employer-job-card [job]="job"></app-employer-job-card>
+<main class="content">
+  <section class="row m-0">
+    <app-search class="col-12" [user]="user"></app-search>
+  </section>
+  <section
+    *ngIf="isLoading"
+    class="row justify-content-center align-items-center"
+  >
+    <div class="col-* m-3 m--md-5">
+      <mat-spinner></mat-spinner>
+    </div>
+  </section>
+  <div
+    class="row justify-content-center"
+    *ngIf="!isLoading && user && user.role === 'hr'"
+  >
+    <div class="col-*" *ngFor="let job of jobs">
+      <app-employer-job-card [job]="job"></app-employer-job-card>
+    </div>
   </div>
-  <!-- <div class="col-*">
-    <app-employee-job-card></app-employee-job-card>
-  </div> -->
-</div>
+  <div
+    class="row justify-content-center"
+    *ngIf="!isLoading && user && user.role === 'developer'"
+  >
+    <div class="col-*" *ngFor="let job of jobs">
+      <app-employee-job-card [job]="job"></app-employee-job-card>
+    </div>
+  </div>
+</main>

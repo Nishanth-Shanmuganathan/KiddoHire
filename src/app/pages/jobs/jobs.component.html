@@ -3,6 +3,11 @@
     <app-header></app-header>
   </section>
   <section class="p-3 pb-5 p-md-5 m-0">
-    <router-outlet class="col-auto m-0 p-0"></router-outlet>
+    <app-jobs-list
+      class="col-auto m-0 p-0"
+      [isLoading]="isLoading"
+      [user]="user"
+      [jobs]="jobs"
+    ></app-jobs-list>
   </section>
 </main>

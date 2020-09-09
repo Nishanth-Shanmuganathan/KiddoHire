@@ -1,5 +1,6 @@
+import { UIService } from './../../../services/ui.service';
 import { JobsService } from './../../../services/jobs.service';
-import { Component, OnInit, ViewChild, ElementRef, Renderer2, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2, ViewEncapsulation, Input } from '@angular/core';
 import { Options } from 'ng5-slider';
 
 @Component({
@@ -8,6 +9,7 @@ import { Options } from 'ng5-slider';
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent implements OnInit {
+  @Input() user;
   search: string;
   toggleFilters = false;
   cityString: string;
@@ -32,7 +34,8 @@ export class SearchComponent implements OnInit {
   };
 
   constructor(
-    private jobService: JobsService
+    private jobService: JobsService,
+    private uiService: UIService
   ) { }
 
   ngOnInit(): void {
@@ -45,4 +48,11 @@ export class SearchComponent implements OnInit {
       });
   }
 
+  openAddJob() {
+    this.uiService.openAddJob();
+  }
+
+  appliedJobs() {
+    this.jobService;
+  }
 }

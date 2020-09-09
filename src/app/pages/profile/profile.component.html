@@ -11,7 +11,7 @@
     class="row body p-3 m-0 mb-5 mb-md-2"
   >
     <button
-      *ngIf="user.profileName === username && user.completion >= 60"
+      *ngIf="selfUser.profileName === user.profileName && user.completion >= 60"
       class="edit"
       mat-mini-fab
       (click)="editMode = !editMode"
@@ -19,7 +19,13 @@
     >
       <mat-icon>edit</mat-icon>
     </button>
-    <button class="logout" (click)="logout()" mat-mini-fab color="warn">
+    <button
+      *ngIf="selfUser.profileName === user.profileName && user.completion >= 60"
+      class="logout"
+      (click)="logout()"
+      mat-mini-fab
+      color="warn"
+    >
       <mat-icon>login</mat-icon>
     </button>
     <div
@@ -405,7 +411,7 @@
     class="row body p-3 m-0 mb-5 mb-md-2"
   >
     <button
-      *ngIf="user.profileName === username && user.completion >= 60"
+      *ngIf="selfUser.profileName === user.profileName && user.completion >= 60"
       class="edit"
       mat-mini-fab
       (click)="editMode = !editMode"
@@ -414,7 +420,13 @@
       <mat-icon>edit</mat-icon>
     </button>
 
-    <button class="logout" (click)="logout()" mat-mini-fab color="warn">
+    <button
+      *ngIf="selfUser.profileName === user.profileName && user.completion >= 60"
+      class="logout"
+      (click)="logout()"
+      mat-mini-fab
+      color="warn"
+    >
       <mat-icon>login</mat-icon>
     </button>
     <div

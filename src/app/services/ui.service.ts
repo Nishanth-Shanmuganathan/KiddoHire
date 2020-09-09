@@ -1,3 +1,4 @@
+import { NewJobComponent } from './../pages/jobs/new-job/new-job.component';
 import { NotificationComponent } from './../shared/notification/notification.component';
 import { AddSkillComponent } from './../pages/profile/add-skill/add-skill.component';
 import { Injectable } from '@angular/core';
@@ -62,5 +63,9 @@ export class UIService {
     setTimeout(() => {
       dialogRef.close();
     }, 2000);
+  }
+
+  openAddJob() {
+    this.dialog.open(NewJobComponent);
   }
 }

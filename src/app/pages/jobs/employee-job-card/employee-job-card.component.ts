@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { JobsService } from 'src/app/services/jobs.service';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Job } from 'src/app/models/job.model';
 
 @Component({
   selector: 'app-employee-job-card',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeeJobCardComponent implements OnInit {
 
-  constructor() { }
+  @Input() job: Job;
+  @Output() jobs = new EventEmitter<Job[]>();
+  constructor(
+    private jobService: JobsService
+  ) { }
 
   ngOnInit(): void {
   }
 
+  applyJob(jobId) {
+    console.log(jobId);
+    this.jobService.applyJob(jobId);
+  }
 }
