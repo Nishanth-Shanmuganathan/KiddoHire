@@ -4,6 +4,7 @@ import { UIService } from './../../services/ui.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
@@ -29,7 +30,8 @@ export class ProfileComponent implements OnInit {
     private authService: AuthService,
     private profileService: ProfileService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private _location: Location
   ) { }
 
   ngOnInit(): void {
@@ -116,7 +118,7 @@ export class ProfileComponent implements OnInit {
       if (data.name) {
         this.user.reviews.push({ review: data.name, author: this.selfUser.username || this.selfUser.profileName });
         console.log(this.user.review);
-        this.profileService.saveDetails(this.user.profileName, ['reviews', this.user.reviews])
+        this.profileService.saveReviews(this.user.profileName, ['reviews', this.user.reviews])
           .subscribe(res => {
             this.uiService.topDialog(this.toTitlecase(res.cred[0]) + ' saved...');
             this.authService.updateUser(res.user);
@@ -200,6 +202,9 @@ export class ProfileComponent implements OnInit {
     let sentence = string.toLowerCase();
     sentence = sentence[0].toUpperCase() + sentence.slice(1);
     return sentence;
+  }
+  navigateBack() {
+    this._location.back();
   }
 
   logout() {

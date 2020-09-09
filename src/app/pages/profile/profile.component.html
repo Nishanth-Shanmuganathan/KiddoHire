@@ -8,8 +8,18 @@
   </section>
   <section
     *ngIf="!isLoading && user && user.role === 'developer'"
-    class="row body p-3 m-0 mb-5 mb-md-2"
+    class="row body p-3 pt-5 m-0 mt-4 mb-5 mb-md-2"
   >
+    <button
+      *ngIf="selfUser.profileName !== user.profileName"
+      class="back"
+      mat-raised-button
+      (click)="navigateBack()"
+      color="primary"
+    >
+      <mat-icon>arrow_left</mat-icon>
+      <span>Back</span>
+    </button>
     <button
       *ngIf="selfUser.profileName === user.profileName && user.completion >= 60"
       class="edit"
@@ -340,7 +350,7 @@
             mat-icon-button
             class="ml-3 text-primary"
             (click)="addReview()"
-            *ngIf="user.profileName !== username"
+            *ngIf="selfUser.profileName !== user.profileName"
           >
             <mat-icon>add_circle</mat-icon>
           </button>
@@ -408,7 +418,7 @@
 
   <section
     *ngIf="!isLoading && user && user.role === 'hr'"
-    class="row body p-3 m-0 mb-5 mb-md-2"
+    class="row body p-3 pt-5 m-0 mt-4 mb-5 mb-md-2"
   >
     <button
       *ngIf="selfUser.profileName === user.profileName && user.completion >= 60"
@@ -651,7 +661,7 @@
             mat-icon-button
             class="ml-3 text-primary"
             (click)="addReview()"
-            *ngIf="user.profileName !== username"
+            *ngIf="selfUser.profileName !== user.profileName"
           >
             <mat-icon>add_circle</mat-icon>
           </button>

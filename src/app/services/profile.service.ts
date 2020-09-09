@@ -16,10 +16,12 @@ export class ProfileService {
   }
 
   saveDetails(username, val) {
-    console.log('in service');
     return this.http.patch<{ cred, user }>(environment.server_url + 'node-profile/' + username, val);
   }
-
+  saveReviews(username, val) {
+    console.log('in service');
+    return this.http.patch<{ cred, user }>(environment.server_url + 'node-profile/reviews/' + username, val);
+  }
   saveResume(username, val) {
     const data = new FormData();
     data.append('resume', val[1]);

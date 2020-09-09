@@ -2,45 +2,41 @@
   <section class="row col-12 m-0 p-0 d-block">
     <app-header></app-header>
   </section>
-  <section class="row justify-content-center p-3 m-0 mb-5 mb-md-2">
-    <div class="col-*">
-      <app-profile-card></app-profile-card>
+  <section class="row col-12 m-0 pl-2 pl-md-4 d-block">
+    <div class="col-* mt-2 mt-md-4">
+      <button
+        mat-raised-button
+        color="accent"
+        (click)="fetchMyNetwork()"
+        *ngIf="myConnections"
+      >
+        <mat-icon class="m-2">group</mat-icon>
+        <span>MY NETWORK</span>
+      </button>
+
+      <button
+        mat-raised-button
+        color="accent"
+        (click)="fetchNetwork()"
+        *ngIf="!myConnections"
+      >
+        <mat-icon class="m-2">person_search</mat-icon>
+        <span>ALL NETWORK</span>
+      </button>
     </div>
-    <div class="col-*">
-      <app-profile-card></app-profile-card>
+  </section>
+  <section
+    class="row justify-content-center p-3 m-0 mb-5 mb-md-2"
+    *ngIf="!isLoading"
+  >
+    <div class="col-*" *ngFor="let connection of connections">
+      <app-profile-card
+        [connection]="connection"
+        [myConnection]="myConnections"
+      ></app-profile-card>
     </div>
-    <div class="col-*">
-      <app-profile-card></app-profile-card>
-    </div>
-    <div class="col-*">
-      <app-profile-card></app-profile-card>
-    </div>
-    <div class="col-*">
-      <app-profile-card></app-profile-card>
-    </div>
-    <div class="col-*">
-      <app-profile-card></app-profile-card>
-    </div>
-    <div class="col-*">
-      <app-profile-card></app-profile-card>
-    </div>
-    <div class="col-*">
-      <app-profile-card></app-profile-card>
-    </div>
-    <div class="col-*">
-      <app-profile-card></app-profile-card>
-    </div>
-    <div class="col-*">
-      <app-profile-card></app-profile-card>
-    </div>
-    <div class="col-*">
-      <app-profile-card></app-profile-card>
-    </div>
-    <div class="col-*">
-      <app-profile-card></app-profile-card>
-    </div>
-    <div class="col-*">
-      <app-profile-card></app-profile-card>
-    </div>
+  </section>
+  <section class="row justify-content-center pl-5 pt-5 mt-5" *ngIf="isLoading">
+    <mat-spinner color="primary"></mat-spinner>
   </section>
 </main>

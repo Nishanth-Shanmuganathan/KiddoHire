@@ -1,20 +1,43 @@
 <mat-card class="m-1 m-sm-2 m-md-3">
   <mat-card-content class="image">
     <img
-      src="../../../../assets/Nishanth.jpg"
+      [src]="connection.imageURL || '../../../../assets/images/jobs/user.png'"
       alt="profile"
       width="150px"
       height="150px"
     />
     <div class="title">
-      <p>Nishanth</p>
-      <p class="text-muted">Full stack developer</p>
+      <p>{{ connection.username || connection.profileName | titlecase }}</p>
+      <p class="text-muted">
+        {{ connection.work || connection.education | titlecase }}
+      </p>
     </div>
   </mat-card-content>
   <mat-card-actions>
     <div class="d-flex justify-content-around align-items-end">
-      <button mat-raised-button color="primary">PROFILE</button>
-      <button mat-raised-button color="accent">UNFOLLOW</button>
+      <button
+        mat-raised-button
+        color="primary"
+        [routerLink]="['/', 'profile', connection.profileName]"
+      >
+        PROFILE
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="unFollow(connection.profileName)"
+        *ngIf="!myConnection"
+      >
+        UNFOLLOW
+      </button>
+      <button
+        mat-raised-button
+        color="accent"
+        (click)="follow(connection.profileName)"
+        *ngIf="myConnection"
+      >
+        FOLLOW
+      </button>
     </div>
   </mat-card-actions>
 </mat-card>
