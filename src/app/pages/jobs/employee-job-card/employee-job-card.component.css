@@ -30,3 +30,7 @@ img[matCardAvatar] {
 img[mat-card-md-image] {
   border-radius: 125px;
 }
+
+.strike {
+  text-decoration: line-through;
+}

@@ -18,13 +18,14 @@ export class JobsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.jobService.fetchJobs()
+    this.jobService.fetchJobs();
 
 
     this.jobService.jobsSubj.subscribe(res => {
       this.jobs = res;
       this.isLoading = false;
       console.log('fetched');
+      console.log(res);
     }, err => {
       console.log('fetch error');
       this.isLoading = false;

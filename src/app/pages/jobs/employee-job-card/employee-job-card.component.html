@@ -88,6 +88,23 @@
       <span class="text-muted">Applicants : </span> {{ job.applicants.length }}
     </div>
   </div>
+  <div class="row pl-4" *ngIf="appliedJob">
+    <mat-chip
+      [ngClass]="{
+        'bg-success': state.cleared,
+        'bg-danger strike': !state.cleared
+      }"
+      *ngFor="let state of status"
+      selected
+      >{{ state.stage }}</mat-chip
+    >
+    <mat-chip
+      class="bg-warning"
+      selected
+      *ngIf="status[status.length - 1].cleared"
+      >{{ job.rounds[0].date | date }}</mat-chip
+    >
+  </div>
   <mat-card-actions class="p-0 d-flex justify-content-between d-sm-none">
     <button
       class="ml-3"
