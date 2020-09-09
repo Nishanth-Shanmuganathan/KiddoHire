@@ -52,9 +52,9 @@ export class JobsService {
   generateReport(jobId) {
     this.http.get<{ message: string }>(environment.server_url + 'node-jobs/generate-report/' + jobId)
       .subscribe(res => {
-        this.uiService.topDialog(res.message);
+        this.uiService.centerDialog(res.message);
       }, err => {
-        console.log(err.error.message);
+        this.uiService.centerDialog(err.error.message);
       });
   }
 }
