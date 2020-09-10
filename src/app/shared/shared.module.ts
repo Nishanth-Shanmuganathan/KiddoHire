@@ -6,11 +6,13 @@ import { MaterialModule } from './../material.module';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NotificationComponent } from './notification/notification.component';
+import { ConfirmComponent } from './confirm/confirm.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    NotificationComponent
+    NotificationComponent,
+    ConfirmComponent
   ],
   imports: [
     CommonModule,

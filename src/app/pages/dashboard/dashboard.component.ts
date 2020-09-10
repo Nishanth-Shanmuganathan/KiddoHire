@@ -32,7 +32,6 @@ export class DashboardComponent implements OnInit {
       ];
     });
     if (!this.dashboardService.newsFeed.length) {
-      console.log('ila');
       this.loadFeeds();
     }
     this.dashboardService.newsFeedSubj.subscribe(res => {
@@ -45,7 +44,6 @@ export class DashboardComponent implements OnInit {
 
   loadFeeds() {
     this.isLoading = true;
-    console.log('tre and call');
     this.dashboardService.getNewsFeed();
   }
 }

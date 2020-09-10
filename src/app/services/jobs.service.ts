@@ -57,4 +57,24 @@ export class JobsService {
         this.uiService.centerDialog(err.error.message);
       });
   }
+
+  reject(jobId, userId) {
+    this.http.get<{ message: string }>(environment.server_url + 'node-jobs/reject/' + jobId + '/' + userId)
+      .subscribe(res => {
+        this.uiService.topDialog(res.message);
+        this.fetchJobs();
+      }, err => {
+        this.uiService.topDialog(err.error.message);
+      });
+  }
+
+  shortlist(jobId, userId) {
+    this.http.get<{ message: string }>(environment.server_url + 'node-jobs/shortlist/' + jobId + '/' + userId)
+      .subscribe(res => {
+        this.uiService.topDialog(res.message);
+        this.fetchJobs();
+      }, err => {
+        this.uiService.topDialog(err.error.message);
+      });
+  }
 }

@@ -39,4 +39,11 @@
   <section class="row justify-content-center pl-5 pt-5 mt-5" *ngIf="isLoading">
     <mat-spinner color="primary"></mat-spinner>
   </section>
+  <section
+    class="row justify-content-center p-3 m-0 mb-5 mb-md-2"
+    *ngIf="!isLoading && !connections.length"
+  >
+    Seems like network is empty...
+    <div class="col-*"></div>
+  </section>
 </main>

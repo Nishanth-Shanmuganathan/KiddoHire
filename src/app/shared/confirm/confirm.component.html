@@ -1,0 +1,9 @@
+<main matDialogContent></main>
+<p>Are you sure want to {{ data.type }} this candidate ?</p>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button [mat-dialog-close]="data" color="primary">
+    Confirm
+  </button>
+  <button mat-raised-button matDialogClose color="warn">Cancel</button>
+</mat-dialog-actions>

@@ -43,7 +43,7 @@
         <mat-expansion-panel-header
           >Application Details</mat-expansion-panel-header
         >
-        <mat-form-field>
+        <mat-form-field [ngClass]="{ 'd-none': !applicants.length }">
           <mat-label>Search applicant</mat-label>
           <input
             matInput
@@ -52,7 +52,7 @@
           />
         </mat-form-field>
 
-        <div class="table_cover">
+        <div class="table_cover" [ngClass]="{ 'd-none': !applicants.length }">
           <mat-table [dataSource]="dataSource" matSort>
             <!-- Sl. No Column -->
             <ng-container matColumnDef="sl">
@@ -116,14 +116,14 @@
                 <button
                   mat-mini-fab
                   class="text-success"
-                  (click)="shortlist(row.actions)"
+                  (click)="shortlist(row.actions.job, row.actions.user)"
                 >
                   <mat-icon>check_box</mat-icon>
                 </button>
                 <button
                   mat-mini-fab
                   class="text-danger"
-                  (click)="reject(row.actions)"
+                  (click)="reject(row.actions.job, row.actions.user)"
                 >
                   <mat-icon>delete</mat-icon>
                 </button>
@@ -134,9 +134,17 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
           </mat-table>
         </div>
-        <div class="row justify-content-end">
+        <div
+          class="row justify-content-end"
+          [ngClass]="{ 'd-none': !applicants.length }"
+        >
           <div class="col-*">
             <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+          </div>
+        </div>
+        <div class="row p-5 justify-content-center" *ngIf="!applicants.length">
+          <div class="col-*">
+            Be patient... There are no applicants right now
           </div>
         </div>
       </mat-expansion-panel>

@@ -35,4 +35,12 @@
       ></app-employee-job-card>
     </div>
   </div>
+  <div
+    class="row justify-content-center mt-5"
+    *ngIf="!isLoading && user && !jobs.length"
+  >
+    <div class="col-* text-muted pt-5">
+      Seems like there are no jobs left...
+    </div>
+  </div>
 </main>

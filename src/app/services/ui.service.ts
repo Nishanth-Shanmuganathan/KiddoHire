@@ -1,3 +1,4 @@
+import { ConfirmComponent } from './../shared/confirm/confirm.component';
 import { NewJobComponent } from './../pages/jobs/new-job/new-job.component';
 import { NotificationComponent } from './../shared/notification/notification.component';
 import { AddSkillComponent } from './../pages/profile/add-skill/add-skill.component';
@@ -25,6 +26,18 @@ export class UIService {
       minWidth: '250px',
       maxWidth: '500px',
       data: { name: this.name, type },
+      disableClose: true,
+      hasBackdrop: true
+    });
+
+    return dialogRef.afterClosed();
+  }
+  confirm(type) {
+    const dialogRef = this.dialog.open(ConfirmComponent, {
+      width: '100%',
+      minWidth: '250px',
+      maxWidth: '500px',
+      data: { confirm: true, type },
       disableClose: true,
       hasBackdrop: true
     });

@@ -23,7 +23,7 @@ export class EmployeeJobCardComponent implements OnInit {
   ngOnInit(): void {
     // console.log('Job type : ' + this.appliedJob);
     console.log(this.job);
-    this.status = this.job.applicants.find(applicant => applicant.applicant === this.user._id)?.status;
+    this.status = this.job.applicants.find(applicant => applicant.applicant === this.user._id).status;
     console.log(this.status);
   }
 
