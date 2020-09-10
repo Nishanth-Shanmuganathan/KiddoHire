@@ -35,7 +35,10 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => this.username = params.id);
+    this.route.params.subscribe(params => {
+      this.username = params.id;
+      this.fetchUser();
+    });
 
     this.route.queryParams.subscribe(query => {
       if (query.key) {
@@ -52,7 +55,14 @@ export class ProfileComponent implements OnInit {
     });
 
 
-    console.log(this.username);
+
+    this.uiService.isMobileSub.subscribe(res => {
+      this.isMobile = res;
+    });
+
+
+  }
+  fetchUser() {
     this.profileService.fetchProfile(this.username)
       .subscribe(res => {
         console.log(res);
@@ -71,12 +81,6 @@ export class ProfileComponent implements OnInit {
         this.isLoading = false;
         console.log('Error in fetching');
       });
-
-    this.uiService.isMobileSub.subscribe(res => {
-      this.isMobile = res;
-    });
-
-
   }
 
   resized() {
