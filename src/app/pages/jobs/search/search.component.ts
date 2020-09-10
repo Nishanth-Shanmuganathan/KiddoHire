@@ -67,4 +67,9 @@ export class SearchComponent implements OnInit {
     this.appliedJob.emit(false);
     this.jobService.fetchJobs();
   }
+
+  onSearch() {
+    this.isLoading.emit(true);
+    this.jobService.search(this.search);
+  }
 }

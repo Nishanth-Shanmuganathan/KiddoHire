@@ -11,6 +11,7 @@ import { Injectable } from '@angular/core';
 export class JobsService {
 
   jobsSubj = new Subject<Job[]>();
+  jobs: Job[] = [];
   constructor(
     private http: HttpClient,
     private uiService: UIService
@@ -22,7 +23,8 @@ export class JobsService {
   fetchJobs() {
     this.http.get<{ jobs }>(environment.server_url + 'node-jobs/jobs')
       .subscribe(res => {
-        this.jobsSubj.next(res.jobs);
+        this.jobs = res.jobs;
+        this.jobsSubj.next(this.jobs);
       }, err => {
         console.log(err.error.message);
       });
@@ -30,7 +32,8 @@ export class JobsService {
   fetchAppliedJobs() {
     this.http.get<{ jobs }>(environment.server_url + 'node-jobs/jobs-applied')
       .subscribe(res => {
-        this.jobsSubj.next(res.jobs);
+        this.jobs = res.jobs;
+        this.jobsSubj.next(this.jobs);
       }, err => {
         console.log(err.error.message);
       });
@@ -46,7 +49,8 @@ export class JobsService {
     this.http.get<{ jobs, message: string }>(environment.server_url + 'node-jobs/job/' + jobId)
       .subscribe(res => {
         this.uiService.topDialog(res.message);
-        this.jobsSubj.next(res.jobs);
+        this.jobs = res.jobs;
+        this.jobsSubj.next(this.jobs);
       }, err => {
         console.log(err.error.message);
       });
@@ -79,5 +83,26 @@ export class JobsService {
       }, err => {
         this.uiService.topDialog(err.error.message);
       });
+  }
+  search(string) {
+    console.log(string);
+    const filteredArr = this.jobs.filter(job =>
+      // tslint:disable-next-line: no-unused-expression
+      (
+        job.designation.toLowerCase().includes(string) ||
+        job.location.toLowerCase().includes(string) ||
+        job.skills.includes(string) ||
+        job.maximumExperience === parseInt(string) ||
+        job.maximumSalary === parseInt(string) ||
+        job.minimumExperience === parseInt(string) ||
+        job.minimumSalary === parseInt(string) ||
+        job.totalRounds === parseInt(string))
+    );
+    if (filteredArr.length) {
+      console.log('hooo');
+      this.jobsSubj.next(filteredArr);
+    } else {
+      this.jobsSubj.next(this.jobs);
+    }
   }
 }

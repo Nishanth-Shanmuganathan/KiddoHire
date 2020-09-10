@@ -7,25 +7,9 @@
         matInput
         placeholder="Search by job title..."
         [(ngModel)]="search"
-        (ngModelChange)="fetchCities()"
+        (keyup)="onSearch()"
       />
     </mat-form-field>
-    <button
-      class="d-none d-sm-block"
-      mat-raised-button
-      color="primary"
-      (click)="toggleFilters = !toggleFilters"
-    >
-      {{ toggleFilters ? "Hide" : "Show" }} Filters
-    </button>
-    <button
-      class="d-sm-none"
-      mat-mini-fab
-      color="primary"
-      (click)="toggleFilters = !toggleFilters"
-    >
-      <mat-icon>{{ toggleFilters ? "blur_off" : "filter_alt" }}</mat-icon>
-    </button>
 
     <button
       class="d-none m-2 d-sm-block"
@@ -86,58 +70,5 @@
     >
       <mat-icon>add</mat-icon>
     </button>
-  </mat-toolbar-row>
-  <mat-toolbar-row
-    *ngIf="toggleFilters"
-    class="row filters_row p-0 m-0 m-auto justify-content-around flex-wrap"
-  >
-    <div
-      class="col-* m-2 custom-slider d-flex flex-column justify-content-center align-items-center"
-    >
-      <span>Experience Range</span>
-      <ng5-slider
-        [(value)]="minExp"
-        [(highValue)]="maxExp"
-        [options]="expOptions"
-      ></ng5-slider>
-    </div>
-    <div
-      class="col-* m-2 custom-slider d-flex flex-column justify-content-center align-items-center"
-    >
-      <span>Expected CTC Range</span>
-      <ng5-slider
-        [(value)]="minCTC"
-        [(highValue)]="maxCTC"
-        [options]="ctcOptions"
-      ></ng5-slider>
-    </div>
-
-    <div
-      class="col-* m-2 custom-slider d-flex flex-column justify-content-center align-items-center"
-    >
-      <span>Company Review</span>
-      <ng5-slider
-        [(value)]="minStar"
-        [(highValue)]="maxStar"
-        [options]="starOptions"
-      ></ng5-slider>
-    </div>
-    <div class="col-* m-2">
-      <mat-form-field>
-        <input
-          type="text"
-          placeholder="City"
-          matInput
-          [matAutocomplete]="city"
-          [(ngModel)]="cityString"
-          (input)="fetchCities()"
-        />
-        <mat-autocomplete #city="matAutocomplete">
-          <mat-option *ngFor="let option of cities" [value]="option">
-            {{ option }}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-    </div>
   </mat-toolbar-row>
 </mat-toolbar>
