@@ -11,7 +11,7 @@ import { UIService } from 'src/app/services/ui.service';
 export class ProfileCardComponent implements OnInit {
   @Input() connection;
   @Input() myConnection = false;
-
+  disable = false;
   constructor(
     private followsService: FollowsService
   ) { }
@@ -20,10 +20,12 @@ export class ProfileCardComponent implements OnInit {
   }
 
   follow(id: string) {
+    this.disable = true;
     this.followsService.follow(id);
   }
 
   unFollow(id: string) {
+    this.disable = true;
     this.followsService.unFollow(id);
   }
 

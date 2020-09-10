@@ -32,6 +32,7 @@
       mat-raised-button
       color="primary"
       *ngIf="user.role === 'hr'"
+      (click)="openAddJob()"
     >
       Post a new job
     </button>
@@ -81,6 +82,7 @@
       color="primary"
       [matTooltip]="'Add a new job post'"
       *ngIf="user.role === 'hr'"
+      (click)="openAddJob()"
     >
       <mat-icon>add</mat-icon>
     </button>

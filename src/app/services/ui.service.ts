@@ -78,7 +78,19 @@ export class UIService {
     }, 2000);
   }
 
-  openAddJob() {
-    this.dialog.open(NewJobComponent);
+  openAddJob(job?) {
+    this.dialog.open(NewJobComponent, {
+      width: '50%',
+      minWidth: '300px',
+      maxWidth: '500px',
+      position: {
+        top: '50vh',
+        left: '50vw'
+      },
+      panelClass: 'center',
+      data: { ...job },
+      disableClose: true,
+      hasBackdrop: true
+    });
   }
 }

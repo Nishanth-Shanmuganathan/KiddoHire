@@ -38,6 +38,9 @@ export class JobsService {
   addJob(jobCred: Job) {
     return this.http.post<{ message, user }>(environment.server_url + 'node-jobs/job', jobCred);
   }
+  editJob(jobCred: Job) {
+    return this.http.post<{ message, user }>(environment.server_url + 'node-jobs/job', jobCred);
+  }
 
   applyJob(jobId) {
     this.http.get<{ jobs, message: string }>(environment.server_url + 'node-jobs/job/' + jobId)

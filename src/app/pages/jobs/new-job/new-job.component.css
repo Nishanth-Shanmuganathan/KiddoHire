@@ -1,9 +1,13 @@
-.card,
+.container,
 mat-form-field {
   width: 100%;
   max-width: 500px;
   min-width: 200px;
   font-size: 14px;
+}
+
+.row {
+  width: 90%;
 }
 
 .btn_row {

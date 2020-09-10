@@ -5,6 +5,7 @@
   <section class="row col-12 m-0 pl-2 pl-md-4 d-block">
     <div class="col-* mt-2 mt-md-4">
       <button
+        [disabled]="disable"
         mat-raised-button
         color="accent"
         (click)="fetchMyNetwork()"
@@ -15,6 +16,7 @@
       </button>
 
       <button
+        [disabled]="disable"
         mat-raised-button
         color="accent"
         (click)="fetchNetwork()"

@@ -18,7 +18,12 @@
             skill | titlecase
           }}</mat-chip>
         </mat-chip-list>
-        <button mat-mini-fab class="edit">
+        <button
+          [disabled]="disabled"
+          mat-mini-fab
+          class="edit"
+          (click)="edit()"
+        >
           <mat-icon>edit</mat-icon>
         </button>
         <div class="job__description p-1 p-sm-2 m-sm-2 border">
@@ -65,7 +70,9 @@
               <th mat-header-cell *matHeaderCellDef mat-sort-header>
                 Relevancy
               </th>
-              <td mat-cell *matCellDef="let row">{{ row.match }}%</td>
+              <td class="text-center" mat-cell *matCellDef="let row">
+                {{ row.match }}%
+              </td>
             </ng-container>
 
             <!-- Name Column -->
@@ -99,33 +106,30 @@
             </ng-container>
 
             <!-- Actions Column -->
-            <ng-container matColumnDef="actions">
-              <th
-                mat-header-cell
-                *matHeaderCellDef
-                mat-sort-header
-                style="padding-right: 0px; width: 300px !important"
-              >
-                Actions
-              </th>
-              <td
-                mat-cell
-                *matCellDef="let row"
-                style="padding-right: 0px; width: 300px !important"
-              >
+            <ng-container matColumnDef="accept">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+              <td mat-cell *matCellDef="let row">
                 <button
-                  mat-mini-fab
-                  class="text-success"
-                  (click)="shortlist(row.actions.job, row.actions.user)"
+                  [disabled]="disabled"
+                  mat-flat-button
+                  class="text-light bg-success"
+                  (click)="shortlist(row.job, row.user)"
                 >
-                  <mat-icon>check_box</mat-icon>
+                  SHORTLIST
                 </button>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="reject">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+              <td mat-cell *matCellDef="let row">
                 <button
-                  mat-mini-fab
-                  class="text-danger"
-                  (click)="reject(row.actions.job, row.actions.user)"
+                  [disabled]="disabled"
+                  mat-flat-button
+                  color="warn"
+                  (click)="reject(row.job, row.user)"
                 >
-                  <mat-icon>delete</mat-icon>
+                  REJECT
                 </button>
               </td>
             </ng-container>

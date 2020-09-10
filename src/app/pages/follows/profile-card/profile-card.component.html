@@ -23,6 +23,7 @@
         PROFILE
       </button>
       <button
+        [disabled]="disable"
         mat-raised-button
         color="warn"
         (click)="unFollow(connection.profileName)"
@@ -31,6 +32,7 @@
         UNFOLLOW
       </button>
       <button
+        [disabled]="disable"
         mat-raised-button
         color="accent"
         (click)="follow(connection.profileName)"

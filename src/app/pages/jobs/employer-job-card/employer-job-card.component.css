@@ -58,7 +58,8 @@ th {
   width: 200px !important;
 }
 
-th {
+th,
+.text-center {
   text-align: center;
 }
 
