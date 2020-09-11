@@ -2,3 +2,9 @@ section {
   width: 100%;
   position: relative;
 }
+
+main {
+  background-image: radial-gradient(rgb(250, 250, 250), rgb(225, 225, 225));
+  height: fit-content;
+  min-height: 100%;
+}

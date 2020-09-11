@@ -68,7 +68,7 @@ export class UIService {
     });
 
   }
-  topDialog(message) {
+  topDialog(message = 'An unknown error occurred...') {
     this.dialog.closeAll();
     const dialogRef = this.dialog.open(NotificationComponent, {
       width: '250px',

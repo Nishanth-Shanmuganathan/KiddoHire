@@ -6,8 +6,18 @@
     <app-jobs-list
       class="col-auto m-0 p-0"
       [isLoading]="isLoading"
+      [error]="error"
       [user]="user"
       [jobs]="jobs"
     ></app-jobs-list>
+  </section>
+  <section
+    class="row flex-column retry justify-content-center align-items-center"
+    *ngIf="error && !isLoading"
+  >
+    <div class="col-* text-muted">Something went wrong</div>
+    <button mat-mini-fab class="col-*" class="bg-light" (click)="ngOnInit()">
+      <mat-icon>replay</mat-icon>
+    </button>
   </section>
 </main>

@@ -28,6 +28,7 @@ export class JobsService {
         this.jobs = res.jobs;
         this.jobsSubj.next(this.jobs);
       }, err => {
+        this.jobsSubj.error(err);
         console.log(err.error.message);
       });
   }
@@ -37,6 +38,7 @@ export class JobsService {
         this.jobs = res.jobs;
         this.jobsSubj.next(this.jobs);
       }, err => {
+        this.jobsSubj.error(err);
         console.log(err.error.message);
       });
   }

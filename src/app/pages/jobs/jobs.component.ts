@@ -9,9 +9,10 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./jobs.component.css']
 })
 export class JobsComponent implements OnInit {
-  jobs: Job[];
+  jobs: Job[] = [];
   user;
   isLoading = true;
+  error = false;
   constructor(
     private jobService: JobsService,
     private authService: AuthService
@@ -21,15 +22,15 @@ export class JobsComponent implements OnInit {
     this.jobService.fetchJobs();
 
 
+
     this.jobService.jobsSubj.subscribe(res => {
       this.jobs = res;
       this.isLoading = false;
-      // console.log('fetched');
-      // console.log(res);
+      this.error = false;
     }, err => {
       console.log('fetch error');
       this.isLoading = false;
-      console.log(err.error.message);
+      this.error = true;
     });
 
     this.authService.userSub.subscribe(res => {

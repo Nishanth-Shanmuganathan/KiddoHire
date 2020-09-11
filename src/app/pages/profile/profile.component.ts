@@ -24,7 +24,7 @@ export class ProfileComponent implements OnInit {
   selfUser;
   username: string;
   review: string;
-
+  error = false;
   constructor(
     private uiService: UIService,
     private authService: AuthService,
@@ -65,19 +65,19 @@ export class ProfileComponent implements OnInit {
   fetchUser() {
     this.profileService.fetchProfile(this.username)
       .subscribe(res => {
-        console.log(res);
         this.user = res.user;
         this.isLoading = false;
+        this.error = false;
         this.authService.userSub.subscribe(res => {
           this.selfUser = res;
+          this.error = false;
           if ((this.selfUser.profileName === this.user.profileName) && !(this.user.completion >= 60)) {
             this.editMode = true;
           }
-          console.log(this.selfUser.profileName);
-          console.log(this.user.profileName);
           console.log(this.selfUser.profileName === this.user.profileName ? 'Your profile' : 'Another profile');
         });
       }, err => {
+        this.error = true;
         this.isLoading = false;
         console.log('Error in fetching');
       });

@@ -5,7 +5,7 @@
 mat-toolbar-row,
 mat-toolbar {
   height: fit-content;
-  background-color: white;
+  background-color: transparent;
   position: relative;
 }
 

@@ -20,6 +20,7 @@ export class FollowsService {
       .subscribe(res => {
         this.connectionSubj.next(res.connections);
       }, err => {
+        this.connectionSubj.error(err);
         this.uiService.topDialog(err.error.message);
       });
   }
@@ -29,6 +30,7 @@ export class FollowsService {
       .subscribe(res => {
         this.connectionSubj.next(res.connections);
       }, err => {
+        this.connectionSubj.error(err);
         this.uiService.topDialog(err.error.message);
       });
   }

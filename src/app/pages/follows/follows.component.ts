@@ -12,6 +12,7 @@ export class FollowsComponent implements OnInit {
   myConnections = false;
   disable = false;
   isLoading = true;
+  error = false;
   constructor(
     private followsService: FollowsService
   ) { }
@@ -23,8 +24,10 @@ export class FollowsComponent implements OnInit {
       this.connections = res;
       this.isLoading = false;
       this.disable = false;
+      console.log(res);
     }, er => {
-      console.log(er);
+      this.error = true;
+      this.isLoading = false;
     });
   }
 

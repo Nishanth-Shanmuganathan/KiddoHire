@@ -3,7 +3,7 @@
     <app-header></app-header>
   </section>
   <section class="row col-12 m-0 pl-2 pl-md-4 d-block">
-    <div class="col-* mt-2 mt-md-4">
+    <div class="col-* m-4 mt-md-5">
       <button
         [disabled]="disable"
         mat-raised-button
@@ -38,14 +38,22 @@
       ></app-profile-card>
     </div>
   </section>
-  <section class="row justify-content-center pl-5 pt-5 mt-5" *ngIf="isLoading">
+  <section class="row retry justify-content-center" *ngIf="isLoading">
     <mat-spinner color="primary"></mat-spinner>
   </section>
   <section
-    class="row justify-content-center p-3 m-0 mb-5 mb-md-2"
-    *ngIf="!isLoading && !connections.length"
+    class="row retry justify-content-center"
+    *ngIf="!isLoading && !connections.length && !error"
   >
-    Seems like network is empty...
-    <div class="col-*"></div>
+    <div class="col-* text-muted">No users found...</div>
+  </section>
+  <section
+    class="row flex-column retry justify-content-center align-items-center"
+    *ngIf="error && !isLoading"
+  >
+    <div class="col-* text-muted">Something went wrong</div>
+    <button mat-mini-fab class="col-*" class="bg-light" (click)="ngOnInit()">
+      <mat-icon>replay</mat-icon>
+    </button>
   </section>
 </main>

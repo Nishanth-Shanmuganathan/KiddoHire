@@ -9,9 +9,10 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./jobs-list.component.css']
 })
 export class JobsListComponent implements OnInit {
-  @Input() jobs: Job[];
+  @Input() jobs: Job[] = [];
   @Input() user;
   @Input() isLoading;
+  @Input() error;
 
   appliedJob = false;
   constructor(

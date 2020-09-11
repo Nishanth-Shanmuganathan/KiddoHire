@@ -2,3 +2,16 @@ section {
   width: 100%;
   position: relative;
 }
+
+.retry {
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+}
+
+main {
+  background-image: radial-gradient(rgb(250, 250, 250), rgb(225, 225, 225));
+  height: fit-content;
+  min-height: 100%;
+}

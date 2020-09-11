@@ -2,6 +2,15 @@
   (window:resize)="resized()"
   [ngStyle]="{ position: isMobile ? 'statics' : 'fixed' }"
 >
+  <section
+    class="row flex-column retry justify-content-center align-items-center"
+    *ngIf="error"
+  >
+    <div class="col-* text-muted">Something went wrong</div>
+    <button mat-mini-fab class="col-*" class="bg-light" (click)="fetchUser()">
+      <mat-icon>replay</mat-icon>
+    </button>
+  </section>
   <section class="row header col-12 m-0 p-0 d-block">
     <app-header></app-header>
     <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
