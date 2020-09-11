@@ -1,5 +1,5 @@
 <div matDialogContent class="">
-  <p>{{ data.message }}</p>
+  <p>{{ data.message || "An unknown error occurred" }}</p>
   <button *ngIf="!data.center" mat-icon-button class="close text-danger">
     <mat-icon>close</mat-icon>
   </button>

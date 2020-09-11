@@ -11,7 +11,7 @@ section {
 }
 
 main {
-  background-image: radial-gradient(rgb(250, 250, 250), rgb(225, 225, 225));
+  background-image: radial-gradient(rgba(7, 56, 155, 0), rgba(7, 57, 156, 0.2));
   height: fit-content;
   min-height: 100%;
 }

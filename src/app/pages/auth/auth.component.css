@@ -9,11 +9,11 @@
 }
 
 .bg-styling {
-  background-image: linear-gradient(80deg, #06338d 50%, white 50.3%);
+  background-image: linear-gradient(80deg, #1A237E 50%, white 50.3%);
 }
 
 .bg-normal {
-  background-image: linear-gradient(10deg, #06338d 20%, white 20.5% 80%, #06338d 80.5%);
+  background-image: linear-gradient(10deg, #1A237E 20%, white 20.5% 80%, #1A237E 80.5%);
 }
 
 .row {
@@ -26,7 +26,7 @@
 }
 
 .auth-background {
-  width: 50%;
+  width: 80%;
   min-width: 300px;
 }
 

@@ -20,7 +20,7 @@ img[matCardAvatar] {
 }
 
 .job__description {
-  height: 200px;
+  height: 150px;
   overflow-y: scroll;
   border-radius: 10px;
   box-shadow: 1px 1px 2px silver;
@@ -35,6 +35,6 @@ img[mat-card-md-image] {
   text-decoration: line-through;
 }
 
-/* button {
+button {
   max-width: 150px;
-} */
+}

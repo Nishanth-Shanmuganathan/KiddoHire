@@ -20,7 +20,6 @@ export class DeactivateGuard implements CanDeactivate<ProfileComponent> {
     state: RouterStateSnapshot,
     nextState?: RouterStateSnapshot
   ): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    console.log(state);
     let user = this.authService.user;
     this.authService.userSub.subscribe(res => {
       user = res;

@@ -36,19 +36,13 @@
     <div
       class="col-sm-3 job_poster d-none d-sm-flex flex-column justify-content-center align-items-stretch"
     >
-      <img
-        mat-card-md-image
-        class="m-auto mb-2"
-        src="./../../../../assets/images/jobs/user.png"
-        alt="KiddoHire"
-      />
       <button
         class="mb-2"
         mat-raised-button
         color="accent"
         [routerLink]="['/', 'profile', job.postedBy.profileName]"
       >
-        About Company
+        PROFILE
       </button>
       <button
         class="mb-2"
@@ -57,7 +51,7 @@
         (click)="applyJob(job._id)"
         *ngIf="!appliedJob"
       >
-        Apply
+        APPLY
       </button>
 
       <button
@@ -67,7 +61,7 @@
         (click)="generateReport(job._id)"
         *ngIf="appliedJob"
       >
-        Compare
+        COMPARE
       </button>
     </div>
   </mat-card-content>
@@ -121,7 +115,7 @@
     </div>
   </div>
   <mat-card-actions
-    class="p-0 d-flex justify-content-between justify-content-md-center d-sm-none"
+    class="p-0 d-flex justify-content-around justify-content-md-center d-sm-none"
   >
     <button
       class="ml-3"
@@ -129,7 +123,7 @@
       color="accent"
       [routerLink]="['/', 'profile', job.postedBy.profileName]"
     >
-      About Company
+      PROFILE
     </button>
     <button
       class="mr-3"
@@ -138,7 +132,7 @@
       (click)="applyJob(job._id)"
       *ngIf="!appliedJob"
     >
-      Apply for this job
+      APPLY
     </button>
     <button
       class="mr-3"
@@ -147,7 +141,7 @@
       *ngIf="appliedJob"
       (click)="generateReport(job._id)"
     >
-      Comparison report
+      COMPARE
     </button>
   </mat-card-actions>
 </mat-card>

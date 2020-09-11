@@ -24,10 +24,10 @@
       class="back"
       mat-raised-button
       (click)="navigateBack()"
-      color="primary"
+      color="accent"
     >
       <mat-icon>arrow_left</mat-icon>
-      <span>Back</span>
+      <span>BACK</span>
     </button>
     <button
       *ngIf="selfUser.profileName === user.profileName && user.completion >= 60"
@@ -445,17 +445,17 @@
 
   <section
     *ngIf="!isLoading && user && user.role === 'hr'"
-    class="row body p-3 pt-5 m-0 mt-4 mb-5 mb-md-2"
+    class="row justify-content-center body p-3 pt-5 m-0 mt-4 mb-5 mb-md-2"
   >
     <button
       *ngIf="selfUser.profileName !== user.profileName"
       class="back"
       mat-raised-button
       (click)="navigateBack()"
-      color="primary"
+      color="accent"
     >
       <mat-icon>arrow_left</mat-icon>
-      <span>Back</span>
+      <span>BACK</span>
     </button>
     <button
       *ngIf="selfUser.profileName === user.profileName && user.completion >= 60"
@@ -495,9 +495,7 @@
     >
       LOGOUT
     </button>
-    <div
-      class="col-12 ng-warning content-section col-md-7 col-lg-8 mb-5 p-md-4 border"
-    >
+    <div class="col-12 content-section col-md-6 mb-5 p-md-4 border">
       <div
         class="row d-md-none mt-4 mb-4 justify-content-center align-items-center"
         *ngIf="!editMode"

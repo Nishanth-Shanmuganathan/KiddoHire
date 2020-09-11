@@ -4,7 +4,7 @@
   >
     <img
       class="toolbar__logo"
-      src="./../../../assets/images/auth/transparent-bg.png"
+      src="./../../../assets/images/auth/kiddohire_logo_square.png"
       alt="KiddoHire"
     />
     <div class="nav d-flex flex-nowrap align-items-center" *ngIf="!isMobile">
@@ -12,37 +12,37 @@
         [routerLink]="['/', 'home']"
         routerLinkActive="active"
         mat-flat-button
-        class="text-primary m-1 p-1"
+        class="bg-primary m-1 pl-2 pr-2"
       >
-        <mat-icon>home</mat-icon>
-        <span class="p-3">Home</span>
+        <mat-icon class="m-1">home</mat-icon>
+        <span class="pr-2">Home</span>
       </button>
       <button
         [routerLink]="['/', 'jobs']"
         routerLinkActive="active"
         mat-flat-button
-        class="text-primary m-1 p-1"
+        class="bg-primary m-1 pl-2 pr-2"
       >
-        <mat-icon>work</mat-icon>
-        <span class="p-3">Jobs</span>
+        <mat-icon class="m-1">work</mat-icon>
+        <span class="pr-2">Jobs</span>
       </button>
       <button
         [routerLink]="['/', 'network']"
         routerLinkActive="active"
         mat-flat-button
-        class="text-primary m-1 p-1"
+        class="bg-primary m-1 pl-2 pr-2"
       >
-        <mat-icon>rss_feed</mat-icon>
-        <span class="p-3">Network</span>
+        <mat-icon class="m-1">rss_feed</mat-icon>
+        <span class="pr-2">Network</span>
       </button>
       <button
         [routerLink]="['/', 'profile', user?.profileName]"
         routerLinkActive="active"
         mat-flat-button
-        class="text-primary m-1 p-1"
+        class="bg-primary m-1 pl-2 pr-2"
       >
-        <mat-icon>person</mat-icon>
-        <span class="p-3">Profile</span>
+        <mat-icon class="m-1">person</mat-icon>
+        <span class="pr-2">Profile</span>
       </button>
     </div>
   </mat-toolbar-row>
@@ -56,37 +56,69 @@
       [routerLink]="['/', 'home']"
       routerLinkActive="active"
       mat-flat-button
-      class="text-primary m-2 p-0"
+      class="bg-primary d-none d-sm-inline-block m-1 pl-2 pr-2"
     >
-      <mat-icon>home</mat-icon>
-      <span class="p-2 d-none d-sm-inline-block">Home</span>
+      <mat-icon class="m-1">home</mat-icon>
+      <span class="pr-2">Home</span>
     </button>
     <button
       [routerLink]="['/', 'jobs']"
       routerLinkActive="active"
       mat-flat-button
-      class="text-primary m-2 p-0"
+      class="bg-primary d-none d-sm-inline-block m-1 pl-2 pr-2"
     >
-      <mat-icon>work</mat-icon>
-      <span class="p-2 d-none d-sm-inline-block">Jobs</span>
+      <mat-icon class="m-1">work</mat-icon>
+      <span class="pr-2">Jobs</span>
     </button>
     <button
       [routerLink]="['/', 'network']"
       routerLinkActive="active"
       mat-flat-button
-      class="text-primary m-2 p-0"
+      class="bg-primary d-none d-sm-inline-block m-1 pl-2 pr-2"
     >
-      <mat-icon>rss_feed</mat-icon>
-      <span class="p-2 d-none d-sm-inline-block">Network</span>
+      <mat-icon class="m-1">rss_feed</mat-icon>
+      <span class="pr-2">Network</span>
     </button>
     <button
       [routerLink]="['/', 'profile', user.profileName]"
       routerLinkActive="active"
       mat-flat-button
-      class="text-primary m-2 p-0"
+      class="bg-primary d-none d-sm-inline-block m-1 pl-2 pr-2"
+    >
+      <mat-icon class="m-1">person</mat-icon>
+      <span class="pr-2">Profile</span>
+    </button>
+    <button
+      [routerLink]="['/', 'home']"
+      routerLinkActive="active"
+      mat-mini-fab
+      class="bg-primary d-sm-none"
+    >
+      <mat-icon>home</mat-icon>
+    </button>
+    <button
+      [routerLink]="['/', 'jobs']"
+      routerLinkActive="active"
+      mat-mini-fab
+      class="bg-primary d-sm-none"
+    >
+      <mat-icon>work</mat-icon>
+    </button>
+    <button
+      [routerLink]="['/', 'network']"
+      routerLinkActive="active"
+      mat-mini-fab
+      class="bg-primary d-sm-none"
+    >
+      <mat-icon>rss_feed</mat-icon>
+    </button>
+    <button
+      [routerLink]="['/', 'profile', user.profileName]"
+      routerLinkActive="active"
+      mat-mini-fab
+      class="bg-primary d-sm-none"
     >
       <mat-icon>person</mat-icon>
-      <span class="p-2 d-none d-sm-inline-block">Profile</span>
     </button>
   </mat-toolbar-row>
 </mat-toolbar>

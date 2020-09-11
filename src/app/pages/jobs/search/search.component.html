@@ -18,7 +18,7 @@
       *ngIf="user.role === 'hr'"
       (click)="openAddJob()"
     >
-      Post a new job
+      POST NEW JOB
     </button>
     <button
       class="d-none m-2 d-sm-block"
@@ -27,7 +27,7 @@
       *ngIf="user.role === 'developer' && allJobs"
       (click)="appliedJobs()"
     >
-      Applied Jobs
+      APPLIED JOBS
     </button>
     <button
       class="d-none m-2 d-sm-block"
@@ -36,7 +36,7 @@
       *ngIf="user.role === 'developer' && !allJobs"
       (click)="fetchJobs()"
     >
-      All Jobs
+      ALL JOBS
     </button>
 
     <button

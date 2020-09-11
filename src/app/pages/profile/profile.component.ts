@@ -71,12 +71,11 @@ export class ProfileComponent implements OnInit {
         this.authService.userSub.subscribe(res => {
           this.selfUser = res;
           this.error = false;
-          if ((this.selfUser.profileName === this.user.profileName) && !(this.user.completion >= 60)) {
+          if (this.selfUser && this.user && (this.selfUser.profileName === this.user.profileName) && !(this.user.completion >= 60)) {
             this.editMode = true;
           }
-          console.log(this.selfUser.profileName === this.user.profileName ? 'Your profile' : 'Another profile');
         });
-      }, err => {
+      }, () => {
         this.error = true;
         this.isLoading = false;
         console.log('Error in fetching');

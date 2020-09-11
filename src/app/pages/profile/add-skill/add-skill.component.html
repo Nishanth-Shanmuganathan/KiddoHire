@@ -23,15 +23,18 @@
       />
       <button
         mat-flat-button
-        color="accent"
+        color="primary"
         type="button"
-        class="col-*"
+        class="col-* m-2"
         (click)="filePicker.click()"
       >
-        Upload Certificate
+        UPLOAD CERTIFICATE
       </button>
+      <mat-hint></mat-hint>
     </div>
-    <p class="col-* text-muted m-2">{{ data.certificate?.name }}</p>
+    <p class="col-* text-muted m-2">
+      {{ data.certificate?.name || "Should of image format" }}
+    </p>
   </div>
 </main>
 <mat-dialog-actions align="end">
@@ -44,9 +47,9 @@
     mat-raised-button
     [mat-dialog-close]="data"
     [disabled]="!data.name"
-    color="primary"
+    class="m-2 bg-success text-light"
   >
-    Add {{ data.type }}
+    ADD {{ data.type | uppercase }}
   </button>
   <br />
   <button
@@ -54,18 +57,18 @@
     mat-raised-button
     [mat-dialog-close]="data"
     [disabled]="!data.certificate || !data.name"
-    color="primary"
+    class="m-2 bg-success text-light"
   >
-    Add {{ data.type }}
+    ADD {{ data.type | uppercase }}
   </button>
   <button
     *ngIf="data.type === 'project'"
     mat-raised-button
     [mat-dialog-close]="data"
     [disabled]="!data.name && !data.link"
-    color="primary"
+    class="m-2 bg-success text-light"
   >
-    Add {{ data.type }}
+    ADD {{ data.type | uppercase }}
   </button>
   <button mat-raised-button matDialogClose color="warn">Close</button>
 </mat-dialog-actions>

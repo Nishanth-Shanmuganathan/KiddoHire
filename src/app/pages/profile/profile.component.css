@@ -3,7 +3,7 @@ main {
   height: 100vh;
   min-height: fit-content;
   position: fixed;
-  background-image: linear-gradient(45deg, #07389b 30%, rgb(250, 250, 250) 30.5% 74.5%, #07389b 75%);
+  background-image: linear-gradient(45deg, #1A237E 30%, rgba(7, 57, 156, 0.1) 30.5% 74.5%, #1A237E 75%);
 }
 
 .retry {

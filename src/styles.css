@@ -16,9 +16,11 @@ body {
 }
 
 .bg-primary {
-  background-color: #07389b !important;
+  background-color: #1A237E !important;
   color: white;
 }
+
+
 
 .bg-accent {
   background-color: #f33591;
@@ -31,7 +33,7 @@ body {
 }
 
 .text-primary {
-  color: #07389b !important;
+  color: #1A237E !important;
 }
 
 *::-webkit-scrollbar {

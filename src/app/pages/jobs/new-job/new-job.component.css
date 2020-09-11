@@ -31,7 +31,7 @@ mat-icon {
 .border-round {
   font-size: 24px;
   border-radius: 100px;
-  color: #07389b
+  color: #1A237E
 }
 
 ::ng-deep .custom-slider .ng5-slider .ng5-slider-bar {
@@ -46,7 +46,7 @@ mat-icon {
   top: auto;
   /* to remove the default positioning */
   bottom: 0;
-  background-color: #07389b;
+  background-color: #1A237E;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
 }
