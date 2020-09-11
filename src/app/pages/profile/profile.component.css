@@ -3,6 +3,7 @@ main {
   height: 100vh;
   min-height: fit-content;
   position: fixed;
+  background-image: linear-gradient(45deg, #07389b 30%, rgb(250, 250, 250) 30.5% 74.5%, #07389b 75%);
 }
 
 .header {
@@ -19,8 +20,11 @@ main {
 .edit {
   position: absolute;
   top: 0px;
-  right: 80px;
   z-index: 10;
+}
+
+.edit.d-sm-none {
+  right: 80px;
 }
 
 .back {
@@ -33,8 +37,20 @@ main {
 .logout {
   position: absolute;
   top: 0px;
-  right: 30px;
   z-index: 10;
+}
+
+.logout.d-sm-none {
+  right: 30px;
+
+}
+
+.logout.d-none {
+  right: 20px;
+}
+
+.edit.d-none {
+  right: 110px;
 }
 
 .content-section,
@@ -42,6 +58,9 @@ main {
 .profile-info {
   width: 100%;
   height: 100%;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px rgba(255, 250, 250, 0.5);
+  background-color: white;
 }
 
 .content-section {
@@ -58,7 +77,9 @@ main {
   height: 160px;
 }
 
-
+*::-webkit-scrollbar-track {
+  background-color: transparent !important;
+}
 
 .content {
   font-size: 14px;

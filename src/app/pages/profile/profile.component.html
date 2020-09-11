@@ -8,7 +8,7 @@
   </section>
   <section
     *ngIf="!isLoading && user && user.role === 'developer'"
-    class="row body p-3 pt-5 m-0 mt-4 mb-5 mb-md-2"
+    class="row justify-content-center body p-3 pt-5 m-0 mt-4 mb-5 mb-md-2"
   >
     <button
       *ngIf="selfUser.profileName !== user.profileName"
@@ -22,25 +22,43 @@
     </button>
     <button
       *ngIf="selfUser.profileName === user.profileName && user.completion >= 60"
-      class="edit"
+      class="edit d-sm-none"
       mat-mini-fab
       (click)="editMode = !editMode"
-      color="primary"
+      color="accent"
     >
       <mat-icon>edit</mat-icon>
     </button>
+
     <button
       *ngIf="selfUser.profileName === user.profileName && user.completion >= 60"
-      class="logout"
+      class="logout d-sm-none"
       (click)="logout()"
       mat-mini-fab
       color="warn"
     >
       <mat-icon>login</mat-icon>
     </button>
-    <div
-      class="col-12 ng-warning content-section col-md-7 col-lg-8 mb-5 p-md-4 border"
+    <button
+      *ngIf="selfUser.profileName === user.profileName && user.completion >= 60"
+      class="edit d-none d-sm-block"
+      mat-raised-button
+      (click)="editMode = !editMode"
+      color="accent"
     >
+      EDIT PROFILE
+    </button>
+
+    <button
+      *ngIf="selfUser.profileName === user.profileName && user.completion >= 60"
+      class="logout d-none d-sm-block"
+      (click)="logout()"
+      mat-raised-button
+      color="warn"
+    >
+      LOGOUT
+    </button>
+    <div class="col-12 content-section col-md-6 mb-5 p-md-4 border">
       <div
         class="row d-md-none mt-4 mb-4 justify-content-center align-items-center"
         *ngIf="!editMode"
@@ -421,23 +439,52 @@
     class="row body p-3 pt-5 m-0 mt-4 mb-5 mb-md-2"
   >
     <button
+      *ngIf="selfUser.profileName !== user.profileName"
+      class="back"
+      mat-raised-button
+      (click)="navigateBack()"
+      color="primary"
+    >
+      <mat-icon>arrow_left</mat-icon>
+      <span>Back</span>
+    </button>
+    <button
       *ngIf="selfUser.profileName === user.profileName && user.completion >= 60"
-      class="edit"
+      class="edit d-sm-none"
       mat-mini-fab
       (click)="editMode = !editMode"
-      color="primary"
+      color="accent"
     >
       <mat-icon>edit</mat-icon>
     </button>
 
     <button
       *ngIf="selfUser.profileName === user.profileName && user.completion >= 60"
-      class="logout"
+      class="logout d-sm-none"
       (click)="logout()"
       mat-mini-fab
       color="warn"
     >
       <mat-icon>login</mat-icon>
+    </button>
+    <button
+      *ngIf="selfUser.profileName === user.profileName && user.completion >= 60"
+      class="edit d-none d-sm-block"
+      mat-raised-button
+      (click)="editMode = !editMode"
+      color="accent"
+    >
+      EDIT PROFILE
+    </button>
+
+    <button
+      *ngIf="selfUser.profileName === user.profileName && user.completion >= 60"
+      class="logout d-none d-sm-block"
+      (click)="logout()"
+      mat-raised-button
+      color="warn"
+    >
+      LOGOUT
     </button>
     <div
       class="col-12 ng-warning content-section col-md-7 col-lg-8 mb-5 p-md-4 border"
