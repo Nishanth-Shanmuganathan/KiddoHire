@@ -24,8 +24,8 @@ export class JobsComponent implements OnInit {
     this.jobService.jobsSubj.subscribe(res => {
       this.jobs = res;
       this.isLoading = false;
-      console.log('fetched');
-      console.log(res);
+      // console.log('fetched');
+      // console.log(res);
     }, err => {
       console.log('fetch error');
       this.isLoading = false;

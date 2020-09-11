@@ -31,7 +31,7 @@
       <app-employee-job-card
         [job]="job"
         [appliedJob]="appliedJob"
-        [user]="user"
+        [profileName]="user.profileName"
       ></app-employee-job-card>
     </div>
   </div>
@@ -39,8 +39,6 @@
     class="row justify-content-center mt-5"
     *ngIf="!isLoading && user && !jobs.length"
   >
-    <div class="col-* text-muted pt-5">
-      Seems like there are no jobs left...
-    </div>
+    <div class="col-* text-muted pt-5">No jobs found...</div>
   </div>
 </main>

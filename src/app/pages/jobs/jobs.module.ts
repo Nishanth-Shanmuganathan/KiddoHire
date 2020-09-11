@@ -11,6 +11,7 @@ import { JobsListComponent } from './jobs-list/jobs-list.component';
 import { EmployeeJobCardComponent } from './employee-job-card/employee-job-card.component';
 import { EmployerJobCardComponent } from './employer-job-card/employer-job-card.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { InterviewComponent } from './interview/interview.component';
 
 const routes: Routes = [
   {
@@ -29,7 +30,8 @@ const routes: Routes = [
     JobsListComponent,
     EmployeeJobCardComponent,
     EmployerJobCardComponent,
-    NewJobComponent
+    NewJobComponent,
+    InterviewComponent
   ],
   imports: [
     SharedModule,

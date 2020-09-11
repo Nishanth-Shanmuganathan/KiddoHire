@@ -34,3 +34,7 @@ img[mat-card-md-image] {
 .strike {
   text-decoration: line-through;
 }
+
+/* button {
+  max-width: 150px;
+} */

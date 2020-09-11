@@ -48,6 +48,10 @@
         <mat-expansion-panel-header
           >Application Details</mat-expansion-panel-header
         >
+        <p>
+          Interview scheduled on :
+          <mat-chip color="warn" selected>{{ interviewDate | date }}</mat-chip>
+        </p>
         <mat-form-field [ngClass]="{ 'd-none': !applicants.length }">
           <mat-label>Search applicant</mat-label>
           <input
@@ -106,30 +110,16 @@
             </ng-container>
 
             <!-- Actions Column -->
-            <ng-container matColumnDef="accept">
+            <ng-container matColumnDef="interview">
               <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
               <td mat-cell *matCellDef="let row">
                 <button
                   [disabled]="disabled"
                   mat-flat-button
                   class="text-light bg-success"
-                  (click)="shortlist(row.job, row.user)"
+                  (click)="startInterview(row.interview)"
                 >
                   SHORTLIST
-                </button>
-              </td>
-            </ng-container>
-
-            <ng-container matColumnDef="reject">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
-              <td mat-cell *matCellDef="let row">
-                <button
-                  [disabled]="disabled"
-                  mat-flat-button
-                  color="warn"
-                  (click)="reject(row.job, row.user)"
-                >
-                  REJECT
                 </button>
               </td>
             </ng-container>
@@ -147,9 +137,7 @@
           </div>
         </div>
         <div class="row p-5 justify-content-center" *ngIf="!applicants.length">
-          <div class="col-*">
-            Be patient... There are no applicants right now
-          </div>
+          <div class="col-* text-muted">There are no applicants...</div>
         </div>
       </mat-expansion-panel>
     </mat-accordion>

@@ -42,6 +42,7 @@ export class NewJobComponent implements OnInit {
     private route: ActivatedRoute,
     @Inject(MAT_DIALOG_DATA) public data:
       {
+        _id: string,
         designation: string,
         description: string,
         skills: string[],
@@ -142,15 +143,8 @@ export class NewJobComponent implements OnInit {
       this.addForm.value.total_rounds,
       this.addForm.value.rounds,
     );
-    this.jobService.addJob(jobCreds)
-      .subscribe(res => {
-        this.uiService.topDialog(res.message);
-        this.authService.updateUser(res.user);
-        this.router.navigate(['../'], { relativeTo: this.route });
-      }, err => {
-        this.uiService.topDialog(err.error.message);
-        this.router.navigate(['../'], { relativeTo: this.route });
-      });
+    this.jobService.addJob(jobCreds);
+
 
   }
 
@@ -176,15 +170,8 @@ export class NewJobComponent implements OnInit {
       this.addForm.value.total_rounds,
       this.addForm.value.rounds,
     );
-    this.jobService.editJob(jobCreds)
-      .subscribe(res => {
-        this.uiService.topDialog(res.message);
-        this.authService.updateUser(res.user);
-        this.router.navigate(['../'], { relativeTo: this.route });
-      }, err => {
-        this.uiService.topDialog(err.error.message);
-        this.router.navigate(['../'], { relativeTo: this.route });
-      });
+    this.jobService.editJob(jobCreds, this.data._id);
+
 
   }
 

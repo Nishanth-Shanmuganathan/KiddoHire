@@ -7,12 +7,12 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
 export interface UserData {
-  _id: string;
-  sl: string;
+  sl: number;
   name: string;
-  status: string;
+  profile: string;
   match: string;
   resume: string;
+  interview: string;
 }
 
 @Component({
@@ -22,10 +22,13 @@ export interface UserData {
 })
 export class EmployerJobCardComponent implements OnInit {
   @Input() job: Job;
-  displayedColumns: string[] = ['sl', 'name', 'match', 'resume', 'profile', 'accept', 'reject'];
+  displayedColumns: string[] = ['sl', 'name', 'match', 'resume', 'profile', 'interview'];
   dataSource: MatTableDataSource<UserData>;
-  applicants;
+  applicants = [];
+  round: number;
+  interviewDate;
   disabled = false;
+  today = Date.now();
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
@@ -35,22 +38,36 @@ export class EmployerJobCardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.job);
-    this.applicants = this.job.applicants;
-    const data = this.applicants.map((applicant, index) => {
-      return {
-        sl: index + 1,
-        name: applicant.applicant.username || applicant.applicant.profileName,
-        profile: applicant.applicant.profileName,
-        match: applicant.jobMatch,
-        resume: applicant.applicant.resume,
-        accept: { job: this.job._id, user: applicant.applicant.profileName },
-        reject: { job: this.job._id, user: applicant.applicant.profileName }
-      };
+    // console.log(this.job);
+    let count = 0;
+    this.job.rounds.forEach((round, index) => {
+      if (count === 0 && new Date(round.date).getTime() >= this.today) {
+        count++;
+        this.interviewDate = round.date;
+        this.round = index + 1;
+        this.applicants = this.job.applicants[this.round].applicants;
+        return false;
+      }
     });
-    this.dataSource = new MatTableDataSource(data);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    if (this.applicants.length) {
+      const data = this.applicants.map((applicant, index) => {
+        console.log(applicant.applicant.username);
+        console.log(applicant.applicant.profileName);
+        console.log(applicant.jobMatch);
+        console.log(applicant.applicant.resume);
+        return {
+          sl: index + 1,
+          name: applicant.applicant.username || applicant.applicant.profileName,
+          profile: applicant.applicant.profileName,
+          match: applicant.jobMatch,
+          resume: applicant.applicant.resume,
+          interview: applicant
+        };
+      });
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    }
   }
 
   applyFilter(event: Event) {
@@ -60,26 +77,6 @@ export class EmployerJobCardComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-  }
-  shortlist(jobId, userId) {
-    this.disabled = true;
-    this.uiService.confirm('shortlist').subscribe(res => {
-      if (res.confirm) {
-        this.jobService.shortlist(jobId, userId);
-      } else {
-        this.disabled = false;
-      }
-    });
-  }
-  reject(jobId, userId) {
-    this.disabled = true;
-    this.uiService.confirm('reject').subscribe(res => {
-      if (res.confirm) {
-        this.jobService.reject(jobId, userId);
-      } else {
-        this.disabled = false;
-      }
-    });
   }
 
   edit() {
@@ -96,5 +93,9 @@ export class EmployerJobCardComponent implements OnInit {
       rounds: this.job.rounds
     };
     this.uiService.openAddJob(job);
+  }
+
+  startInterview(applicant) {
+    this.uiService.startInterview(this.job, applicant, this.round);
   }
 }

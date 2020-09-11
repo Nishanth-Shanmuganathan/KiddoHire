@@ -88,24 +88,41 @@
       <span class="text-muted">Applicants : </span> {{ job.applicants.length }}
     </div>
   </div>
-  <div class="row pl-4" *ngIf="appliedJob">
+  <div class="row pl-4 mt-2 mb-2" *ngIf="appliedJob && !selected">
     <mat-chip
+      class="m-1"
       [ngClass]="{
         'bg-success': state.cleared,
         'bg-danger strike': !state.cleared
       }"
       *ngFor="let state of status"
       selected
-      >{{ state.stage }}</mat-chip
     >
+      <span *ngIf="state.round === '0'">Preliminary Round</span>
+      <span *ngIf="state.round === '1'">First Round</span>
+      <span *ngIf="state.round === '2'">Second Round</span>
+      <span *ngIf="state.round === '3'">Third Round</span>
+      <span *ngIf="state.round === '4'">Fourth Round</span>
+      <span *ngIf="state.round === '5'">Fifth Round</span>
+      <span *ngIf="state.round === '6'">Sixth Round</span>
+    </mat-chip>
     <mat-chip
-      class="bg-warning"
+      class="bg-warning m-1"
       selected
-      *ngIf="status[status.length - 1].cleared"
-      >{{ job.rounds[0].date | date }}</mat-chip
+      *ngIf="status.length && status[status.length - 1].cleared && currentRound"
+      >{{ currentRound | date }}</mat-chip
     >
   </div>
-  <mat-card-actions class="p-0 d-flex justify-content-between d-sm-none">
+  <div class="row mt-2 mb-2 justify-content-center">
+    <div class="col-*" *ngIf="appliedJob && selected">
+      <button mat-raised-button class="bg-success text-light">
+        ACCEPT OFFER
+      </button>
+    </div>
+  </div>
+  <mat-card-actions
+    class="p-0 d-flex justify-content-between justify-content-md-center d-sm-none"
+  >
     <button
       class="ml-3"
       mat-raised-button

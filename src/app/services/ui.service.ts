@@ -1,3 +1,5 @@
+import { InterviewComponent } from './../pages/jobs/interview/interview.component';
+import { Job } from './../models/job.model';
 import { ConfirmComponent } from './../shared/confirm/confirm.component';
 import { NewJobComponent } from './../pages/jobs/new-job/new-job.component';
 import { NotificationComponent } from './../shared/notification/notification.component';
@@ -18,6 +20,10 @@ export class UIService {
 
   getMobileView() {
     this.isMobileSub.next(screen.width < 768);
+  }
+
+  closeDialog() {
+    this.dialog.closeAll();
   }
 
   addSingleString(type) {
@@ -92,5 +98,22 @@ export class UIService {
       disableClose: true,
       hasBackdrop: true
     });
+  }
+
+  startInterview(job: Job, user, round) {
+    this.dialog.open(InterviewComponent, {
+      width: '50%',
+      minWidth: '300px',
+      maxWidth: '500px',
+      position: {
+        top: '50vh',
+        left: '50vw'
+      },
+      panelClass: 'center',
+      data: { job, user, round },
+      disableClose: true,
+      hasBackdrop: true
+    });
+
   }
 }

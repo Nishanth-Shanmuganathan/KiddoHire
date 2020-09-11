@@ -14,7 +14,8 @@ export class Job {
       description: string
     }[],
     public _id?: string,
-    public applicants?: { applicant: string, jobMatch: number, status: { cleared: boolean, round: string }[] }[],
+    public applicants?: { applicants: { applicant: string, jobMatch: number }[], round: number }[],
+    public shortlisted?: { applicant: string, accepted: boolean }[],
     public postedBy?: {
       imageURL: string,
       username: string,

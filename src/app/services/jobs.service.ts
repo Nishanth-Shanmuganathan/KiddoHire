@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { UIService } from './ui.service';
 import { Subject } from 'rxjs';
 import { Job } from './../models/job.model';
@@ -14,7 +15,8 @@ export class JobsService {
   jobs: Job[] = [];
   constructor(
     private http: HttpClient,
-    private uiService: UIService
+    private uiService: UIService,
+    private authService: AuthService
   ) { }
 
   fetchCities(city: string) {
@@ -39,10 +41,25 @@ export class JobsService {
       });
   }
   addJob(jobCred: Job) {
-    return this.http.post<{ message, user }>(environment.server_url + 'node-jobs/job', jobCred);
+    this.http.post<{ message, user }>(environment.server_url + 'node-jobs/job', jobCred)
+      .subscribe(res => {
+        console.log(res);
+        this.fetchJobs();
+        this.authService.updateUser(res.user);
+        this.uiService.topDialog(res.message);
+      }, err => {
+        this.uiService.topDialog(err.error.message);
+      });
   }
-  editJob(jobCred: Job) {
-    return this.http.post<{ message, user }>(environment.server_url + 'node-jobs/job', jobCred);
+  editJob(jobCred: Job, id) {
+    this.http.post<{ message, user }>(environment.server_url + 'node-jobs/edit/' + id, jobCred)
+      .subscribe(res => {
+        this.fetchJobs();
+        this.authService.updateUser(res.user);
+        this.uiService.topDialog(res.message);
+      }, err => {
+        this.uiService.topDialog(err.error.message);
+      });
   }
 
   applyJob(jobId) {
@@ -65,8 +82,8 @@ export class JobsService {
       });
   }
 
-  reject(jobId, userId) {
-    this.http.get<{ message: string }>(environment.server_url + 'node-jobs/reject/' + jobId + '/' + userId)
+  reject(jobId, userId, round) {
+    this.http.get<{ message: string }>(environment.server_url + 'node-jobs/reject/' + jobId + '/' + userId + '/' + round)
       .subscribe(res => {
         this.uiService.topDialog(res.message);
         this.fetchJobs();
@@ -75,8 +92,9 @@ export class JobsService {
       });
   }
 
-  shortlist(jobId, userId) {
-    this.http.get<{ message: string }>(environment.server_url + 'node-jobs/shortlist/' + jobId + '/' + userId)
+  shortlist(jobId, userId, round) {
+    console.log(round);
+    this.http.get<{ message: string }>(environment.server_url + 'node-jobs/shortlist/' + jobId + '/' + userId + '/' + round)
       .subscribe(res => {
         this.uiService.topDialog(res.message);
         this.fetchJobs();
@@ -85,7 +103,9 @@ export class JobsService {
       });
   }
   search(string) {
-    console.log(string);
+    if (!string) {
+      this.jobsSubj.next(this.jobs);
+    }
     const filteredArr = this.jobs.filter(job =>
       // tslint:disable-next-line: no-unused-expression
       (
@@ -98,11 +118,6 @@ export class JobsService {
         job.minimumSalary === parseInt(string) ||
         job.totalRounds === parseInt(string))
     );
-    if (filteredArr.length) {
-      console.log('hooo');
-      this.jobsSubj.next(filteredArr);
-    } else {
-      this.jobsSubj.next(this.jobs);
-    }
+    this.jobsSubj.next(filteredArr);
   }
 }

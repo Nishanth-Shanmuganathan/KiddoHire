@@ -1,0 +1,73 @@
+<div class="container-fluid ml-2" matDialogContent *ngIf="!isToday">
+  <div class="close">
+    <button mat-icon-button color="warn" mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-*">
+      <img
+        [src]="
+          data.user.applicant.imageURL ||
+          './../../../../assets/images/jobs/user.png'
+        "
+        [alt]="
+          data.user.applicant.username || data.user.applicant.profileName
+            | titlecase
+        "
+      />
+    </div>
+  </div>
+  <div class="row justify-content-center mt-2">
+    <div class="col-*">
+      <span>{{
+        data.user.applicant.username || data.user.applicant.profileName
+      }}</span>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-*">
+      <mat-chip
+        class="m-2"
+        color="primary"
+        selected
+        *ngFor="let skill of data.user.applicant.skills"
+        >{{ skill }}</mat-chip
+      >
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-* m-3">
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="reject(data.job._id, data.user.applicant.profileName)"
+      >
+        REJECT
+      </button>
+    </div>
+    <div class="col-* m-3">
+      <button
+        mat-raised-button
+        class="bg-success text-light"
+        (click)="select(data.job._id, data.user.applicant.profileName)"
+      >
+        SELECT
+      </button>
+    </div>
+  </div>
+</div>
+<div class="container-fluid" *ngIf="isToday">
+  <div class="row">
+    <div class="col-*">
+      <span>Shortlisting can be done only on the interview date</span>
+    </div>
+  </div>
+  <div class="row justify-content-end">
+    <div class="col-*">
+      <button mat-raised-button color="warn" matDialogClose class="m-3">
+        CLOSE
+      </button>
+    </div>
+  </div>
+</div>
