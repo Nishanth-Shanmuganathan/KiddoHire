@@ -170,6 +170,7 @@ export class NewJobComponent implements OnInit {
       this.addForm.value.total_rounds,
       this.addForm.value.rounds,
     );
+    console.log(this.data._id);
     this.jobService.editJob(jobCreds, this.data._id);
 
 

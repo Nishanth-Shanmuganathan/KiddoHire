@@ -52,6 +52,7 @@ export class JobsService {
       });
   }
   editJob(jobCred: Job, id) {
+    console.log('hii');
     this.http.post<{ message, user }>(environment.server_url + 'node-jobs/edit/' + id, jobCred)
       .subscribe(res => {
         this.fetchJobs();

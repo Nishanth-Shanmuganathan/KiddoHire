@@ -81,6 +81,7 @@ export class EmployerJobCardComponent implements OnInit {
 
   edit() {
     const job = {
+      _id: this.job._id,
       designation: this.job.designation,
       description: this.job.description,
       skills: this.job.skills,
