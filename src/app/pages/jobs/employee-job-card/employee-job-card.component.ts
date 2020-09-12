@@ -40,8 +40,15 @@ export class EmployeeJobCardComponent implements OnInit {
             }
           });
           console.log(this.status);
-          this.currentRound = this.job.rounds[this.status.length - 1].date;
-          console.log(this.job.shortlisted.includes({ applicant: this.user._id, accepted: false }));
+          this.currentRound = this.job.rounds[this.status.length - 1]?.date;
+          this.job.shortlisted.forEach(sel => {
+            if (sel.applicant === this.user._id) {
+              this.selected = true
+            }
+          });
+          // console.log(this.selected);
+          // console.log(this.currentRound);
+          // console.log(this.currentRound && this.appliedJob && !this.selected);
         });
 
     }

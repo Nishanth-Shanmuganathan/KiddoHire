@@ -16,10 +16,10 @@ export class AuthComponent implements OnInit {
 
   ngOnInit(): void {
 
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    this.authService.isAuthSubj.next(false);
-    this.authService.userSub.next(null);
+    // localStorage.removeItem('token');
+    // localStorage.removeItem('user');
+    // this.authService.isAuthSubj.next(false);
+    // this.authService.userSub.next(null);
     this.uiService.isMobileSub.subscribe(res => {
       this.isMobile = res;
     });

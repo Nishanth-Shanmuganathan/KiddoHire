@@ -30,13 +30,12 @@ export class AuthService {
         this.isAuthSubj.next(true);
         this.userSub.next(res.user);
         this.route.navigate(['home']);
-        console.log(res.message);
         this.uiService.topDialog(res.message);
-
+      }, err => {
+        this.uiService.topDialog(err.error.message);
       });
   }
   register(registerData) {
-    console.log(registerData);
     this.http.post<{ message: string, token: string, user }>(environment.server_url + 'auth/register', { ...registerData })
       .subscribe(res => {
         this.user = res.user;

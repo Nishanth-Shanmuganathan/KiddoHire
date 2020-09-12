@@ -19,8 +19,7 @@ img {
   box-shadow: none !important;
 }
 
-button.active,
-.bg-primary:hover {
+button.active {
   color: #1A237E !important;
   background-color: white !important;
   /* color: #f33591 !important; */

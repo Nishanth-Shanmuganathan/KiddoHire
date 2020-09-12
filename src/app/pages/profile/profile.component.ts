@@ -80,6 +80,17 @@ export class ProfileComponent implements OnInit {
         this.isLoading = false;
         console.log('Error in fetching');
       });
+    this.authService.userSub.subscribe(res => {
+      this.selfUser = res;
+      this.error = false;
+      if (this.user) {
+        if (this.user.completion < 60) {
+          this.editMode = true;
+        } else {
+          this.editMode = false;
+        }
+      }
+    });
   }
 
   resized() {
@@ -92,7 +103,7 @@ export class ProfileComponent implements OnInit {
         this.user.skills.push(data.name);
         this.profileService.saveDetails(this.user.profileName, ['skills', this.user.skills])
           .subscribe(res => {
-            this.uiService.topDialog(this.toTitlecase(res.cred[0]) + ' saved...');
+            this.uiService.topDialog('Skills saved...');
             this.authService.updateUser(res.user);
           }, err => {
             console.log('Error in skills add');
@@ -107,7 +118,7 @@ export class ProfileComponent implements OnInit {
         this.user.languages.push(data.name);
         this.profileService.saveDetails(this.user.profileName, ['languages', this.user.languages])
           .subscribe(res => {
-            this.uiService.topDialog(this.toTitlecase(res.cred[0]) + ' saved...');
+            this.uiService.topDialog('Language saved...');
             this.authService.updateUser(res.user);
           }, err => {
             console.log('Error in language add');
@@ -123,7 +134,7 @@ export class ProfileComponent implements OnInit {
         console.log(this.user.review);
         this.profileService.saveReviews(this.user.profileName, ['reviews', this.user.reviews])
           .subscribe(res => {
-            this.uiService.topDialog(this.toTitlecase(res.cred[0]) + ' saved...');
+            this.uiService.topDialog('Review saved...');
             this.authService.updateUser(res.user);
           }, err => {
             console.log('Error in review add');
@@ -138,7 +149,7 @@ export class ProfileComponent implements OnInit {
         this.profileService.saveCertificate(this.user.profileName, ['certifications', this.certification])
           .subscribe(res => {
             console.log(res);
-            this.uiService.topDialog(this.toTitlecase(res.cred[0]) + ' saved...');
+            this.uiService.topDialog('Certificate saved...');
             this.authService.updateUser(res.user);
             // this.user.certifications.push({ title: res.cred[1].title, certificate: res.cred[1].absPath });
           }, err => {
@@ -155,7 +166,7 @@ export class ProfileComponent implements OnInit {
         this.user.projects.push({ title: data.name, link: data.link });
         this.profileService.saveDetails(this.user.profileName, ['projects', this.user.projects])
           .subscribe(res => {
-            this.uiService.topDialog(this.toTitlecase(res.cred[0]) + ' saved...');
+            this.uiService.topDialog('Project saved...');
             this.authService.updateUser(res.user);
           }, err => {
             console.log(err);
@@ -169,7 +180,7 @@ export class ProfileComponent implements OnInit {
     this.resume = (event.target as HTMLInputElement).files[0];
     this.profileService.saveResume(this.user.profileName, ['resume', this.resume])
       .subscribe(res => {
-        this.uiService.topDialog(this.toTitlecase(res.cred[0]) + ' saved...');
+        this.uiService.topDialog('Resume saved...');
         this.authService.updateUser(res.user);
         // this.user.resume = res.cred[1];
         this.resume = null;
@@ -179,10 +190,10 @@ export class ProfileComponent implements OnInit {
       });
   }
   onDPPicked(event: Event) {
-    this.resume = (event.target as HTMLInputElement).files[0];
-    this.profileService.saveDP(this.user.profileName, ['resume', this.resume])
+    const dp = (event.target as HTMLInputElement).files[0];
+    this.profileService.saveDP(this.user.profileName, ['resume', dp])
       .subscribe(res => {
-        this.uiService.topDialog(this.toTitlecase(res.cred[0]) + ' saved...');
+        this.uiService.topDialog('Profile picture saved...');
         this.authService.updateUser(res.user);
         // this.user.imageURL = res.cred[1];
       }, err => {
@@ -194,17 +205,12 @@ export class ProfileComponent implements OnInit {
     if (eve.target.value) {
       this.profileService.saveDetails(this.user.profileName, [eve.target.name, eve.target.value])
         .subscribe(res => {
-          this.uiService.topDialog(this.toTitlecase(res.cred[0]) + ' saved...');
+          this.uiService.topDialog('Changes saved...');
           this.authService.updateUser(res.user);
         }, err => {
           console.log(err);
         });
     }
-  }
-  toTitlecase(string) {
-    let sentence = string.toLowerCase();
-    sentence = sentence[0].toUpperCase() + sentence.slice(1);
-    return sentence;
   }
   navigateBack() {
     this._location.back();

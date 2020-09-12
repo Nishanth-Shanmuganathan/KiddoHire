@@ -233,7 +233,7 @@
               <td class="text-muted mb-0">Resume</td>
               <td *ngIf="!editMode" class="small-font pad">
                 <a href="{{ user.resume }}" target="_blank"
-                  >{{ user.username | titlecase }}_Resume
+                  >{{ user.username || user.profileName | titlecase }}_Resume
                   <mat-icon class="launch">launch</mat-icon></a
                 >
               </td>
@@ -370,7 +370,10 @@
         </div>
       </div>
 
-      <div class="row mt-3 mb-5 mb-md-0 pl-3 align-items-center">
+      <div
+        class="row mt-3 mb-5 mb-md-0 pl-3 align-items-center"
+        *ngIf="user.reviews?.length"
+      >
         <div class="col-12 pl-0 text-muted content-heading">
           Reviews
           <button
@@ -431,7 +434,7 @@
               type="text"
               placeholder="Username"
               [(ngModel)]="user.username"
-              (click)="dpPicker.click()"
+              (blur)="saveDetails($event)"
             />
           </mat-form-field>
         </div>
@@ -709,7 +712,10 @@
       </div>
 
       <div class="row mt-3 mb-5 mb-md-0 pl-3 align-items-center">
-        <div class="col-12 pl-0 text-muted content-heading">
+        <div
+          class="col-12 pl-0 text-muted content-heading"
+          *ngIf="user.reviews?.length"
+        >
           Reviews
           <button
             mat-icon-button
@@ -756,7 +762,10 @@
           <p *ngIf="!editMode" class="mb-0 big-font">
             {{ user.username }}
           </p>
-          <mat-form-field *ngIf="editMode" class="col-* m-0 p-0 small-font">
+          <mat-form-field
+            *ngIf="editMode"
+            class="col-* bg-dark m-0 p-0 small-font"
+          >
             <input
               matInput
               type="text"

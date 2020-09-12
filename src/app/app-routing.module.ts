@@ -26,6 +26,10 @@ const routes: Routes = [
     path: 'profile/:id',
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/profile/profile.module').then(mod => mod.ProfileModule)
+  },
+  {
+    path: '**',
+    redirectTo: ''
   }
 ];
 @NgModule({

@@ -29,6 +29,7 @@ export class InterviewComponent implements OnInit {
     this.disabled = true;
     this.uiService.confirm('reject').subscribe(res => {
       if (res.confirm) {
+        console.log('sent reject');
         this.jobService.reject(jobId, userId, this.data.round);
       } else {
         this.disabled = false;
@@ -39,6 +40,7 @@ export class InterviewComponent implements OnInit {
     this.disabled = true;
     this.uiService.confirm('shortlist').subscribe(res => {
       if (res.confirm) {
+        console.log('sent select');
         this.jobService.shortlist(jobId, userId, this.data.round);
       } else {
         this.disabled = false;

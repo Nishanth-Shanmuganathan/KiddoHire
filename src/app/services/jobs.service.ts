@@ -23,6 +23,7 @@ export class JobsService {
     return this.http.get<{ data: string[] }>(environment.server_url + 'node-jobs/city/' + city);
   }
   fetchJobs() {
+    console.log('fetch kobs');
     this.http.get<{ jobs }>(environment.server_url + 'node-jobs/jobs')
       .subscribe(res => {
         this.jobs = res.jobs;

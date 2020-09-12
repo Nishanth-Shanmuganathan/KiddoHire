@@ -23,7 +23,7 @@
             *ngFor="let skills of addForm.get('skills')['controls']"
             color="accent"
             selected
-            >{{ skills.value }}</mat-chip
+            >{{ skills.value | titlecase }}</mat-chip
           >
         </mat-chip-list>
       </div>

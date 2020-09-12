@@ -11,6 +11,7 @@ export class NotificationComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: { message: string, center: boolean }) { }
 
   ngOnInit(): void {
+    this.data.message = this.data.message || 'An unknown error occurred';
   }
 
 }

@@ -82,7 +82,10 @@
       <span class="text-muted">Applicants : </span> {{ job.applicants.length }}
     </div>
   </div>
-  <div class="row pl-4 mt-2 mb-2" *ngIf="appliedJob && !selected">
+  <div
+    class="row pl-4 mt-2 mb-2"
+    *ngIf="currentRound && appliedJob && !selected"
+  >
     <mat-chip
       class="m-1"
       [ngClass]="{
@@ -112,6 +115,13 @@
       <button mat-raised-button class="bg-success text-light">
         ACCEPT OFFER
       </button>
+    </div>
+  </div>
+  <div class="row mt-2 mb-2 justify-content-center">
+    <div class="col-*" *ngIf="appliedJob && !currentRound && !selected">
+      <mat-chip class="p-1" color="warn" selected>
+        Sorry, You are not selected</mat-chip
+      >
     </div>
   </div>
   <mat-card-actions

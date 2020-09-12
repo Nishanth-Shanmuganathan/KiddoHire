@@ -22,6 +22,7 @@ mat-card {
 .image img {
   border-radius: 150px;
   border: 2px outset silver;
+  background-color: white;
 }
 
 .title {
