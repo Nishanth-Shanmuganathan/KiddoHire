@@ -50,16 +50,8 @@ export class EmployeeJobCardComponent implements OnInit {
               this.selected = false;
             }
           });
-          // console.log(this.selected);
-          // console.log(this.currentRound);
-          // console.log(this.currentRound && this.appliedJob && !this.selected);
         });
-
     }
-    // console.log('Job type : ' + this.appliedJob);
-    // console.log(this.job);
-    // this.status = this.job.applicants.find(applicant => applicant.applicant === this.user._id).status;
-    // console.log(this.status);
   }
 
   applyJob(jobId) {
@@ -68,6 +60,6 @@ export class EmployeeJobCardComponent implements OnInit {
   }
 
   generateReport(jobId) {
-    this.jobService.generateReport(jobId);
+    this.jobService.generateReport(jobId, this.status.length - 1);
   }
 }

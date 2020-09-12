@@ -77,8 +77,8 @@ export class JobsService {
       });
   }
 
-  generateReport(jobId) {
-    this.http.get<{ message: string }>(environment.server_url + 'node-jobs/generate-report/' + jobId)
+  generateReport(jobId, round) {
+    this.http.get<{ message: string }>(environment.server_url + 'node-jobs/generate-report/' + jobId + '/' + round)
       .subscribe(res => {
         this.uiService.centerDialog(res.message);
       }, err => {

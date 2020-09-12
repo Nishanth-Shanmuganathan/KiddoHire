@@ -762,10 +762,7 @@
           <p *ngIf="!editMode" class="mb-0 big-font">
             {{ user.username }}
           </p>
-          <mat-form-field
-            *ngIf="editMode"
-            class="col-* bg-dark m-0 p-0 small-font"
-          >
+          <mat-form-field *ngIf="editMode" class="col-* m-0 p-0 small-font">
             <input
               matInput
               type="text"
