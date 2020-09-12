@@ -21,7 +21,6 @@ export class AuthService {
   ) { }
 
   login(loginData) {
-    console.log(loginData);
     this.http.post<{ message: string, token: string, user }>(environment.server_url + 'auth/login', { ...loginData })
       .subscribe(res => {
         this.user = res.user;
@@ -66,7 +65,6 @@ export class AuthService {
   }
 
   verifyEmail(key) {
-    console.log(key);
     return this.http.get<{ message: string, user }>(environment.server_url + 'auth/email/' + key)
       .pipe(tap(res => {
         this.uiService.topDialog(res.message);

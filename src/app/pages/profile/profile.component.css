@@ -105,9 +105,9 @@ img.profile {
   max-width: 400px;
 }
 
-img[mat-card-image],
-.document {
+img[mat-card-image] {
   width: 250px;
+  padding: 10px;
   max-height: 250px;
 }
 

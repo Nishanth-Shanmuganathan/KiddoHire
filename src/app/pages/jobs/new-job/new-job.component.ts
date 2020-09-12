@@ -75,7 +75,6 @@ export class NewJobComponent implements OnInit {
 
     if (Object.keys(this.data).length !== 0) {
       this.editMode = true;
-      console.log(this.data);
       this.addForm.patchValue(
         {
           designation: this.data.designation,
@@ -117,12 +116,10 @@ export class NewJobComponent implements OnInit {
       }));
     }
     // tslint:disable-next-line: no-string-literal
-    console.log(this.addForm);
   }
 
 
   postJob() {
-    console.log(this.addForm);
     this.addForm.patchValue({ 'minimum experience': this.minExp });
     this.addForm.patchValue({ 'minimum salary': this.minCTC });
     this.addForm.patchValue({ 'maximum experience': this.maxExp });
@@ -149,7 +146,6 @@ export class NewJobComponent implements OnInit {
   }
 
   editJob() {
-    console.log(this.addForm);
     this.addForm.patchValue({ 'minimum experience': this.minExp });
     this.addForm.patchValue({ 'minimum salary': this.minCTC });
     this.addForm.patchValue({ 'maximum experience': this.maxExp });
@@ -170,7 +166,6 @@ export class NewJobComponent implements OnInit {
       this.addForm.value.total_rounds,
       this.addForm.value.rounds,
     );
-    console.log(this.data._id);
     this.jobService.editJob(jobCreds, this.data._id);
 
 

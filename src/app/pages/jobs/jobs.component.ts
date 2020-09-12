@@ -28,7 +28,6 @@ export class JobsComponent implements OnInit {
       this.isLoading = false;
       this.error = false;
     }, err => {
-      console.log('fetch error');
       this.isLoading = false;
       this.error = true;
     });

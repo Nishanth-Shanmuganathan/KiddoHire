@@ -24,7 +24,6 @@ export class FollowsComponent implements OnInit {
       this.connections = res;
       this.isLoading = false;
       this.disable = false;
-      console.log(res);
     }, er => {
       this.error = true;
       this.isLoading = false;

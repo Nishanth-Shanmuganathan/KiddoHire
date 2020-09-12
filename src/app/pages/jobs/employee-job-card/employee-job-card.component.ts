@@ -27,12 +27,9 @@ export class EmployeeJobCardComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.appliedJob) {
-      console.log(this.job);
       this.profileService.fetchProfile(this.profileName)
         .subscribe(res => {
           this.user = res.user;
-          console.log(this.user);
-          // console.log(this.user);
           this.user.applications.forEach(application => {
             if (application.job === this.job._id) {
               this.status = application.status;
@@ -55,7 +52,6 @@ export class EmployeeJobCardComponent implements OnInit {
   }
 
   applyJob(jobId) {
-    console.log(jobId);
     this.jobService.applyJob(jobId);
   }
 

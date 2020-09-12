@@ -17,7 +17,6 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    console.log(route);
     let auth;
     let user = this.authService.user;
     this.authService.userSub.subscribe(res => {
@@ -29,7 +28,6 @@ export class AuthGuard implements CanActivate {
     if (!auth && !(route.routeConfig.path === 'profile/:id' && route.queryParams.key)) {
       return this.router.navigate(['/']);
     }
-    console.log(!(route.routeConfig.path === 'profile/:id' && route.queryParams.key) && !user.emailVerified);
     if (!(route.routeConfig.path === 'profile/:id' && route.queryParams.key) && !user.emailVerified) {
       this.uiService.centerDialog('Please verify your email id...');
       return this.router.navigate(['/']);
@@ -38,7 +36,6 @@ export class AuthGuard implements CanActivate {
       this.uiService.centerDialog('Please complete your registration...');
       return this.router.navigate(['profile', user.profileName]);
     }
-    console.log(true);
     return true;
   }
 }

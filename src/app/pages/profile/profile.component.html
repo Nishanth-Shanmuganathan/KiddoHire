@@ -30,7 +30,9 @@
       <span>BACK</span>
     </button>
     <button
-      *ngIf="selfUser.profileName === user.profileName && user.completion >= 60"
+      *ngIf="
+        selfUser.profileName === user.profileName && selfUser.completion >= 60
+      "
       class="edit d-sm-none"
       mat-mini-fab
       (click)="editMode = !editMode"
@@ -40,7 +42,9 @@
     </button>
 
     <button
-      *ngIf="selfUser.profileName === user.profileName && user.completion >= 60"
+      *ngIf="
+        selfUser.profileName === user.profileName && selfUser.completion >= 60
+      "
       class="logout d-sm-none"
       (click)="logout()"
       mat-mini-fab
@@ -296,12 +300,16 @@
             rel="noopener noreferrer"
           >
             <mat-card class="document">
-              <img
-                mat-card-image
-                [src]="certificate.certificate"
-                [alt]="certificate.title"
-              />
               <mat-card-content>
+                <img
+                  mat-card-image
+                  [src]="
+                    certificate.certificate ||
+                    './../../../assets/images/profile/certificate.jpg' ||
+                    './../../../assets/images/profile/certificate.jpg'
+                  "
+                  [alt]="certificate.title"
+                />
                 <p>
                   {{ certificate.title }}
                 </p>
@@ -434,6 +442,7 @@
               type="text"
               placeholder="Username"
               [(ngModel)]="user.username"
+              name="username"
               (blur)="saveDetails($event)"
             />
           </mat-form-field>
@@ -663,12 +672,15 @@
             rel="noopener noreferrer"
           >
             <mat-card class="document">
-              <img
-                mat-card-image
-                [src]="certificate.certificate"
-                [alt]="certificate.title"
-              />
               <mat-card-content>
+                <img
+                  mat-card-image
+                  [src]="
+                    certificate.certificate ||
+                    './../../../assets/images/profile/certificate.jpg'
+                  "
+                  [alt]="certificate.title"
+                />
                 <p>
                   {{ certificate.title }}
                 </p>

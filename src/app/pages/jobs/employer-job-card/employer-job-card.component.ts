@@ -38,7 +38,6 @@ export class EmployerJobCardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // console.log(this.job);
     let count = 0;
     this.job.rounds.forEach((round, index) => {
       if (count === 0 && new Date(round.date).getTime() >= this.today) {
@@ -51,10 +50,6 @@ export class EmployerJobCardComponent implements OnInit {
     });
     if (this.applicants.length) {
       const data = this.applicants.map((applicant, index) => {
-        console.log(applicant.applicant.username);
-        console.log(applicant.applicant.profileName);
-        console.log(applicant.jobMatch);
-        console.log(applicant.applicant.resume);
         return {
           sl: index + 1,
           name: applicant.applicant.username || applicant.applicant.profileName,

@@ -54,12 +54,15 @@ export class ProfileComponent implements OnInit {
       }
     });
 
-
-
     this.uiService.isMobileSub.subscribe(res => {
       this.isMobile = res;
     });
 
+
+    this.authService.userSub.subscribe(res => {
+      this.selfUser = res;
+      this.error = false;
+    });
 
   }
   fetchUser() {
@@ -78,7 +81,6 @@ export class ProfileComponent implements OnInit {
       }, () => {
         this.error = true;
         this.isLoading = false;
-        console.log('Error in fetching');
       });
     this.authService.userSub.subscribe(res => {
       this.selfUser = res;
@@ -106,7 +108,6 @@ export class ProfileComponent implements OnInit {
             this.uiService.topDialog('Skills saved...');
             this.authService.updateUser(res.user);
           }, err => {
-            console.log('Error in skills add');
           });
       }
     });
@@ -121,7 +122,6 @@ export class ProfileComponent implements OnInit {
             this.uiService.topDialog('Language saved...');
             this.authService.updateUser(res.user);
           }, err => {
-            console.log('Error in language add');
           });
       }
     });
@@ -131,13 +131,11 @@ export class ProfileComponent implements OnInit {
     this.uiService.addSingleString('review').subscribe(data => {
       if (data.name) {
         this.user.reviews.push({ review: data.name, author: this.selfUser.username || this.selfUser.profileName });
-        console.log(this.user.review);
         this.profileService.saveReviews(this.user.profileName, ['reviews', this.user.reviews])
           .subscribe(res => {
             this.uiService.topDialog('Review saved...');
             this.authService.updateUser(res.user);
           }, err => {
-            console.log('Error in review add');
           });
       }
     });
@@ -148,10 +146,9 @@ export class ProfileComponent implements OnInit {
         this.certification = { certificate: data.certificate, title: data.name };
         this.profileService.saveCertificate(this.user.profileName, ['certifications', this.certification])
           .subscribe(res => {
-            console.log(res);
             this.uiService.topDialog('Certificate saved...');
             this.authService.updateUser(res.user);
-            // this.user.certifications.push({ title: res.cred[1].title, certificate: res.cred[1].absPath });
+            this.user.certifications = res.cred;
           }, err => {
             this.uiService.topDialog('Certification update failed...');
           });
@@ -169,7 +166,6 @@ export class ProfileComponent implements OnInit {
             this.uiService.topDialog('Project saved...');
             this.authService.updateUser(res.user);
           }, err => {
-            console.log(err);
           });
       }
     });
@@ -191,13 +187,13 @@ export class ProfileComponent implements OnInit {
   }
   onDPPicked(event: Event) {
     const dp = (event.target as HTMLInputElement).files[0];
-    this.profileService.saveDP(this.user.profileName, ['resume', dp])
+    this.profileService.saveDP(this.user.profileName, ['image', dp])
       .subscribe(res => {
         this.uiService.topDialog('Profile picture saved...');
         this.authService.updateUser(res.user);
-        // this.user.imageURL = res.cred[1];
+        this.user.imageURL = res.cred;
       }, err => {
-        this.uiService.topDialog('Cannot upload this file...');
+        this.uiService.topDialog(err.error.message);
       });
   }
 
@@ -208,7 +204,6 @@ export class ProfileComponent implements OnInit {
           this.uiService.topDialog('Changes saved...');
           this.authService.updateUser(res.user);
         }, err => {
-          console.log(err);
         });
     }
   }

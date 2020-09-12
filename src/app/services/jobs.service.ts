@@ -23,14 +23,12 @@ export class JobsService {
     return this.http.get<{ data: string[] }>(environment.server_url + 'node-jobs/city/' + city);
   }
   fetchJobs() {
-    console.log('fetch kobs');
     this.http.get<{ jobs }>(environment.server_url + 'node-jobs/jobs')
       .subscribe(res => {
         this.jobs = res.jobs;
         this.jobsSubj.next(this.jobs);
       }, err => {
         this.jobsSubj.error(err);
-        console.log(err.error.message);
       });
   }
   fetchAppliedJobs() {
@@ -40,13 +38,11 @@ export class JobsService {
         this.jobsSubj.next(this.jobs);
       }, err => {
         this.jobsSubj.error(err);
-        console.log(err.error.message);
       });
   }
   addJob(jobCred: Job) {
     this.http.post<{ message, user }>(environment.server_url + 'node-jobs/job', jobCred)
       .subscribe(res => {
-        console.log(res);
         this.fetchJobs();
         this.authService.updateUser(res.user);
         this.uiService.topDialog(res.message);
@@ -55,7 +51,6 @@ export class JobsService {
       });
   }
   editJob(jobCred: Job, id) {
-    console.log('hii');
     this.http.post<{ message, user }>(environment.server_url + 'node-jobs/edit/' + id, jobCred)
       .subscribe(res => {
         this.fetchJobs();
@@ -73,7 +68,6 @@ export class JobsService {
         this.jobs = res.jobs;
         this.jobsSubj.next(this.jobs);
       }, err => {
-        console.log(err.error.message);
       });
   }
 
@@ -97,7 +91,6 @@ export class JobsService {
   }
 
   shortlist(jobId, userId, round) {
-    console.log(round);
     this.http.get<{ message: string }>(environment.server_url + 'node-jobs/shortlist/' + jobId + '/' + userId + '/' + round)
       .subscribe(res => {
         this.uiService.topDialog(res.message);
