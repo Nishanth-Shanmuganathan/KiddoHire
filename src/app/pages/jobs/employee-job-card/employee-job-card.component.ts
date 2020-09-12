@@ -19,7 +19,7 @@ export class EmployeeJobCardComponent implements OnInit {
   date = Date.now();
   currentRound;
   status = [];
-  selected: boolean;
+  selected: boolean = undefined;
   constructor(
     private jobService: JobsService,
     private profileService: ProfileService
@@ -39,11 +39,15 @@ export class EmployeeJobCardComponent implements OnInit {
               return;
             }
           });
-          console.log(this.status);
           this.currentRound = this.job.rounds[this.status.length - 1]?.date;
           this.job.shortlisted.forEach(sel => {
             if (sel.applicant === this.user._id) {
-              this.selected = true
+              this.selected = true;
+            }
+          });
+          this.status.forEach(status => {
+            if (!status.cleared) {
+              this.selected = false;
             }
           });
           // console.log(this.selected);

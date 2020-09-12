@@ -84,14 +84,10 @@
   </div>
   <div
     class="row pl-4 mt-2 mb-2"
-    *ngIf="currentRound && appliedJob && !selected"
+    *ngIf="currentRound && appliedJob && selected === undefined"
   >
     <mat-chip
-      class="m-1"
-      [ngClass]="{
-        'bg-success': state.cleared,
-        'bg-danger strike': !state.cleared
-      }"
+      class="m-1 bg-success text-light"
       *ngFor="let state of status"
       selected
     >
@@ -111,15 +107,15 @@
     >
   </div>
   <div class="row mt-2 mb-2 justify-content-center">
-    <div class="col-*" *ngIf="appliedJob && selected">
+    <div class="col-*" *ngIf="appliedJob && selected === true">
       <button mat-raised-button class="bg-success text-light">
         ACCEPT OFFER
       </button>
     </div>
   </div>
   <div class="row mt-2 mb-2 justify-content-center">
-    <div class="col-*" *ngIf="appliedJob && !currentRound && !selected">
-      <mat-chip class="p-1" color="warn" selected>
+    <div class="col-*" *ngIf="appliedJob && selected === false">
+      <mat-chip class="pl-4 pr-4" color="warn" selected>
         Sorry, You are not selected</mat-chip
       >
     </div>
